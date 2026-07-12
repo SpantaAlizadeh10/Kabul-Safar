@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+:root {
+  --background: #e9ebed;
+  --foreground: #050505;
+  --cyan: #0dadd1;
+  --blue: #377bc9;
+  --navy: #022d37;
+  --footer: #284d55;
+  --phone-btn: #0a5174;
+  --card-light: rgba(98, 202, 225, 0.5);
+  --card-stat: #f6f8f8;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-vazirmatn);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-vazirmatn), sans-serif;
+}
