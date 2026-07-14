@@ -1,27 +1,52 @@
 "use client";
 
 import { Languages } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { supportedLangs } from "@/lib/i18n";
 import { useI18n } from "@/components/i18n-provider";
 
 export function LanguageSwitch() {
   const { lang, setLang, t } = useI18n();
   const [open, setOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setOpen(false);
+      }
+    };
+
+    if (open) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [open]);
 
   return (
-    <div className="relative">
+    <div className="relative" ref={containerRef}>
       <button
         type="button"
         aria-label={t("header.lang")}
-        onClick={() => setOpen((v) => !v)}
-        className="flex h-5 w-5 items-center justify-center text-[#022d37] transition-opacity hover:opacity-80"
+        onClick={(e) => {
+          e.stopPropagation();
+          setOpen((v) => !v);
+        }}
+        className="flex h-5 w-5 items-center justify-center text-[#022d37] transition-opacity hover:opacity-80 z-40"
       >
         <Languages className="h-5 w-5" aria-hidden="true" />
       </button>
 
       <div
-        className={`absolute left-0 top-7 z-30 min-w-20 overflow-hidden rounded-xl border border-slate-100 bg-white shadow-lg transition-all ${
+        className={`absolute right-0 top-7 z-50 min-w-20 overflow-hidden rounded-xl border border-slate-100 bg-white shadow-lg transition-all ${
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
