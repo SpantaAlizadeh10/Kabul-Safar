@@ -37,7 +37,7 @@ export const Footer = () => {
           ))}
         </div>
 
-        <div className="w-[181px] shrink-0 space-y-6 text-right md:w-[320px]">
+        <div className="w-45.25 shrink-0 space-y-6 text-right md:w-[320px]">
           <div className="space-y-2.5">
             <div className="flex items-center justify-end gap-2">
               <Image
@@ -58,17 +58,103 @@ export const Footer = () => {
             <span className="text-[10px] font-semibold text-[#434040]">
               {content.follow}
             </span>
-            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#377bc9] text-[8px] text-white">
-              f
-            </div>
-            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#377bc9] text-[8px] text-white">
-              in
-            </div>
-            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#377bc9] text-[8px] text-white">
-              x
-            </div>
+            <a
+              href="https://www.instagram.com/kabulsafar?igsh=c3dwaDBldTM2OTdn"
+              target="_blank"
+              rel="noreferrer"
+              className="flex h-5 w-5 items-center justify-center rounded-full bg-[#377bc9] text-white transition-colors hover:bg-[#2c6390]"
+              aria-label="Instagram"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect x="4" y="4" width="16" height="16" rx="5" />
+                <circle cx="12" cy="12" r="3.5" />
+                <path d="M16.5 7.5h.01" />
+              </svg>
+            </a>
+            <a
+              href="https://youtube.com/@kabulsafar?si=BohGpBLBBrZ9dVqh"
+              target="_blank"
+              rel="noreferrer"
+              className="flex h-5 w-5 items-center justify-center rounded-full bg-[#377bc9] text-white transition-colors hover:bg-[#2c6390]"
+              aria-label="YouTube"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect x="3" y="6" width="18" height="12" rx="4" />
+                <polygon points="10 9 16 12 10 15 10 9" fill="currentColor" />
+              </svg>
+            </a>
+            <a
+              href="https://www.tiktok.com/@kabul.safar?_r=1&_t=ZN-97zx2im1yJK"
+              target="_blank"
+              rel="noreferrer"
+              className="flex h-5 w-5 items-center justify-center rounded-full bg-[#377bc9] text-white transition-colors hover:bg-[#2c6390]"
+              aria-label="TikTok"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M9 8c2 .5 3.5 1.5 4 4s0 5-3 5a3.5 3.5 0 01-3.5-3.5" />
+                <path d="M16 8v5a3 3 0 01-3 3" />
+                <path d="M16 8h3" />
+                <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" />
+              </svg>
+            </a>
+            <a
+              href="https://www.threads.com/@kabulsafar28"
+              target="_blank"
+              rel="noreferrer"
+              className="flex h-5 w-5 items-center justify-center rounded-full bg-[#377bc9] text-white transition-colors hover:bg-[#2c6390]"
+              aria-label="Threads"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M12 20a7.5 7.5 0 010-15" />
+                <path d="M12 5.5c2.5 0 4.5 2 4.5 4.5 0 3-3 5-4.5 5-2 0-3-1-3-2.5" />
+              </svg>
+            </a>
           </div>
         </div>
+      </div>
+
+      <div className="mt-5 flex items-center justify-between md:mt-8">
+        <a
+          href={CONTACT_PHONE_TEL}
+          className="inline-flex h-6.5 items-center gap-2 rounded-2.5xl bg-[#0a5174] px-3 text-[8px] font-semibold text-white md:h-10 md:rounded-xl md:px-5 md:text-sm"
+        >
+          <span className="flex h-4 w-4 items-center justify-center rounded-full bg-white/10">
+            ☎
+          </span>
+          {content.phone || CONTACT_PHONE_DISPLAY}
+        </a>
       </div>
 
       {/* Embedded map of France */}
@@ -84,18 +170,6 @@ export const Footer = () => {
         <p className="mt-2 text-center text-[8px] text-white/70">
           نقشه فرانسه — منبع: OpenStreetMap
         </p>
-      </div>
-
-      <div className="mt-5 flex items-center justify-between md:mt-8">
-        <a
-          href={CONTACT_PHONE_TEL}
-          className="inline-flex h-[26px] items-center gap-2 rounded-[10px] bg-[#0a5174] px-3 text-[8px] font-semibold text-white md:h-10 md:rounded-xl md:px-5 md:text-sm"
-        >
-          <span className="flex h-4 w-4 items-center justify-center rounded-full bg-white/10">
-            ☎
-          </span>
-          {content.phone || CONTACT_PHONE_DISPLAY}
-        </a>
       </div>
 
       <p className="mt-4 text-center text-[6px] text-white/50">

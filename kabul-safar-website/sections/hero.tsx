@@ -12,60 +12,59 @@ export const Hero = () => {
   const isRtl = lang === "fa" || lang === "ps";
 
   return (
-    <section aria-labelledby="hero-title" dir={isRtl ? "rtl" : "ltr"}>
-      <div className="relative overflow-hidden rounded-2xl bg-[#18b8d0] md:rounded-3xl">
-        <div className="flex justify-between items-center gap-4 px-4 py-6 md:gap-8 md:px-8 md:py-10">
-          {/* Text Content (left) */}
-          <div className="flex-1 text-left">
+    <section aria-labelledby="hero-title">
+      <div className="relative overflow-hidden rounded-2xl bg-[#89BFC9] md:rounded-3xl">
+        <div
+          dir="ltr"
+          className="flex flex-row flex-nowrap items-center gap-3 px-4 py-5 md:gap-6 md:px-8 md:py-8"
+        >
+          <div className="w-[42%] shrink-0 md:w-[44%]">
+            <Image
+              src="/images/hero-illustration-new.jpeg"
+              alt=""
+              width={740}
+              height={660}
+              className="h-auto w-full object-contain"
+              aria-hidden="true"
+              priority
+            />
+          </div>
+
+          <div
+            dir={isRtl ? "rtl" : "ltr"}
+            className={`min-w-0 flex-1 ${isRtl ? "text-right" : "text-left"}`}
+          >
             <h1
               id="hero-title"
-              className="text-base font-bold leading-tight text-black text-left md:text-3xl md:leading-tight"
+              className="text-[20px] font-black leading-tight text-black md:text-[42px] md:leading-[1.04]"
             >
-              ویزای <span>{content.titleIran}</span> و{" "}
-              <span>{content.titleAsia}</span>
+              {content.titlePrefix}{" "}
+              <span className="text-white">
+                {content.titleIran} {isRtl ? "و" : "and"} {content.titleAsia}
+              </span>
             </h1>
 
-            <p className="mt-1 text-xs font-medium text-black/90 text-left md:mt-2 md:text-sm">
+            <p className="mt-2 text-xs font-bold text-black md:mt-3 md:text-base">
               {content.subTitle}
             </p>
 
-            <ul className="mt-2 space-y-1 md:mt-3 md:space-y-1.5">
+            <ul className="mt-3 space-y-1.5 md:mt-5 md:space-y-2.5">
               {content.bullets.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-start justify-start gap-1.5"
-                >
+                <li key={item} className="flex flex-row items-start gap-1.5 md:gap-2">
                   <Check
-                    className="mt-0.5 h-3 w-3 shrink-0 text-white md:h-4 md:w-4"
+                    className="mt-0.5 h-3.5 w-3.5 shrink-0 text-white md:h-4 md:w-4"
                     aria-hidden="true"
                   />
-                  <span className="text-[10px] leading-tight text-black/90 md:text-xs md:leading-relaxed">
+                  <span className="text-[11px] leading-snug text-black/90 md:text-sm md:leading-relaxed">
                     {item}
                   </span>
                 </li>
               ))}
             </ul>
 
-            <div className="mt-3 flex justify-start md:mt-4">
-              <ConsultButton
-                href="/visa"
-                label={content.consultCta}
-                className="h-8 rounded-full px-4 text-xs font-semibold md:h-10 md:px-5 md:text-sm"
-              />
+            <div className={`mt-4 md:mt-6 ${isRtl ? "flex justify-end" : "flex justify-start"}`}>
+              <ConsultButton label={content.consultCta} compact />
             </div>
-          </div>
-
-          {/* Right image (hidden on small screens) */}
-          <div className="hidden md:block w-[35%] shrink-0">
-            <Image
-              src="/images/Hero image.jpeg"
-              alt="suitcase"
-              width={400}
-              height={300}
-              className="h-auto w-full object-contain"
-              aria-hidden="true"
-              priority
-            />
           </div>
         </div>
       </div>

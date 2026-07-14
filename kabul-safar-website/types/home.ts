@@ -35,6 +35,12 @@ export type Testimonial = {
   avatar: string;
 };
 
+export type FaqItem = {
+  id: number;
+  question: string;
+  answer: string;
+};
+
 export type FooterLinkGroup = {
   title: string;
   links: { label: string; href: string }[];

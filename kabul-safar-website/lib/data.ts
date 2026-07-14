@@ -73,6 +73,12 @@ type LocalizedContent = {
     title: string;
     items: { name: string; role: string; message: string }[];
   };
+  faq: {
+    title: string;
+    subtitle: string;
+    cta: string;
+    items: { question: string; answer: string }[];
+  };
   cta: {
     visaTitle: string;
     visaBody: string;
@@ -203,6 +209,29 @@ const content: Record<Lang, LocalizedContent> = {
           role: "دانشجو موسیقی",
           message:
             "بیشتر از همه صداقت و مسئولیت‌پذیری این مجموعه برایم ارزشمند بود. همه چیز طبق برنامه پیش رفت و در انتخاب بلیط سفر نیز راهنمایی بسیار خوبی دریافت کردم.",
+        },
+      ],
+    },
+    faq: {
+      title: "سوالات متداول",
+      subtitle:
+        "پاسخ به پرسش‌های مهم شما درباره روند دریافت ویزا و پشتیبانی کابل سفر.",
+      cta: "سوالی دارید؟ همین حالا در واتساپ بپرسید.",
+      items: [
+        {
+          question: "چطور درخواست ویزا را شروع کنم؟",
+          answer:
+            "کافی است از طریق واتساپ پیام دهید یا فرم تماس را پر کنید تا کارشناسان ما روند را برای شما آغاز کنند.",
+        },
+        {
+          question: "مدارک مورد نیاز چه چیزهایی هستند؟",
+          answer:
+            "لیست مدارک لازم برای ویزای ایران بر اساس وضعیت شما ارسال می‌شود و در هر مرحله همراهتان خواهیم بود.",
+        },
+        {
+          question: "پشتیبانی به چه زبان‌هایی ارائه می‌شود؟",
+          answer:
+            "ما به فارسی، دری، پشتو و انگلیسی پاسخ‌گو هستیم تا ارتباط شما با ما ساده و روان باشد.",
         },
       ],
     },
@@ -671,6 +700,10 @@ export function getTestimonialsContent(lang: Lang): {
       }),
     ),
   };
+}
+
+export function getFaqContent(lang: Lang) {
+  return pick(lang).faq;
 }
 
 export function getCtaContent(lang: Lang) {

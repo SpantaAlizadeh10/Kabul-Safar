@@ -118,23 +118,26 @@ export const Header = () => {
             dir="ltr"
             className="hidden items-center gap-8 md:flex md:flex-row"
           >
-            {navItems.map((item) => {
-              const isActive = pathname === item.href;
-              return (
-                <Link
-                  key={`desktop-${item.href}`}
-                  href={item.href}
-                  className={`text-sm font-semibold transition-colors hover:text-[#377bc9] ${isActive ? "text-[#0f3e66]" : "text-slate-700"}`}
-                >
-                  <span className="relative inline-flex items-center">
-                    {item.label}
-                    {isActive ? (
-                      <span className="absolute inset-x-0 -bottom-2 mx-auto h-0.5 w-full rounded-full bg-[#0dadd1]" />
-                    ) : null}
-                  </span>
-                </Link>
-              );
-            })}
+            {navItems
+              .slice()
+              .reverse()
+              .map((item) => {
+                const isActive = pathname === item.href;
+                return (
+                  <Link
+                    key={`desktop-${item.href}`}
+                    href={item.href}
+                    className={`text-sm font-semibold transition-colors hover:text-[#377bc9] ${isActive ? "text-[#0f3e66]" : "text-slate-700"}`}
+                  >
+                    <span className="relative inline-flex items-center">
+                      {item.label}
+                      {isActive ? (
+                        <span className="absolute inset-x-0 -bottom-2 mx-auto h-0.5 w-full rounded-full bg-[#0dadd1]" />
+                      ) : null}
+                    </span>
+                  </Link>
+                );
+              })}
           </div>
         </div>
 

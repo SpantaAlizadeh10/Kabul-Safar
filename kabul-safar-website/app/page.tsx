@@ -10,6 +10,7 @@ import { ServiceFeature } from "@/sections/service-feature";
 import { Stats } from "@/sections/stats";
 import { Testimonials } from "@/sections/testimonials";
 import { WhyChooseUs } from "@/sections/why-choose-us";
+import { Faq } from "@/sections/faq";
 import { LanguageDirWrapper } from "@/sections/language-dir-wrapper";
 
 export default function Home() {
@@ -31,6 +32,7 @@ export default function Home() {
           </div>
 
           <Testimonials />
+          <Faq />
           <CtaPromo />
         </main>
         <Footer />

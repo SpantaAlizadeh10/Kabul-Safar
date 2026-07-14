@@ -254,7 +254,7 @@ export const VisaRequestForm = () => {
               <select
                 value={values.tripType}
                 onChange={(e) => handleChange("tripType", e.target.value)}
-                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20"
+                className="w-full field-fancy text-sm text-slate-700"
               >
                 <option>{isRtl ? "دو طرفه" : "Round-trip"}</option>
                 <option>{isRtl ? "یک طرفه" : "One-way"}</option>
@@ -267,7 +267,7 @@ export const VisaRequestForm = () => {
               <select
                 value={values.visaType}
                 onChange={(e) => handleChange("visaType", e.target.value)}
-                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20"
+                className="w-full field-fancy text-sm text-slate-700"
               >
                 <option>{isRtl ? "توریستی" : "Tourist"}</option>
                 <option>{isRtl ? "کاری" : "Business"}</option>
@@ -281,7 +281,7 @@ export const VisaRequestForm = () => {
               <select
                 value={values.flightClass}
                 onChange={(e) => handleChange("flightClass", e.target.value)}
-                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20"
+                className="w-full field-fancy text-sm text-slate-700"
               >
                 <option>{isRtl ? "اکونومی" : "Economy"}</option>
                 <option>{isRtl ? "بیزینس" : "Business"}</option>
@@ -296,7 +296,7 @@ export const VisaRequestForm = () => {
                 value={values.origin}
                 onChange={(e) => handleChange("origin", e.target.value)}
                 placeholder={content.placeholders.origin}
-                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20"
+                className="w-full field-fancy text-sm text-slate-700"
               />
             </div>
             <div className="space-y-2">
@@ -307,7 +307,7 @@ export const VisaRequestForm = () => {
                 value={values.destination}
                 onChange={(e) => handleChange("destination", e.target.value)}
                 placeholder={content.placeholders.destination}
-                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20"
+                className="w-full field-fancy text-sm text-slate-700"
               />
             </div>
             <div className="space-y-2">
@@ -319,7 +319,7 @@ export const VisaRequestForm = () => {
                 min={today}
                 value={values.departDate}
                 onChange={(e) => handleChange("departDate", e.target.value)}
-                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20"
+                className="w-full field-fancy text-sm text-slate-700"
               />
             </div>
             {values.tripType === (isRtl ? "دو طرفه" : "Round-trip") && (
@@ -332,7 +332,7 @@ export const VisaRequestForm = () => {
                   min={values.departDate || today}
                   value={values.returnDate}
                   onChange={(e) => handleChange("returnDate", e.target.value)}
-                  className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20"
+                  className="w-full field-fancy text-sm text-slate-700"
                 />
               </div>
             )}
@@ -350,7 +350,7 @@ export const VisaRequestForm = () => {
                 min="1"
                 value={values.passengers}
                 onChange={(e) => handleChange("passengers", e.target.value)}
-                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20"
+                className="w-full field-fancy text-sm text-slate-700"
               />
             </div>
             <div className="space-y-2">
@@ -361,7 +361,7 @@ export const VisaRequestForm = () => {
                 value={values.hotel}
                 onChange={(e) => handleChange("hotel", e.target.value)}
                 placeholder={content.placeholders.hotel}
-                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20"
+                className="w-full field-fancy text-sm text-slate-700"
               />
             </div>
             <div className="space-y-2">
@@ -371,7 +371,7 @@ export const VisaRequestForm = () => {
               <select
                 value={values.roomType}
                 onChange={(e) => handleChange("roomType", e.target.value)}
-                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20"
+                className="w-full field-fancy text-sm text-slate-700"
               >
                 <option>{isRtl ? "دو تخته" : "Double"}</option>
                 <option>{isRtl ? "یک تخته" : "Single"}</option>
@@ -387,7 +387,7 @@ export const VisaRequestForm = () => {
                 min="1"
                 value={values.nights}
                 onChange={(e) => handleChange("nights", e.target.value)}
-                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20"
+                className="w-full field-fancy text-sm text-slate-700"
               />
             </div>
             <div className="md:col-span-2 space-y-2">
@@ -398,7 +398,7 @@ export const VisaRequestForm = () => {
                 value={values.budget}
                 onChange={(e) => handleChange("budget", e.target.value)}
                 placeholder={content.placeholders.budget}
-                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20"
+                className="w-full field-fancy text-sm text-slate-700"
               />
             </div>
             <div className="md:col-span-2 space-y-2">
@@ -409,7 +409,7 @@ export const VisaRequestForm = () => {
                 value={values.travelReason}
                 onChange={(e) => handleChange("travelReason", e.target.value)}
                 placeholder={content.placeholders.travelReason}
-                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20"
+                className="w-full field-fancy text-sm text-slate-700"
               />
             </div>
           </div>
@@ -425,7 +425,7 @@ export const VisaRequestForm = () => {
                 value={values.fullName}
                 onChange={(e) => handleChange("fullName", e.target.value)}
                 placeholder={content.placeholders.fullName}
-                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20"
+                className="w-full field-fancy text-sm text-slate-700"
               />
             </div>
             <div className="space-y-2">
@@ -436,7 +436,7 @@ export const VisaRequestForm = () => {
                 value={values.phone}
                 onChange={(e) => handleChange("phone", e.target.value)}
                 placeholder={content.placeholders.phone}
-                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20"
+                className="w-full field-fancy text-sm text-slate-700"
               />
             </div>
             <div className="space-y-2 md:col-span-2">
@@ -448,7 +448,7 @@ export const VisaRequestForm = () => {
                 value={values.email}
                 onChange={(e) => handleChange("email", e.target.value)}
                 placeholder={content.placeholders.email}
-                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20"
+                className="w-full field-fancy text-sm text-slate-700"
               />
             </div>
             <div className="md:col-span-2 space-y-2">
@@ -460,7 +460,7 @@ export const VisaRequestForm = () => {
                 onChange={(e) => handleChange("notes", e.target.value)}
                 placeholder={content.placeholders.notes}
                 rows={4}
-                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20"
+                className="w-full field-fancy text-sm text-slate-700"
               />
             </div>
           </div>
