@@ -394,6 +394,29 @@ const content: Record<Lang, LocalizedContent> = {
         },
       ],
     },
+    faq: {
+      title: "Frequently asked questions",
+      subtitle:
+        "Your important questions about the visa process and support from Kabul Safar.",
+      cta: "Have a question? Ask us on WhatsApp now.",
+      items: [
+        {
+          question: "How do I start a visa application?",
+          answer:
+            "Just send us a message on WhatsApp or fill out the contact form and our team will start the process for you.",
+        },
+        {
+          question: "What documents do I need?",
+          answer:
+            "We will send you the required document list based on your situation and support you through each step.",
+        },
+        {
+          question: "Which languages do you support?",
+          answer:
+            "We offer support in Dari, Pashto, Persian, and English to make communication easy.",
+        },
+      ],
+    },
     cta: {
       visaTitle: "Need visa guidance?",
       visaBody: "We are just one message away.",
@@ -536,6 +559,28 @@ const content: Record<Lang, LocalizedContent> = {
           role: "د موسیقۍ زده‌کوونکې",
           message:
             "دوی رښتیني او مسؤل دي. هر څه د پلان له مخې ترسره شول او د ټکټ په ټاکنه کې یې هم ښه مرسته وکړه.",
+        },
+      ],
+    },
+    faq: {
+      title: "پرله پسې پوښتنې",
+      subtitle: "ستاسو مهمې پوښتنې د ویزې بهیر او کابل سفر ملاتړ په اړه.",
+      cta: "پوښتنه لرئ؟ اوس پر واتساپ پوښتنه وکړئ.",
+      items: [
+        {
+          question: "زه څنګه د ویزې غوښتنه پیل کړم؟",
+          answer:
+            "موږ ته په واتساپ کې پیغام راولیږئ یا د اړیکې فورمه ډکه کړئ، او زموږ ټیم به ستاسو لپاره بهیر پیل کړي.",
+        },
+        {
+          question: "څه اسناد ته اړتیا لرم؟",
+          answer:
+            "موږ به ستاسې د وضعیت پراساس اړین سندونه درته واستوو او په هر پړاو کې به مو ملاتړ وکړو.",
+        },
+        {
+          question: "په کومو ژبو ملاتړ کوئ؟",
+          answer:
+            "موږ په دري، پښتو، فارسي او انګلیسي ژبو کې ملاتړ وړاندې کوو ترڅو اړیکه مو آسانه وي.",
         },
       ],
     },
@@ -703,7 +748,8 @@ export function getTestimonialsContent(lang: Lang): {
 }
 
 export function getFaqContent(lang: Lang) {
-  return pick(lang).faq;
+  const localized = pick(lang);
+  return localized.faq ?? content.fa.faq;
 }
 
 export function getCtaContent(lang: Lang) {

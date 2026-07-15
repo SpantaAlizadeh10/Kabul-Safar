@@ -28,9 +28,9 @@ export const Faq = () => {
         </div>
 
         <div className="mt-5 grid gap-3 md:grid-cols-3">
-          {content.items.map((item) => (
+          {content.items.map((item, index) => (
             <article
-              key={item.id}
+              key={`${item.question}-${index}`}
               className="rounded-2xl border border-[#e0f5fb] bg-[#f4fcff] p-4 transition-all duration-200 hover:shadow-md"
             >
               <h3 className="text-[9px] font-bold text-black md:text-sm">

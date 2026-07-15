@@ -163,11 +163,8 @@ export const Header = () => {
           </div>
           <button
             aria-label={isOpen ? "بستن منو" : "باز کردن منو"}
-            onClick={(e) => {
-              e.stopPropagation();
-              toggle();
-            }}
-            className="flex h-7 w-7 items-center justify-center rounded-full bg-[#f5f7fb] transition-opacity hover:bg-[#eef4fb] md:hidden z-50"
+            onClick={toggle}
+            className="flex h-7 w-7 items-center justify-center rounded-full bg-[#f5f7fb] transition-opacity hover:bg-[#eef4fb] md:hidden"
             type="button"
           >
             <Menu className="h-5 w-5 text-[#022d37]" aria-hidden="true" />
@@ -177,12 +174,11 @@ export const Header = () => {
 
       {isOpen ? (
         <div
-          className="fixed inset-0 z-40 bg-black/20 px-2 py-1 md:hidden"
+          className="fixed inset-0 z-30 bg-black/20 px-2 py-1 md:hidden"
           onClick={close}
-          role="presentation"
         >
           <aside
-            className="absolute right-0 top-0 h-full w-[50vw] max-w-65 rounded-[14px] border-2 border-[#91D8E7] bg-[#f1f1f1] p-5 shadow-xl z-50"
+            className="absolute right-0 top-0 h-full w-[50vw] max-w-65 rounded-[14px] border-2 border-[#91D8E7] bg-[#f1f1f1] p-5 shadow-xl"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-center justify-between" dir="ltr">
@@ -208,7 +204,7 @@ export const Header = () => {
 
             <div className="space-y-3">
               {sidebarItems.map((item) => (
-                <Link
+                <a
                   key={`${item.label}-${item.href}`}
                   href={item.href}
                   onClick={close}
@@ -220,7 +216,7 @@ export const Header = () => {
                 >
                   <item.icon className="h-5 w-5 shrink-0" aria-hidden="true" />
                   <span>{item.label}</span>
-                </Link>
+                </a>
               ))}
             </div>
 
