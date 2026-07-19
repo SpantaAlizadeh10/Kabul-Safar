@@ -9,7 +9,8 @@ import { SectionTitle } from "@/components/section-title";
 import { ConsultButton } from "@/components/consult-button";
 import { useI18n } from "@/components/i18n-provider";
 import { VisaRequestForm } from "@/sections/visa-request-form";
-import { FileCheck, Send, Clock, Shield, CheckCircle } from "lucide-react";
+import { FileCheck, Send, Clock, Shield } from "lucide-react";
+import { CONTACT_WHATSAPP_URL } from "@/lib/contact";
 
 const pageText = {
   fa: {
@@ -128,11 +129,25 @@ export default function VisaPage() {
                 {content.subtitle}
               </p>
               <div className="mt-6">
-                <ConsultButton
-                  compact
-                  label={content.action}
-                  className="h-9 rounded-xl px-4 text-xs font-semibold md:h-10 md:px-6 md:text-sm"
-                />
+                <a
+                  href={CONTACT_WHATSAPP_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-3 rounded-full bg-white px-6 py-3 text-sm font-bold text-[#0dadd1] shadow-lg transition-all hover:scale-105 hover:shadow-xl md:px-8 md:py-4 md:text-base"
+                >
+                  <span>{content.action}</span>
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="h-5 w-5 md:h-6 md:w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </a>
               </div>
             </div>
           </section>
@@ -161,25 +176,6 @@ export default function VisaPage() {
                   </p>
                 </div>
               ))}
-            </div>
-          </section>
-
-          {/* Benefits Section */}
-          <section className="rounded-[32px] bg-gradient-to-r from-[#284d55] to-[#0dadd1] p-8 shadow-xl md:p-12">
-            <div className="relative z-10">
-              <h2 className="text-2xl font-black text-white md:text-3xl">
-                {lang === "en" ? "Why Choose Us?" : lang === "ps" ? "ولې موږ غوره یو؟" : "چرا ما را انتخاب کنید؟"}
-              </h2>
-              <div className="mt-6 space-y-4">
-                {content.points.map((point, idx) => (
-                  <div key={idx} className="flex items-start gap-4 text-white">
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/20">
-                      <CheckCircle className="h-5 w-5" />
-                    </div>
-                    <p className="text-base leading-7 text-white/90 md:text-lg">{point}</p>
-                  </div>
-                ))}
-              </div>
             </div>
           </section>
 
