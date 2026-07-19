@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "Kabul Safar",
   description: "Kabul Safar tourism landing page",
   icons: {
-    icon: "/Logo.jpeg",
+    icon: "/images/Logo.jpeg",
   },
 };
 
