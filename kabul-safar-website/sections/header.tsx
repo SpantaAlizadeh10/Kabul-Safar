@@ -227,22 +227,6 @@ export const Header = () => {
               ))}
             </div>
 
-            <div className="my-6 h-px bg-[#2b2b2b]" />
-
-            <div className="space-y-3">
-              <div className="flex items-center justify-between rounded-full bg-[#fbfbfb] px-5 py-3 text-[15px] font-semibold text-[#111]">
-                <Moon className="h-5 w-5" aria-hidden="true" />
-                <span>{sidebarLabels.theme}</span>
-              </div>
-              <button
-                type="button"
-                onClick={close}
-                className="flex w-full items-center justify-between rounded-full bg-[#fbfbfb] px-5 py-3 text-[15px] font-semibold text-[#111]"
-              >
-                <LogOut className="h-5 w-5" aria-hidden="true" />
-                <span>{sidebarLabels.logout}</span>
-              </button>
-            </div>
           </aside>
         </div>
       ) : null}
