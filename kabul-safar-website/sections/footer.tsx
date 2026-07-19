@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useI18n } from "@/components/i18n-provider";
-import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_TEL } from "@/lib/contact";
+import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_DISPLAY_2, CONTACT_PHONE_TEL, CONTACT_PHONE_TEL_2 } from "@/lib/contact";
 import { getFooterContent } from "@/lib/data";
 
 export const Footer = () => {
@@ -54,15 +54,24 @@ export const Footer = () => {
             </p>
           </div>
 
-          <div className="flex items-center justify-end gap-3">
+          <div className="flex items-center justify-end gap-2">
             <a
               href={CONTACT_PHONE_TEL}
-              className="inline-flex h-6.5 min-w-[140px] items-center gap-2 rounded-2.5xl bg-[#0a5174] px-3 text-[8px] font-semibold text-white whitespace-nowrap md:h-10 md:min-w-[180px] md:rounded-xl md:px-5 md:text-sm"
+              className="inline-flex h-6.5 min-w-[100px] items-center gap-2 rounded-2.5xl bg-[#0a5174] px-2.5 text-[8px] font-semibold text-white whitespace-nowrap md:h-10 md:min-w-[140px] md:rounded-xl md:px-4 md:text-sm"
             >
               <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-white/10">
                 ☎
               </span>
               <span dir="ltr">{content.phone || CONTACT_PHONE_DISPLAY}</span>
+            </a>
+            <a
+              href={CONTACT_PHONE_TEL_2}
+              className="inline-flex h-6.5 min-w-[100px] items-center gap-2 rounded-2.5xl bg-[#0a5174] px-2.5 text-[8px] font-semibold text-white whitespace-nowrap md:h-10 md:min-w-[140px] md:rounded-xl md:px-4 md:text-sm"
+            >
+              <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-white/10">
+                ☎
+              </span>
+              <span dir="ltr">{CONTACT_PHONE_DISPLAY_2}</span>
             </a>
             <div className="inline-flex items-center gap-2.5 rounded-[15px] border border-[rgba(137,130,130,0.38)] bg-white px-4 py-2 shadow-sm">
               <span className="text-[10px] font-semibold text-[#434040]">
