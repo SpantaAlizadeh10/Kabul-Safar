@@ -1,3 +1,5 @@
+import { useI18n } from "@/components/i18n-provider";
+
 type SectionTitleProps = {
   kicker?: string;
   title: string;
@@ -11,11 +13,15 @@ export const SectionTitle = ({
   subtitle,
   align = "center",
 }: SectionTitleProps) => {
+  const { dir } = useI18n();
+  const isRtl = dir === "rtl";
   const alignmentClass =
     align === "left"
       ? "text-left"
       : align === "right"
-        ? "text-right"
+        ? isRtl
+          ? "text-right"
+          : "text-left"
         : "text-center";
 
   return (
@@ -23,9 +29,13 @@ export const SectionTitle = ({
       {kicker ? (
         <p className="text-[11px] font-semibold text-cyan-500">{kicker}</p>
       ) : null}
-      <h2 className="text-lg font-black text-[#193643]">{title}</h2>
+      <h2 className="break-words text-base font-black leading-tight text-[#193643] md:text-lg" style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}>
+        {title}
+      </h2>
       {subtitle ? (
-        <p className="text-xs leading-5 text-slate-600">{subtitle}</p>
+        <p className="break-words text-[10px] leading-4 text-slate-600 md:text-xs md:leading-5" style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}>
+          {subtitle}
+        </p>
       ) : null}
     </header>
   );

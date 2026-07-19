@@ -20,23 +20,32 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const saved = window.localStorage.getItem(STORAGE_KEY) as Lang | null;
-    if (saved && supportedLangs.some((l) => l.id === saved)) setLangState(saved);
+    if (saved && supportedLangs.some((l) => l.id === saved))
+      setLangState(saved);
   }, []);
+
+  const dir = useMemo(() => getDirection(lang), [lang]);
+
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    document.documentElement.dir = dir;
+    document.documentElement.lang = lang;
+  }, [dir, lang]);
 
   const setLang = (next: Lang) => {
     setLangState(next);
     window.localStorage.setItem(STORAGE_KEY, next);
   };
 
-  const value = useMemo<I18nContextValue>(() => {
-    const dir = getDirection(lang);
-    return {
+  const value = useMemo<I18nContextValue>(
+    () => ({
       lang,
       dir,
       setLang,
       t: (key: string) => translate(lang, key),
-    };
-  }, [lang]);
+    }),
+    [dir, lang],
+  );
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
 }
@@ -46,4 +55,3 @@ export function useI18n() {
   if (!ctx) throw new Error("useI18n must be used within I18nProvider");
   return ctx;
 }
-

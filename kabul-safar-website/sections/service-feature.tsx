@@ -39,7 +39,8 @@ export const ServiceFeature = () => {
               {content.discount}
             </span>
             <ConsultButton
-              className="text-[11px] md:text-xs"
+              compact
+              className="h-8 px-3 text-[10px] md:h-10 md:px-4 md:text-xs"
               label={
                 lang === "fa"
                   ? "ویزای سریع"

@@ -108,7 +108,7 @@ const content: Record<Lang, LocalizedContent> = {
     hero: {
       titlePrefix: "ویزای",
       titleIran: "ایران",
-      titleAsia: "آسیا",
+      titleAsia: "ترکیه",
       subTitle: "برای شهروندان افغانستانی",
       bullets: [
         "دریافت ویزا در کمتر از ۷۲ ساعت",
@@ -246,7 +246,7 @@ const content: Record<Lang, LocalizedContent> = {
       blurb:
         "کابل سفر همراه مطمئن شما در دریافت ویزای ایران و خدمات سفر است. ما با ارائه مشاوره تخصصی و پشتیبانی حرفه‌ای، در تمام مراحل کنار شما خواهیم بود.",
       follow: "Follow",
-      phone: "0036-36393050",
+      phone: "0033 6 36 39 30 50",
       designer: "Designer: Sepanta(Ali) Alizadeh",
       groups: [
         {
@@ -286,7 +286,7 @@ const content: Record<Lang, LocalizedContent> = {
     hero: {
       titlePrefix: "Visa for",
       titleIran: "Iran",
-      titleAsia: "Asia",
+      titleAsia: "Turkey",
       subTitle: "For Afghan citizens",
       bullets: [
         "Visa issued in less than 72 hours",
@@ -428,7 +428,7 @@ const content: Record<Lang, LocalizedContent> = {
       blurb:
         "Kabul Safar is your reliable partner for Iran visa and travel services. We provide expert consultation and support in every step.",
       follow: "Follow",
-      phone: "0036-36393050",
+      phone: "0033 6 36 39 30 50",
       designer: "Designer: Sepanta(Ali) Alizadeh",
       groups: [
         {
@@ -463,7 +463,7 @@ const content: Record<Lang, LocalizedContent> = {
     hero: {
       titlePrefix: "ویزه د",
       titleIran: "ایران",
-      titleAsia: "آسیا",
+      titleAsia: "ترکیه",
       subTitle: "د افغان وګړو لپاره",
       bullets: [
         "ویزه تر ۷۲ ساعتونو کې",
@@ -595,7 +595,7 @@ const content: Record<Lang, LocalizedContent> = {
       blurb:
         "کابل سفر د ایران ویزې او سفر خدمتونو کې ستاسو باوري ملګری دی. موږ په هر پړاو کې مسلکي مشوره او ملاتړ وړاندې کوو.",
       follow: "Follow",
-      phone: "0036-36393050",
+      phone: "0033 6 36 39 30 50",
       designer: "Designer: Sepanta(Ali) Alizadeh",
       groups: [
         {

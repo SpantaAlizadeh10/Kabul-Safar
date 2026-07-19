@@ -6,30 +6,45 @@ import { Header } from "@/sections/header";
 import { LanguageDirWrapper } from "@/sections/language-dir-wrapper";
 import { SectionTitle } from "@/components/section-title";
 import { useI18n } from "@/components/i18n-provider";
+import { Plane, Shield, Clock, Heart, Globe, Users, Check } from "lucide-react";
 
 const pageText = {
   fa: {
     heading: "کابل سفر، مسیر مهاجرین را ساده می‌کند",
     description:
       "کابل سفر به خوبی نیاز روزافزون مهاجرین به مسافرت امن و پروسهٔ پیچیده دریافت بلیط را درک می‌کند. ما تلاش می‌کنیم سفر شما را از هر نقطهٔ جهان با برنامه‌ای روشن، پشتیبانی سریع و هماهنگی کامل آسان‌تر کنیم.",
-    highlightTitle: "درک عمیق از سفر مهاجرین",
+    highlightTitle: "چرا کابل سفر؟",
     highlightText:
       "ما می‌دانیم که مهاجرت فقط یک پرواز نیست؛ این یک تصمیم بزرگ زندگی است. هدف ما این است که این مسیر برای شما قابل اعتماد، ساده و قابل پیگیری باشد.",
-    cards: [
+    stats: [
+      { value: "5000+", label: "مسافر راضی" },
+      { value: "24/7", label: "پشتیبانی واتساپ" },
+      { value: "98%", label: "رضایت مشتری" },
+    ],
+    features: [
       {
         title: "ساده‌سازی ویزا",
         description:
           "فرآیندهای پیچیده ویزا را برای مهاجرین با پشتیبانی مرحله‌به‌مرحله ساده می‌کنیم.",
+        icon: Shield,
       },
       {
         title: "رزرو بلیط سریع",
         description:
           "با دسترسی به بهترین مسیرها، خرید بلیط و هماهنگی سفر شما را سریع می‌کنیم.",
+        icon: Clock,
       },
       {
         title: "همراه جهانی",
         description:
           "مهاجرین از سراسر دنیا می‌توانند روی پشتیبانی واتساپ و پاسخ‌گویی ۲۴ ساعته ما حساب کنند.",
+        icon: Globe,
+      },
+      {
+        title: "خدمت با عشق",
+        description:
+          "ما با عشق و تعهد به خدمت شما، بهترین تجربه سفر را فراهم می‌کنیم.",
+        icon: Heart,
       },
     ],
     quote:
@@ -45,24 +60,38 @@ const pageText = {
     heading: "Kabul Safar simplifies migrant journeys",
     description:
       "Kabul Safar understands the rising need of migrants for secure travel and the complexity of ticketing. We make visa, ticket, and migration travel easier from anywhere in the world.",
-    highlightTitle: "A modern migration partner",
+    highlightTitle: "Why Kabul Safar?",
     highlightText:
       "Migration is more than a ticket. It is a life decision, and we make that journey smoother with clear guidance and trusted support.",
-    cards: [
+    stats: [
+      { value: "5000+", label: "Happy travelers" },
+      { value: "24/7", label: "WhatsApp support" },
+      { value: "98%", label: "Customer satisfaction" },
+    ],
+    features: [
       {
         title: "Visa made simple",
         description:
           "We simplify complex visa steps with clear, step-by-step guidance.",
+        icon: Shield,
       },
       {
         title: "Fast ticketing",
         description:
           "We source the best routes and book your flights quickly and reliably.",
+        icon: Clock,
       },
       {
         title: "Global support",
         description:
           "Migrants worldwide rely on our WhatsApp support and 24/7 assistance.",
+        icon: Globe,
+      },
+      {
+        title: "Service with love",
+        description:
+          "We serve with love and commitment to provide the best travel experience.",
+        icon: Heart,
       },
     ],
     quote:
@@ -78,24 +107,38 @@ const pageText = {
     heading: "کابل سفر د کډوالو سفر اسانوي",
     description:
       "کابل سفر د کډوالو د سفري اړتیاوو او د ټکټ اخیستلو د پیچلتیا کامل درک لري. موږ د ویزې، ټکټ او مهاجرت سفرونه د نړۍ له هر ځایه آسانه کوو.",
-    highlightTitle: "د مهاجرت لپاره نوی ملګری",
+    highlightTitle: "ولې کابل سفر؟",
     highlightText:
       "مهاجرې یوازې یوه الوتنه نه ده. دا د ژوند بدلونه انتخاب دی او موږ هغه سفر ستاسو لپاره اسانه کوو.",
-    cards: [
+    stats: [
+      { value: "5000+", label: "خوشحاله مسافر" },
+      { value: "24/7", label: "واتساپ ملاتړ" },
+      { value: "98%", label: "د مشتری رضایت" },
+    ],
+    features: [
       {
         title: "ویرزې ساده کول",
         description:
           "موږ د پیچلو ویزې مرحلو لپاره واضح او ګام په ګام لارښود وړاندې کوو.",
+        icon: Shield,
       },
       {
-        title: "چټک ټکټونه",
+        title: "چ٫ک ټکټونه",
         description:
-          "موږ غوره لارې پیدا کوو او ستاسو الوتنې په چټکۍ او اطمینان سره بOOK کوو.",
+          "موږ غوره لارې پیدا کوو او ستاسو الوتنې په چ٫کۍ او اطمینان سره بBOOK کوو.",
+        icon: Clock,
       },
       {
         title: "نړیوال ملاتړ",
         description:
           "د نړۍ له ګوټ ګوټ څخه مهاجرین زموږ په ۲۴/۷ واتساپ ملاتړ تکیه کوي.",
+        icon: Globe,
+      },
+      {
+        title: "خدمت سره مینې",
+        description:
+          "موږ د مینې او تعهد سره خدمت کوو ترڅو غوره سفر تجربه ورکړو.",
+        icon: Heart,
       },
     ],
     quote:
@@ -103,7 +146,7 @@ const pageText = {
     quoteBy: "د کابل سفر ټیم",
     impact: [
       "د مهاجرو لپاره هر وخت واتساپ ملاتړ",
-      "د نړۍ په کچه چټکه ټکټ او ویزه همغږي",
+      "د نړۍ په کچه چ٫که ټکټ او ویزه همغږي",
       "تر تګ او رسیدو پورې بشپړ مرسته",
     ],
   },
@@ -117,162 +160,118 @@ export default function AboutPage() {
   return (
     <LanguageDirWrapper>
       <div
-        className={`mx-auto min-h-screen w-full bg-[#eff3f5] ${isRtl ? "rtl" : "ltr"} max-w-7xl`}
+        className={`mx-auto min-h-screen w-full bg-gradient-to-br from-slate-50 to-blue-50 ${isRtl ? "rtl" : "ltr"} max-w-7xl`}
       >
-        <main className="space-y-10 px-4 py-6 md:px-8 md:py-10">
+        <main className="space-y-16 px-4 py-8 md:px-8 md:py-12">
           <Header />
 
-          <section className="overflow-hidden rounded-[40px] bg-white shadow-[0_25px_80px_rgba(15,23,42,0.08)] ring-1 ring-slate-200 md:p-10">
-            <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-              <div
-                className={`${isRtl ? "text-right" : "text-left"} space-y-6`}
-              >
-                <span className="inline-flex rounded-full bg-[#d8f4fb] px-4 py-2 text-sm font-semibold text-[#0c9dbf]">
-                  {lang === "en"
-                    ? "About Kabul Safar"
-                    : lang === "ps"
-                      ? "د کابل سفر په اړه"
-                      : "درباره کابل سفر"}
-                </span>
-                <h1 className="max-w-3xl text-4xl font-black text-slate-900 md:text-5xl">
-                  {content.heading}
-                </h1>
-                <p className="max-w-2xl text-base leading-8 text-slate-600 md:text-lg">
-                  {content.description}
-                </p>
-                <div className="grid gap-4 sm:grid-cols-3">
-                  {content.cards.map((item) => (
-                    <div
-                      key={item.title}
-                      className="rounded-[28px] border border-slate-200 bg-slate-50 p-5"
-                    >
-                      <h2 className="text-base font-bold text-slate-900">
-                        {item.title}
-                      </h2>
-                      <p className="mt-3 text-sm leading-6 text-slate-600">
-                        {item.description}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="grid gap-4">
-                <div className="relative overflow-hidden rounded-4xl bg-slate-100 h-52 sm:h-72">
-                  <Image
-                    src="/images/destination.jpg"
-                    alt="People planning travel"
-                    width={840}
-                    height={600}
-                    className="h-full w-full object-cover"
-                    priority
-                  />
-                </div>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="relative overflow-hidden rounded-[28px] bg-slate-100 h-36 sm:h-44">
-                    <Image
-                      src="/images/iraq.jpg"
-                      alt="Travelers with luggage"
-                      width={420}
-                      height={280}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  <div className="relative overflow-hidden rounded-[28px] bg-slate-100 h-36 sm:h-44">
-                    <Image
-                      src="/images/turkey.jpg"
-                      alt="Global travel support"
-                      width={420}
-                      height={280}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                </div>
-              </div>
+          {/* Hero Section */}
+          <section className="relative overflow-hidden rounded-[32px] bg-gradient-to-r from-[#0dadd1] to-[#377bc9] p-8 md:p-16 shadow-2xl">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+            <div className="relative z-10">
+              <span className="inline-flex rounded-full bg-white/20 px-4 py-2 text-xs font-semibold text-white backdrop-blur-sm md:px-6 md:py-3 md:text-sm">
+                {lang === "en"
+                  ? "About Kabul Safar"
+                  : lang === "ps"
+                    ? "د کابل سفر په اړه"
+                    : "درباره کابل سفر"}
+              </span>
+              <h1 className="mt-6 max-w-4xl text-3xl font-black text-white md:text-5xl lg:text-6xl leading-tight">
+                {content.heading}
+              </h1>
+              <p className="mt-6 max-w-2xl text-base leading-8 text-white/90 md:text-lg md:leading-9">
+                {content.description}
+              </p>
             </div>
           </section>
 
-          <section className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="rounded-4xl bg-white p-8 shadow-[0_22px_60px_rgba(15,23,42,0.06)]">
-              <SectionTitle
-                kicker={
-                  lang === "en"
-                    ? "Our mission"
-                    : lang === "ps"
-                      ? "زموږ ماموریت"
-                      : "ماموریت ما"
-                }
-                title={
-                  lang === "en"
-                    ? "Built for migrant travelers"
-                    : lang === "ps"
-                      ? "د کډوالو لپاره جوړ شوی"
-                      : "برای مهاجران ساخته شده"
-                }
-                subtitle={
-                  lang === "en"
-                    ? "A clear, dependable process for ticketing, visas, and migration support."
-                    : lang === "ps"
-                      ? "د ټکټ، ویزې او مهاجرت ملاتړ لپاره روښانه او باوري پروسه."
-                      : "یک روند روشن و قابل اعتماد برای بلیط، ویزا و پشتیبانی مهاجرت."
-                }
-                align={isRtl ? "right" : "left"}
-              />
-
-              <div className="mt-8 space-y-4 text-slate-600">
-                {content.impact.map((item) => (
-                  <div key={item} className="flex items-start gap-3">
-                    <span className="mt-1 h-2.5 w-2.5 rounded-full bg-[#0dadd1]" />
-                    <p className="text-sm leading-7 md:text-base">{item}</p>
-                  </div>
-                ))}
+          {/* Stats Section */}
+          <section className="grid gap-6 rounded-[32px] bg-white p-8 shadow-xl md:grid-cols-3 md:p-12">
+            {content.stats.map((stat, idx) => (
+              <div
+                key={idx}
+                className={`text-center ${idx !== content.stats.length - 1 ? "md:border-r md:border-slate-100" : ""}`}
+              >
+                <p className="text-4xl font-black text-[#0dadd1] md:text-5xl lg:text-6xl">
+                  {stat.value}
+                </p>
+                <p className="mt-2 text-sm font-semibold text-slate-600 md:text-base">
+                  {stat.label}
+                </p>
               </div>
+            ))}
+          </section>
+
+          {/* Features Section */}
+          <section>
+            <div className={`mb-8 ${isRtl ? "text-right" : "text-left"}`}>
+              <h2 className="text-2xl font-black text-slate-900 md:text-4xl">
+                {content.highlightTitle}
+              </h2>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600 md:text-lg">
+                {content.highlightText}
+              </p>
             </div>
-
-            <div className="rounded-4xl bg-white p-6 shadow-[0_22px_60px_rgba(15,23,42,0.06)]">
-              <div className="rounded-4xl bg-[#0dadd1] p-8 text-white">
-                <p className="text-sm uppercase tracking-[0.28em] text-cyan-100 opacity-90">
-                  {lang === "en"
-                    ? "Our promise"
-                    : lang === "ps"
-                      ? "زموږ ژمنه"
-                      : "قول ما"}
-                </p>
-                <p className="mt-5 text-xl font-bold leading-9 text-white md:text-2xl">
-                  {content.quote}
-                </p>
-                <p className="mt-6 text-sm opacity-90">— {content.quoteBy}</p>
-              </div>
-
-              <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                <div className="overflow-hidden rounded-3xl bg-slate-100 h-28 sm:h-36">
-                  <Image
-                    src="/images/bamiyan.jpg"
-                    alt="Team working together"
-                    width={360}
-                    height={360}
-                    className="h-full w-full object-cover"
-                  />
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+              {content.features.map((feature, idx) => (
+                <div
+                  key={idx}
+                  className="group rounded-[24px] border border-slate-200 bg-white p-6 shadow-lg transition-all hover:shadow-2xl hover:-translate-y-1"
+                >
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0dadd1] to-[#377bc9] text-white shadow-lg">
+                    <feature.icon className="h-7 w-7" />
+                  </div>
+                  <h3 className="mt-4 text-lg font-bold text-slate-900 md:text-xl">
+                    {feature.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-6 text-slate-600 md:text-base">
+                    {feature.description}
+                  </p>
                 </div>
-                <div className="overflow-hidden rounded-3xl bg-slate-100 h-28 sm:h-36">
-                  <Image
-                    src="/images/hero-illustration.png"
-                    alt="Migration support"
-                    width={360}
-                    height={360}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                <div className="overflow-hidden rounded-3xl bg-slate-100 h-28 sm:h-36">
-                  <Image
-                    src="/images/destination-iraq.jpg"
-                    alt="Travel guide and support"
-                    width={360}
-                    height={360}
-                    className="h-full w-full object-cover"
-                  />
+              ))}
+            </div>
+          </section>
+
+          {/* Quote Section */}
+          <section className="rounded-[32px] bg-gradient-to-r from-[#284d55] to-[#0dadd1] p-8 md:p-16 shadow-2xl">
+            <div className="relative z-10 text-center">
+              <div className="mb-6 flex justify-center">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/20 text-4xl text-white">
+                  "
                 </div>
               </div>
+              <p className="text-xl font-bold leading-9 text-white md:text-2xl md:leading-10 lg:text-3xl">
+                {content.quote}
+              </p>
+              <p className="mt-6 text-base font-semibold text-white/90 md:text-lg">
+                — {content.quoteBy}
+              </p>
+            </div>
+          </section>
+
+          {/* Impact Section */}
+          <section className="rounded-[32px] bg-white p-8 shadow-xl md:p-12">
+            <div className={`mb-8 ${isRtl ? "text-right" : "text-left"}`}>
+              <h2 className="text-2xl font-black text-slate-900 md:text-4xl">
+                {lang === "en"
+                  ? "Our Impact"
+                  : lang === "ps"
+                    ? "زموږ اغیز"
+                    : "تاثیر ما"}
+              </h2>
+            </div>
+            <div className="grid gap-4 md:grid-cols-3">
+              {content.impact.map((item, idx) => (
+                <div
+                  key={idx}
+                  className={`flex items-start gap-4 rounded-2xl bg-gradient-to-br from-slate-50 to-blue-50 p-6 ${isRtl ? "flex-row-reverse" : "flex-row"}`}
+                >
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#0dadd1] text-white shadow-lg">
+                    <Check className="h-5 w-5" />
+                  </div>
+                  <p className="text-sm leading-7 text-slate-700 md:text-base">{item}</p>
+                </div>
+              ))}
             </div>
           </section>
         </main>

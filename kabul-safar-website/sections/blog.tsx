@@ -149,11 +149,11 @@ export const Blog = () => {
             <FileText className="h-4 w-4" aria-hidden="true" />
             بلاگ
           </div>
-          <h1 id="blog-title" className="text-2xl font-black leading-tight md:text-4xl">
+          <h1 id="blog-title" className="text-xl font-black leading-tight md:text-2xl lg:text-4xl">
             {content.title}
           </h1>
-          <p className="max-w-2xl text-sm leading-6 text-cyan-100/90 md:text-base">{content.subtitle}</p>
-          <p className="max-w-2xl text-sm leading-6 text-white/90 md:text-base">{content.intro}</p>
+          <p className="max-w-2xl text-xs leading-5 text-cyan-100/90 md:text-sm md:leading-6 md:text-base">{content.subtitle}</p>
+          <p className="max-w-2xl text-xs leading-5 text-white/90 md:text-sm md:leading-6 md:text-base">{content.intro}</p>
         </div>
       </div>
 
@@ -169,9 +169,9 @@ export const Blog = () => {
                 <span>{content.posts[0].category}</span>
                 <time>{content.posts[0].date}</time>
               </div>
-              <h2 className="text-xl font-extrabold text-slate-900 md:text-3xl">{content.posts[0].title}</h2>
-              <p className="text-base leading-7 text-slate-700">{content.posts[0].excerpt}</p>
-              <div className="flex items-center gap-3 text-sm font-semibold text-[#0dadd1]"><span>{content.cta}</span><ArrowRight className="h-4 w-4" aria-hidden="true" /></div>
+              <h2 className="text-lg font-extrabold text-slate-900 md:text-xl lg:text-3xl">{content.posts[0].title}</h2>
+              <p className="text-sm leading-6 text-slate-700 md:text-base md:leading-7">{content.posts[0].excerpt}</p>
+              <div className="flex items-center gap-3 text-xs font-semibold text-[#0dadd1] md:text-sm"><span>{content.cta}</span><ArrowRight className="h-4 w-4" aria-hidden="true" /></div>
             </div>
           </article>
 
@@ -184,8 +184,8 @@ export const Blog = () => {
                 </div>
                 <div className="p-4">
                   <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">{post.category}</div>
-                  <h3 className="mt-2 text-lg font-bold text-slate-900">{post.title}</h3>
-                  <p className="mt-2 text-sm text-slate-600">{post.excerpt}</p>
+                  <h3 className="mt-2 text-base font-bold text-slate-900 md:text-lg">{post.title}</h3>
+                  <p className="mt-2 text-xs text-slate-600 md:text-sm">{post.excerpt}</p>
                 </div>
               </article>
             ))}
@@ -201,8 +201,8 @@ export const Blog = () => {
               </div>
               <div>
                 <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">{post.category}</div>
-                <h4 className="mt-1 text-sm font-bold text-slate-900">{post.title}</h4>
-                <time className="text-sm text-slate-600">{post.date}</time>
+                <h4 className="mt-1 text-xs font-bold text-slate-900 md:text-sm">{post.title}</h4>
+                <time className="text-xs text-slate-600 md:text-sm">{post.date}</time>
               </div>
             </div>
           ))}
@@ -212,7 +212,7 @@ export const Blog = () => {
       {/* Latest posts with right sidebar for popular posts */}
       <div className="mt-6 grid gap-6 md:grid-cols-3">
         <div className="md:col-span-2 space-y-6">
-          <h3 className="text-lg font-bold text-slate-900">Latest Posts</h3>
+          <h3 className="text-base font-bold text-slate-900 md:text-lg">Latest Posts</h3>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {allPosts.map((post, idx) => (
               <article key={`${post.title}-${idx}`} className="flex flex-col gap-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
@@ -221,8 +221,8 @@ export const Blog = () => {
                 </div>
                 <div>
                   <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">{post.category}</div>
-                  <h4 className="mt-2 text-lg font-bold text-slate-900">{post.title}</h4>
-                  <p className="mt-2 text-sm text-slate-600">{post.excerpt}</p>
+                  <h4 className="mt-2 text-base font-bold text-slate-900 md:text-lg">{post.title}</h4>
+                  <p className="mt-2 text-xs text-slate-600 md:text-sm">{post.excerpt}</p>
                 </div>
               </article>
             ))}
@@ -231,14 +231,14 @@ export const Blog = () => {
 
         <aside className="space-y-4">
           <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 md:sticky md:top-24">
-            <h4 className="text-sm font-bold text-slate-900">Popular Posts</h4>
+            <h4 className="text-xs font-bold text-slate-900 md:text-sm">Popular Posts</h4>
             <ol className="mt-3 space-y-3 list-none">
               {content.posts.map((post, idx) => (
                 <li key={post.title} className="flex items-start gap-3">
-                  <div className="text-3xl font-extrabold text-slate-200">{String(idx + 1).padStart(2, "0")}</div>
+                  <div className="text-2xl font-extrabold text-slate-200 md:text-3xl">{String(idx + 1).padStart(2, "0")}</div>
                   <div>
-                    <div className="text-sm font-semibold text-slate-900">{post.title}</div>
-                    <div className="text-sm text-slate-600">{post.date}</div>
+                    <div className="text-xs font-semibold text-slate-900 md:text-sm">{post.title}</div>
+                    <div className="text-xs text-slate-600 md:text-sm">{post.date}</div>
                   </div>
                 </li>
               ))}
