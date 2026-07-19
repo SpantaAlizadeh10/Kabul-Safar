@@ -1,6 +1,6 @@
 "use client";
 
-import { Languages } from "lucide-react";
+import { Languages, ChevronDown } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { supportedLangs } from "@/lib/i18n";
 import { useI18n } from "@/components/i18n-provider";
@@ -38,9 +38,13 @@ export function LanguageSwitch() {
         type="button"
         aria-label={t("header.lang")}
         onClick={() => setOpen((v) => !v)}
-        className="flex h-7 w-7 items-center justify-center rounded-full bg-[#377bc9] text-white transition-opacity hover:opacity-85"
+        className="flex items-center gap-2 rounded-full bg-[#377bc9] px-3 py-1.5 text-white transition-opacity hover:opacity-85"
       >
         <Languages className="h-4 w-4" aria-hidden="true" />
+        <span className="text-xs font-semibold">
+          {supportedLangs.find((l) => l.id === lang)?.label || lang}
+        </span>
+        <ChevronDown className="h-3 w-3" aria-hidden="true" />
       </button>
 
       <div
