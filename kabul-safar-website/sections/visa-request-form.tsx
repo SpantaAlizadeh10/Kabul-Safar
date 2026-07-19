@@ -6,7 +6,7 @@ import { getFooterContent } from "@/lib/data";
 
 const formText = {
   fa: {
-    stepTitles: ["جزئیات سفر", "سفر و هتل", "اطلاعات تماس", "بازبینی و ارسال"],
+    stepTitles: ["جزئیات سفر", "اطلاعات تماس", "بازبینی و ارسال"],
     labels: {
       tripType: "نوع سفر",
       visaType: "نوع ویزا",
@@ -16,10 +16,6 @@ const formText = {
       departDate: "تاریخ رفت",
       returnDate: "تاریخ برگشت",
       passengers: "تعداد مسافرین",
-      hotel: "هتل مورد نظر",
-      roomType: "نوع اتاق",
-      nights: "تعداد شب",
-      budget: "بودجه تقریبی",
       travelReason: "نوع سفر",
       fullName: "نام کامل",
       phone: "شماره واتساپ",
@@ -29,8 +25,6 @@ const formText = {
     placeholders: {
       origin: "مثلاً تهران یا کابل",
       destination: "مثلاً تفلیس یا استانبول",
-      hotel: "نام هتل یا محل اقامت",
-      budget: "مثلاً 2000 یورو",
       travelReason: "تفریحی، زیارتی یا کاری",
       fullName: "نام و نام خانوادگی",
       phone: "مثلاً +989123456789",
@@ -51,7 +45,6 @@ const formText = {
   en: {
     stepTitles: [
       "Trip details",
-      "Hotel & stay",
       "Contact info",
       "Review & send",
     ],
@@ -64,10 +57,6 @@ const formText = {
       departDate: "Departure date",
       returnDate: "Return date",
       passengers: "Passengers",
-      hotel: "Hotel preference",
-      roomType: "Room type",
-      nights: "Nights",
-      budget: "Estimated budget",
       travelReason: "Travel purpose",
       fullName: "Full name",
       phone: "WhatsApp number",
@@ -77,8 +66,6 @@ const formText = {
     placeholders: {
       origin: "e.g. Tehran or Kabul",
       destination: "e.g. Tbilisi or Istanbul",
-      hotel: "Hotel name or accommodation",
-      budget: "e.g. 2000 EUR",
       travelReason: "Leisure, pilgrimage, business",
       fullName: "Full name",
       phone: "+1234567890",
@@ -99,7 +86,6 @@ const formText = {
   ps: {
     stepTitles: [
       "د سفر جزئيات",
-      "هوټل او پاتې کېدل",
       "د تماس معلومات",
       "کتنه او لیږل",
     ],
@@ -112,10 +98,6 @@ const formText = {
       departDate: "د تګ نېټه",
       returnDate: "د راستنېدو نېټه",
       passengers: "د مسافرینو شمېر",
-      hotel: "د هوټل غوره توب",
-      roomType: "د خونې ډول",
-      nights: "شپې",
-      budget: "اټکل شوی بودیجه",
       travelReason: "د سفر هدف",
       fullName: "بشپړ نوم",
       phone: "د واتساپ شمېره",
@@ -125,8 +107,6 @@ const formText = {
     placeholders: {
       origin: "مثلاً کابل یا تهران",
       destination: "مثلاً استانبول یا دوبۍ",
-      hotel: "د هوټل نوم یا د استوګنې ځای",
-      budget: "مثلاً 2000 EUR",
       travelReason: "سياحتي، زيارتي يا کاري",
       fullName: "ستاسو بشپړ نوم",
       phone: "+1234567890",
@@ -162,10 +142,6 @@ export const VisaRequestForm = () => {
     departDate: "",
     returnDate: "",
     passengers: "1",
-    hotel: "",
-    roomType: "Double",
-    nights: "3",
-    budget: "",
     travelReason: "",
     fullName: "",
     phone: "",
@@ -192,10 +168,6 @@ export const VisaRequestForm = () => {
     `${content.labels.departDate}: ${values.departDate || "-"}`,
     `${content.labels.returnDate}: ${values.returnDate || "-"}`,
     `${content.labels.passengers}: ${values.passengers}`,
-    `${content.labels.hotel}: ${values.hotel || "-"}`,
-    `${content.labels.roomType}: ${values.roomType}`,
-    `${content.labels.nights}: ${values.nights}`,
-    `${content.labels.budget}: ${values.budget || "-"}`,
     `${content.labels.travelReason}: ${values.travelReason || "-"}`,
     `${content.labels.fullName}: ${values.fullName || "-"}`,
     `${content.labels.phone}: ${values.phone || "-"}`,
@@ -211,7 +183,7 @@ export const VisaRequestForm = () => {
     window.open(url, "_blank");
   };
 
-  const isLastStep = step === 3;
+  const isLastStep = step === 2;
 
   return (
     <section className="rounded-[30px] bg-white p-6 shadow-sm ring-1 ring-slate-200 md:p-10">
@@ -233,11 +205,10 @@ export const VisaRequestForm = () => {
         {content.stepTitles.map((label, idx) => (
           <div
             key={label}
-            className={`min-w-28 rounded-2xl border px-3 py-2 text-center text-xs font-semibold ${
-              idx === step
-                ? "border-[#0dadd1] bg-[#0dadd1]/10 text-[#0dadd1]"
-                : "border-slate-200 bg-white text-slate-500"
-            }`}
+            className={`min-w-28 rounded-2xl border px-3 py-2 text-center text-xs font-semibold ${idx === step
+              ? "border-[#0dadd1] bg-[#0dadd1]/10 text-[#0dadd1]"
+              : "border-slate-200 bg-white text-slate-500"
+              }`}
           >
             {label}
           </div>
@@ -353,54 +324,6 @@ export const VisaRequestForm = () => {
                 className="w-full field-fancy text-sm text-slate-700"
               />
             </div>
-            <div className="space-y-2">
-              <label className="block text-sm font-semibold text-slate-700">
-                {content.labels.hotel}
-              </label>
-              <input
-                value={values.hotel}
-                onChange={(e) => handleChange("hotel", e.target.value)}
-                placeholder={content.placeholders.hotel}
-                className="w-full field-fancy text-sm text-slate-700"
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="block text-sm font-semibold text-slate-700">
-                {content.labels.roomType}
-              </label>
-              <select
-                value={values.roomType}
-                onChange={(e) => handleChange("roomType", e.target.value)}
-                className="w-full field-fancy text-sm text-slate-700"
-              >
-                <option>{isRtl ? "دو تخته" : "Double"}</option>
-                <option>{isRtl ? "یک تخته" : "Single"}</option>
-                <option>{isRtl ? "خانوادگی" : "Family"}</option>
-              </select>
-            </div>
-            <div className="space-y-2">
-              <label className="block text-sm font-semibold text-slate-700">
-                {content.labels.nights}
-              </label>
-              <input
-                type="number"
-                min="1"
-                value={values.nights}
-                onChange={(e) => handleChange("nights", e.target.value)}
-                className="w-full field-fancy text-sm text-slate-700"
-              />
-            </div>
-            <div className="md:col-span-2 space-y-2">
-              <label className="block text-sm font-semibold text-slate-700">
-                {content.labels.budget}
-              </label>
-              <input
-                value={values.budget}
-                onChange={(e) => handleChange("budget", e.target.value)}
-                placeholder={content.placeholders.budget}
-                className="w-full field-fancy text-sm text-slate-700"
-              />
-            </div>
             <div className="md:col-span-2 space-y-2">
               <label className="block text-sm font-semibold text-slate-700">
                 {content.labels.travelReason}
@@ -502,7 +425,7 @@ export const VisaRequestForm = () => {
         <div className="flex flex-1 flex-col gap-3 sm:flex-row sm:justify-end">
           <button
             type="button"
-            onClick={() => setStep((prev) => Math.min(prev + 1, 3))}
+            onClick={() => setStep((prev) => Math.min(prev + 1, 2))}
             disabled={isLastStep}
             className="rounded-full bg-slate-100 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-200 disabled:opacity-50"
           >
