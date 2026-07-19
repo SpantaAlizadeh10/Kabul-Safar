@@ -26,8 +26,9 @@ export const partners: PartnerLogo[] = [
 const baseSlides = [
   { id: "afghanistan", imageSrc: "/images/destination.jpg" },
   { id: "iran", imageSrc: "/images/destination-iran.jpg" },
-  { id: "turkey", imageSrc: "/images/destination-turkey.jpg" },
+  { id: "turkey", imageSrc: "/images/turke sea.jpeg" },
   { id: "iraq", imageSrc: "/images/destination-iraq.jpg" },
+  { id: "makke", imageSrc: "/images/Makke.jpeg" },
 ] as const;
 
 type LocalizedContent = {
@@ -126,6 +127,7 @@ const content: Record<Lang, LocalizedContent> = {
         { title: "Iran", subtitle: "Naghse-jahan Esfahan" },
         { title: "Turkey", subtitle: "Galata-Tower Turkey" },
         { title: "Karbala", subtitle: "Karbala-Emam-Hossein" },
+        { title: "Makkah", subtitle: "مکه مکرمه" },
       ],
     },
     howItWorks: {
@@ -149,7 +151,7 @@ const content: Record<Lang, LocalizedContent> = {
     },
     serviceFeature: {
       titlePrefix: "سفر به",
-      titleAccent: "آسیا",
+      titleAccent: "وطن",
       titleSuffix: "با خدمات کابل سفر ساده تر از همیشه",
       body: "ما با ارائه راهنمایی تخصصی، ارتباط شفاف و پشتیبانی قابل اعتماد، روند دریافت ویزای ایران را برای هموطنان افغانستانی مقیم اروپا آسان و مطمئن می‌سازیم",
       discount: "20% تخفیف",
@@ -304,6 +306,7 @@ const content: Record<Lang, LocalizedContent> = {
         { title: "Iran", subtitle: "Naghse-jahan Esfahan" },
         { title: "Turkey", subtitle: "Galata-Tower Turkey" },
         { title: "Karbala", subtitle: "Karbala-Emam-Hossein" },
+        { title: "Makkah", subtitle: "Saudi Arabia" },
       ],
     },
     howItWorks: {
@@ -327,7 +330,7 @@ const content: Record<Lang, LocalizedContent> = {
     },
     serviceFeature: {
       titlePrefix: "Travel to",
-      titleAccent: "Asia",
+      titleAccent: "Homeland",
       titleSuffix: "with Kabul Safar, easier than ever",
       body: "With expert guidance, clear communication, and trusted support, we make Iran visa processing easy and reliable for Afghan citizens living in Europe.",
       discount: "20% OFF",
@@ -481,6 +484,7 @@ const content: Record<Lang, LocalizedContent> = {
         { title: "Iran", subtitle: "Naghse-jahan Esfahan" },
         { title: "Turkey", subtitle: "Galata-Tower Turkey" },
         { title: "Karbala", subtitle: "Karbala-Emam-Hossein" },
+        { title: "Makkah", subtitle: "مکه مکرمه" },
       ],
     },
     howItWorks: {
@@ -501,7 +505,7 @@ const content: Record<Lang, LocalizedContent> = {
     },
     serviceFeature: {
       titlePrefix: "آسیا ته سفر",
-      titleAccent: "آسیا",
+      titleAccent: "وطن",
       titleSuffix: "د کابل سفر له خدمتونو سره تر هر وخت اسانه",
       body: "موږ د مسلکي لارښوونې، روښانه اړیکو او باور وړ ملاتړ له لارې د اروپا مېشتو افغانانو لپاره د ایران ویزې بهیر اسانه او خوندي کوو.",
       discount: "۲۰٪ تخفیف",

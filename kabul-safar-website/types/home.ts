@@ -54,7 +54,7 @@ export type PartnerLogo = {
 };
 
 export type DestinationSlide = {
-  id: "afghanistan" | "iran" | "turkey" | "iraq";
+  id: "afghanistan" | "iran" | "turkey" | "iraq" | "makke";
   title: string;
   subtitle: string;
   imageSrc: string;

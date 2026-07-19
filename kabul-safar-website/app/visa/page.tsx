@@ -138,25 +138,25 @@ export default function VisaPage() {
           </section>
 
           {/* Steps Section */}
-          <section className="rounded-[32px] bg-white p-8 shadow-xl md:p-12">
-            <div className="mb-8">
-              <h2 className="text-2xl font-black text-slate-900 md:text-3xl">
+          <section className="rounded-[32px] bg-white p-6 shadow-xl md:p-12">
+            <div className="mb-6">
+              <h2 className="text-xl font-black text-slate-900 md:text-3xl">
                 {content.highlight}
               </h2>
             </div>
-            <div className="grid gap-4 grid-cols-3">
+            <div className="grid gap-3 grid-cols-3">
               {content.steps.map((step, idx) => (
                 <div
                   key={step.title}
-                  className="group rounded-[20px] border border-slate-200 bg-gradient-to-br from-slate-50 to-blue-50 p-4 shadow-lg transition-all hover:shadow-2xl hover:-translate-y-1"
+                  className="group rounded-[20px] border border-slate-200 bg-gradient-to-br from-slate-50 to-blue-50 p-3 shadow-lg transition-all hover:shadow-2xl hover:-translate-y-1"
                 >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#0dadd1] to-[#377bc9] text-white shadow-lg">
-                    <step.icon className="h-5 w-5" />
+                  <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-[#0dadd1] to-[#377bc9] text-white shadow-lg md:h-10 md:w-10">
+                    <step.icon className="h-4 w-4 md:h-5 md:w-5" />
                   </div>
-                  <h3 className="mt-3 text-xs font-bold text-slate-900 md:text-sm">
+                  <h3 className="mt-2 text-[10px] font-bold text-slate-900 md:text-sm">
                     {step.title}
                   </h3>
-                  <p className="mt-2 text-[10px] leading-4 text-slate-600 md:text-xs">
+                  <p className="mt-1.5 text-[9px] leading-3 text-slate-600 md:text-xs md:leading-4">
                     {step.description}
                   </p>
                 </div>
