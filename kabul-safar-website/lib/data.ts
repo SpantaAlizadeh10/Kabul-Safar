@@ -113,7 +113,7 @@ const content: Record<Lang, LocalizedContent> = {
       subTitle: "برای شهروندان افغانستانی",
       bullets: [
         "دریافت ویزا در کمتر از ۷۲ ساعت",
-        "پشتیبانی فارسی / دری و انگلیسی",
+        "پشتیبانی دری و پشتو و انگلیسی",
         "مشاوره رایگان قبل از ثبت درخواست",
       ],
       consultCta: "دریافت ویزا و مشاوره",
@@ -173,7 +173,7 @@ const content: Record<Lang, LocalizedContent> = {
         {
           title: "پشتیبانی چندزبانه",
           description:
-            "تیم ما آماده پاسخ‌گویی به زبان‌های دری، پشتو، فارسی و انگلیسی است تا ارتباطی آسان و بدون مشکل داشته باشید.",
+            "تیم ما آماده پاسخ‌گویی به زبان‌های دری، پشتو و انگلیسی است تا ارتباطی آسان و بدون مشکل داشته باشید.",
         },
         {
           title: "روند شفاف",
@@ -187,7 +187,7 @@ const content: Record<Lang, LocalizedContent> = {
       subtitle:
         "از راهنمایی‌های ویزا گرفته تا خدمات مربوط به پرواز، تیم ما اینجاست تا سفر شما به ایران را آسان، مطمئن و بدون استرس کند.",
       columns: [
-        "در کابل ویزا باور داریم که هر سفر موفق با اعتماد آغاز می‌شود. هدف ما این است که روند دریافت ویزای ایران را برای هموطنان افغانستانی مقیم اروپا ساده، سریع و قابل اطمینان کنیم.",
+        "در کابل سفر باور داریم که هر سفر موفق با اعتماد آغاز می‌شود. هدف ما این است که روند دریافت ویزای ایران را برای هموطنان افغانستانی مقیم اروپا ساده، سریع و قابل اطمینان کنیم.",
         "تیم ما در تمامی مراحل، از بررسی مدارک تا راهنمایی و پاسخ‌گویی، در کنار شما خواهد بود تا با اطمینان بیشتری برای سفر خود برنامه‌ریزی کنید.",
       ],
     },
@@ -198,13 +198,13 @@ const content: Record<Lang, LocalizedContent> = {
           name: "شعیب نوروزی",
           role: "مهندس",
           message:
-            "برای سفر به ایران نیاز به راهنمایی داشتم و نمی‌دانستم از کجا شروع کنم. تیم کابل ویزا تمام مراحل را برایم توضیح داد و همیشه از طریق واتساپ پاسخ‌گو بود.",
+            "برای سفر به ایران نیاز به راهنمایی داشتم و نمی‌دانستم از کجا شروع کنم. تیم کابل سفر تمام مراحل را برایم توضیح داد و همیشه از طریق واتساپ پاسخ‌گو بود.",
         },
         {
           name: "قمر حمیدزی",
           role: "هنرمند",
           message:
-            "روند دریافت ویزا بسیار ساده‌تر از چیزی بود که تصور می‌کردم. تیم کابل ویزا در تمام مراحل پاسخ‌گوی سؤالاتم بود و با راهنمایی دقیق، تهیه مدارک را برایم آسان کرد.",
+            "روند دریافت ویزا بسیار ساده‌تر از چیزی بود که تصور می‌کردم. تیم کابل سفر در تمام مراحل پاسخ‌گوی سؤالاتم بود و با راهنمایی دقیق، تهیه مدارک را برایم آسان کرد.",
         },
         {
           name: "مریم احمدی",
@@ -233,7 +233,7 @@ const content: Record<Lang, LocalizedContent> = {
         {
           question: "پشتیبانی به چه زبان‌هایی ارائه می‌شود؟",
           answer:
-            "ما به فارسی، دری، پشتو و انگلیسی پاسخ‌گو هستیم تا ارتباط شما با ما ساده و روان باشد.",
+            "ما به دری، پشتو و انگلیسی پاسخ‌گو هستیم تا ارتباط شما با ما ساده و روان باشد.",
         },
       ],
     },
@@ -370,7 +370,7 @@ const content: Record<Lang, LocalizedContent> = {
       subtitle:
         "From visa guidance to flight assistance, our team is here to make your Iran trip simple, reliable, and stress-free.",
       columns: [
-        "At Kabul Visa, we believe every successful journey starts with trust. Our goal is to simplify and speed up Iran visa processing for Afghans living in Europe.",
+        "At Kabul Safar, we believe every successful journey starts with trust. Our goal is to simplify and speed up Iran visa processing for Afghans living in Europe.",
         "Our team is beside you in all stages, from document review to final support, so you can plan your trip confidently.",
       ],
     },
@@ -381,7 +381,7 @@ const content: Record<Lang, LocalizedContent> = {
           name: "Shoaib Norouzi",
           role: "Engineer",
           message:
-            "I needed guidance for my Iran trip and didn’t know where to start. Kabul Visa explained every step and was always responsive on WhatsApp.",
+            "I needed guidance for my Iran trip and didn’t know where to start. Kabul Safar explained every step and was always responsive on WhatsApp.",
         },
         {
           name: "Qamar Hamidzi",
