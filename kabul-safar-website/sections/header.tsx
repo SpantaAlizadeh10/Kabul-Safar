@@ -79,11 +79,11 @@ export const Header = () => {
     { label: sidebarLabels.hajjUmrah, href: "/visa", icon: Plane },
     {
       label: sidebarLabels.blog ?? sidebarLabels.article,
-      href: "/visa",
+      href: "/blog",
       icon: FileText,
     },
-    { label: sidebarLabels.about, href: "/visa", icon: Globe2 },
-    { label: sidebarLabels.contact, href: "/visa", icon: PhoneCall },
+    { label: sidebarLabels.about, href: "/about", icon: Globe2 },
+    { label: sidebarLabels.contact, href: "/contact", icon: PhoneCall },
   ];
 
   return (
