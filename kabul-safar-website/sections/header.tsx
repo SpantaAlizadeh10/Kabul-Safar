@@ -29,57 +29,61 @@ export const Header = () => {
   const sidebarLabels =
     lang === "en"
       ? {
-          home: "Home",
-          article: "Article",
-          visaAfghanistan: "Afghan visa",
-          visaIran: "Iran visa",
-          visaTurkey: "Turkey visa",
-          visaIraq: "Iraq visa",
-          about: "About us",
-          contact: "Contact us",
-          theme: "Theme",
-          logout: "Logout",
-        }
+        home: "Home",
+        article: "Article",
+        visaAfghanistan: "Afghan visa",
+        visaIran: "Iran visa",
+        visaTurkey: "Turkey visa",
+        visaKarbala: "Karbala visa",
+        hajjUmrah: "Hajj & Umrah",
+        about: "About us",
+        contact: "Contact us",
+        theme: "Theme",
+        logout: "Logout",
+      }
       : lang === "ps"
         ? {
-            home: "کور",
-            article: "مقاله",
-            blog: "بلاګ",
-            visaAfghanistan: "د افغانستان ویزه",
-            visaIran: "د ایران ویزه",
-            visaTurkey: "د ترکیې ویزه",
-            visaIraq: "د عراق ویزه",
-            about: "زموږ په اړه",
-            contact: "له موږ سره اړیکه",
-            theme: "تم",
-            logout: "وتل",
-          }
+          home: "کور",
+          article: "مقاله",
+          blog: "بلاګ",
+          visaAfghanistan: "د افغانستان ویزه",
+          visaIran: "د ایران ویزه",
+          visaTurkey: "د ترکیې ویزه",
+          visaKarbala: "د کربلا ویزه",
+          hajjUmrah: "حج و عمره",
+          about: "زموږ په اړه",
+          contact: "له موږ سره اړیکه",
+          theme: "تم",
+          logout: "وتل",
+        }
         : {
-            home: "خانه",
-            article: "مقاله",
-            blog: "مقالات",
-            visaAfghanistan: "ویزای افغانستان",
-            visaIran: "ویزای ایران",
-            visaTurkey: "ویزای ترکیه",
-            visaIraq: "ویزای عراق",
-            about: "درباره ما",
-            contact: "تماس با ما",
-            theme: "تم",
-            logout: "خروج",
-          };
+          home: "خانه",
+          article: "مقاله",
+          blog: "مقالات",
+          visaAfghanistan: "ویزای افغانستان",
+          visaIran: "ویزای ایران",
+          visaTurkey: "ویزای ترکیه",
+          visaKarbala: "ویزای کربلا",
+          hajjUmrah: "حج و عمره",
+          about: "درباره ما",
+          contact: "تماس با ما",
+          theme: "تم",
+          logout: "خروج",
+        };
   const sidebarItems = [
     { label: sidebarLabels.home, href: "/", icon: Home, active: true },
+    { label: sidebarLabels.visaAfghanistan, href: "/visa", icon: Plane },
+    { label: sidebarLabels.visaIran, href: "/visa", icon: Plane },
+    { label: sidebarLabels.visaTurkey, href: "/visa", icon: Plane },
+    { label: sidebarLabels.visaKarbala, href: "/visa", icon: Plane },
+    { label: sidebarLabels.hajjUmrah, href: "/visa", icon: Plane },
     {
       label: sidebarLabels.blog ?? sidebarLabels.article,
-      href: "/blog",
+      href: "/visa",
       icon: FileText,
     },
-    { label: sidebarLabels.visaAfghanistan, href: "/services", icon: Plane },
-    { label: sidebarLabels.visaIran, href: "/services", icon: Plane },
-    { label: sidebarLabels.visaTurkey, href: "/services", icon: Plane },
-    { label: sidebarLabels.visaIraq, href: "/services", icon: Plane },
-    { label: sidebarLabels.about, href: "/about", icon: Globe2 },
-    { label: sidebarLabels.contact, href: "/contact", icon: PhoneCall },
+    { label: sidebarLabels.about, href: "/visa", icon: Globe2 },
+    { label: sidebarLabels.contact, href: "/visa", icon: PhoneCall },
   ];
 
   return (
@@ -183,9 +187,13 @@ export const Header = () => {
           >
             <div className="flex items-center justify-between" dir="ltr">
               <div className="flex items-center gap-2">
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#377bc9] text-white">
-                  <Globe2 className="h-4 w-4" aria-hidden="true" />
-                </span>
+                <Image
+                  src="/Logo.jpeg"
+                  alt="Kabul Safar"
+                  width={32}
+                  height={32}
+                  className="h-8 w-8 rounded-full object-cover"
+                />
                 <span className="text-sm font-medium text-[#111]">
                   Kabul Safar
                 </span>
@@ -208,14 +216,13 @@ export const Header = () => {
                   key={`${item.label}-${item.href}`}
                   href={item.href}
                   onClick={close}
-                  className={`flex items-center justify-between rounded-full px-5 py-3 text-right text-[15px] font-semibold ${
-                    item.active
-                      ? "bg-[#A7DBEA] text-[#111]"
-                      : "bg-[#fbfbfb] text-[#111]"
-                  }`}
+                  className={`flex items-center justify-between rounded-full px-4 py-3 text-right text-[13px] font-semibold ${item.active
+                    ? "bg-[#A7DBEA] text-[#111]"
+                    : "bg-[#fbfbfb] text-[#111]"
+                    }`}
                 >
                   <item.icon className="h-5 w-5 shrink-0" aria-hidden="true" />
-                  <span>{item.label}</span>
+                  <span className="whitespace-nowrap overflow-hidden text-ellipsis">{item.label}</span>
                 </a>
               ))}
             </div>

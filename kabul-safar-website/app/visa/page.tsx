@@ -9,6 +9,7 @@ import { SectionTitle } from "@/components/section-title";
 import { ConsultButton } from "@/components/consult-button";
 import { useI18n } from "@/components/i18n-provider";
 import { VisaRequestForm } from "@/sections/visa-request-form";
+import { FileCheck, Send, Clock, Shield, CheckCircle } from "lucide-react";
 
 const pageText = {
   fa: {
@@ -26,16 +27,19 @@ const pageText = {
         title: "بررسی مدارک سریع",
         description:
           "ما مدارک شما را بررسی می‌کنیم تا مسیر درخواست ویزا سریع‌تر شود.",
+        icon: FileCheck,
       },
       {
         title: "ارسال دقیق اسناد",
         description:
           "ایمیل و واتساپ ما برای ارسال دقیق‌ترین مدارک در اختیار شماست.",
+        icon: Send,
       },
       {
         title: "پیگیری لحظه‌ای",
         description:
           "وضعیت درخواست ویزا را تا دریافت نهایی برای شما پیگیری می‌کنیم.",
+        icon: Clock,
       },
     ],
   },
@@ -53,15 +57,18 @@ const pageText = {
       {
         title: "Fast document review",
         description: "We review your papers so the visa request moves faster.",
+        icon: FileCheck,
       },
       {
         title: "Precise document submission",
         description:
           "Email and WhatsApp are ready for sending the correct documents.",
+        icon: Send,
       },
       {
         title: "Real-time tracking",
         description: "We follow your visa request status until final approval.",
+        icon: Clock,
       },
     ],
   },
@@ -69,26 +76,29 @@ const pageText = {
     title: "خپل د ویزې اسناد ژر بشپړ کړئ.",
     subtitle: "ګام په ګام لارښود او مسلکي مرسته د یو نرم ویزې پروسې لپاره.",
     action: "د ویزې لارښود",
-    highlight: "د ویزې د چټک تصویب ساده پړاوونه",
+    highlight: "د ویزې د چ٫ک تصویب ساده پړاوونه",
     points: [
       "د اسنادو لیست، آنلاین سپارنه، او تر تایید پورې دوامداره تعقیب.",
       "د څو ژبني ملاتړ سره بشپړ پروسې همغږي.",
     ],
     steps: [
       {
-        title: "د اسنادو چټکه کتنه",
+        title: "د اسنادو چ٫که کتنه",
         description:
           "موږ ستاسو اسناد ګورو ترڅو د ویزې غوښتنه ژر پرمخ ولاړه شي.",
+        icon: FileCheck,
       },
       {
         title: "دقیق د اسنادو سپارل",
         description:
           "ایمیل او واتساپ ستاسو د سم اسنادو د استولو لپاره چمتو دي.",
+        icon: Send,
       },
       {
         title: "په ریښتیني وخت کې تعقیب",
         description:
           "موږ ستاسو د ویزې غوښتنې حالت تر وروستي تایید پورې تعقیبوو.",
+        icon: Clock,
       },
     ],
   },
@@ -100,54 +110,76 @@ export default function VisaPage() {
 
   return (
     <LanguageDirWrapper>
-      <div className="mx-auto min-h-screen w-full bg-[#e9ebed] max-w-7xl">
-        <main className="space-y-6 px-4 py-4 md:px-8 md:py-6">
+      <div className="mx-auto min-h-screen w-full bg-gradient-to-br from-slate-50 to-blue-50 max-w-7xl">
+        <main className="space-y-12 px-4 py-8 md:px-8 md:py-12">
           <Header />
 
-          <section className="overflow-hidden rounded-[30px] bg-white shadow-sm ring-1 ring-slate-200 md:p-8">
-            <div className="grid gap-6 md:grid-cols-[1.05fr_0.95fr] md:items-center">
-              <div className="space-y-4 text-right">
-                <SectionTitle
-                  title={content.title}
-                  subtitle={content.subtitle}
-                  align="right"
-                />
-                <ConsultButton
-                  label={content.action}
-                  className="rounded-xl py-3 px-4 text-[10px] md:text-sm"
-                />
+          {/* Hero Section */}
+          <section className="relative overflow-hidden rounded-[24px] bg-gradient-to-r from-[#0dadd1] to-[#377bc9] p-6 md:p-10 shadow-xl">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+            <div className="relative z-10">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/20 text-white backdrop-blur-sm">
+                <Shield className="h-6 w-6" />
               </div>
-              <div className="rounded-[30px] bg-[#0dadd1]/10 p-6 text-right">
-                <p className="text-sm font-semibold text-[#0dadd1]">
-                  {content.highlight}
-                </p>
-                <div className="mt-6 space-y-4 text-sm text-slate-600">
-                  {content.points.map((item) => (
-                    <p key={item}>{item}</p>
-                  ))}
-                </div>
+              <h1 className="mt-4 max-w-3xl text-2xl font-black text-white md:text-4xl leading-tight">
+                {content.title}
+              </h1>
+              <p className="mt-3 max-w-2xl text-sm leading-7 text-white/90 md:text-base md:leading-8">
+                {content.subtitle}
+              </p>
+              <div className="mt-6">
+                <ConsultButton
+                  compact
+                  label={content.action}
+                  className="h-9 rounded-xl px-4 text-xs font-semibold md:h-10 md:px-6 md:text-sm"
+                />
               </div>
             </div>
+          </section>
 
-            <div className="mt-10 grid gap-3 rounded-[26px] bg-[#f8fcff] p-4 md:grid-cols-3 md:p-5">
+          {/* Steps Section */}
+          <section className="rounded-[32px] bg-white p-8 shadow-xl md:p-12">
+            <div className="mb-8">
+              <h2 className="text-2xl font-black text-slate-900 md:text-3xl">
+                {content.highlight}
+              </h2>
+            </div>
+            <div className="grid gap-4 grid-cols-3">
               {content.steps.map((step, idx) => (
                 <div
                   key={step.title}
-                  className="rounded-3xl border border-slate-200 bg-white p-4 text-right shadow-sm"
+                  className="group rounded-[20px] border border-slate-200 bg-gradient-to-br from-slate-50 to-blue-50 p-4 shadow-lg transition-all hover:shadow-2xl hover:-translate-y-1"
                 >
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#0dadd1] text-sm font-bold text-white">
-                      {idx + 1}
-                    </div>
-                    <h2 className="text-sm font-bold text-slate-900">
-                      {step.title}
-                    </h2>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#0dadd1] to-[#377bc9] text-white shadow-lg">
+                    <step.icon className="h-5 w-5" />
                   </div>
-                  <p className="mt-3 text-sm leading-5 text-slate-600">
+                  <h3 className="mt-3 text-xs font-bold text-slate-900 md:text-sm">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 text-[10px] leading-4 text-slate-600 md:text-xs">
                     {step.description}
                   </p>
                 </div>
               ))}
+            </div>
+          </section>
+
+          {/* Benefits Section */}
+          <section className="rounded-[32px] bg-gradient-to-r from-[#284d55] to-[#0dadd1] p-8 shadow-xl md:p-12">
+            <div className="relative z-10">
+              <h2 className="text-2xl font-black text-white md:text-3xl">
+                {lang === "en" ? "Why Choose Us?" : lang === "ps" ? "ولې موږ غوره یو؟" : "چرا ما را انتخاب کنید؟"}
+              </h2>
+              <div className="mt-6 space-y-4">
+                {content.points.map((point, idx) => (
+                  <div key={idx} className="flex items-start gap-4 text-white">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/20">
+                      <CheckCircle className="h-5 w-5" />
+                    </div>
+                    <p className="text-base leading-7 text-white/90 md:text-lg">{point}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </section>
 

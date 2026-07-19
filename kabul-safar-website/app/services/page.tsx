@@ -8,6 +8,7 @@ import { LanguageDirWrapper } from "@/sections/language-dir-wrapper";
 import { SectionTitle } from "@/components/section-title";
 import { ConsultButton } from "@/components/consult-button";
 import { useI18n } from "@/components/i18n-provider";
+import { Shield, Clock, Globe, Heart, Zap, Users } from "lucide-react";
 
 const pageText = {
   fa: {
@@ -23,20 +24,24 @@ const pageText = {
         title: "مشاوره سفر شخصی‌سازی شده",
         description:
           "برنامه سفر شما با توجه به هدف، بودجه و شرایط شخصی شما طراحی می‌شود.",
+        icon: Users,
       },
       {
         title: "رزرو پروازهای تایید شده",
         description:
           "پروازهای معتبر و مطمئن با بهترین قیمت‌ها برای مسیرهای ایران و اروپا.",
+        icon: Zap,
       },
       {
         title: "پشتیبانی ویزا تا دریافت نهایی",
         description:
           "هر مرحله از تکمیل مدارک تا دریافت ویزا تحت نظارت تیم ما انجام می‌شود.",
+        icon: Shield,
       },
       {
         title: "پشتیبانی واتساپ ۲۴/۷",
         description: "پاسخ سریع و همراهی کامل با شما در هر مرحله از سفر.",
+        icon: Globe,
       },
     ],
   },
@@ -53,21 +58,25 @@ const pageText = {
         title: "Personal travel consultation",
         description:
           "Your trip plan is tailored to your purpose, budget, and personal needs.",
+        icon: Users,
       },
       {
         title: "Verified flight booking",
         description:
           "Reliable flights with the best prices for routes to Iran and Europe.",
+        icon: Zap,
       },
       {
         title: "Visa support until completion",
         description:
           "We oversee every step from document preparation to final visa approval.",
+        icon: Shield,
       },
       {
         title: "24/7 WhatsApp support",
         description:
           "Fast responses and full assistance at every stage of your trip.",
+        icon: Globe,
       },
     ],
   },
@@ -84,67 +93,90 @@ const pageText = {
         title: "شخصي سفر مشوره",
         description:
           "ستاسو د سفر پلان ستاسو هدف، بودیجه او شخصي اړتیاوو ته برابرېږي.",
+        icon: Users,
       },
       {
         title: "باوري الوتنې بکینګ",
         description: "د ایران او اروپا لپاره باوري الوتنې د غوره بیو سره.",
+        icon: Zap,
       },
       {
         title: "د ویزې بشپړ ملاتړ",
         description:
           "موږ د اسنادو چمتوالي څخه تر وروستي ویزې پورې هر ګام څارو.",
+        icon: Shield,
       },
       {
         title: "۲۴/۷ واتساپ ملاتړ",
-        description: "چټک ځوابونه او بشپړ مرسته په هر پړاو کې.",
+        description: "چ٫ک ځوابونه او بشپړ مرسته په هر پړاو کې.",
+        icon: Globe,
       },
     ],
   },
 };
 
 export default function ServicesPage() {
-  const { lang } = useI18n();
+  const { lang, dir } = useI18n();
   const content = pageText[lang];
+  const isRtl = dir === "rtl";
 
   return (
     <LanguageDirWrapper>
-      <div className="mx-auto min-h-screen w-full bg-[#e9ebed] max-w-7xl">
-        <main className="space-y-6 px-4 py-4 md:px-8 md:py-6">
+      <div className="mx-auto min-h-screen w-full max-w-7xl overflow-x-hidden bg-gradient-to-br from-slate-50 to-blue-50">
+        <main className="space-y-12 px-4 py-8 md:px-8 md:py-12">
           <Header />
 
-          <section className="overflow-hidden rounded-[30px] bg-white shadow-sm ring-1 ring-slate-200 md:p-8">
-            <div className="grid gap-6 md:grid-cols-[1.05fr_0.95fr] md:items-center">
-              <div className="space-y-4 text-right">
-                <SectionTitle
-                  title={content.title}
-                  subtitle={content.subtitle}
-                  align="right"
-                />
+          {/* Hero Section */}
+          <section className="relative overflow-hidden rounded-[32px] bg-gradient-to-r from-[#0dadd1] to-[#377bc9] p-8 md:p-16 shadow-2xl">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+            <div className="relative z-10">
+              <h1 className="max-w-4xl text-3xl font-black text-white md:text-5xl lg:text-6xl leading-tight">
+                {content.title}
+              </h1>
+              <p className="mt-4 max-w-2xl text-base leading-8 text-white/90 md:text-lg md:leading-9">
+                {content.subtitle}
+              </p>
+              <div className={`mt-8 ${isRtl ? "flex justify-end" : "flex justify-start"}`}>
                 <ConsultButton
                   label={content.action}
-                  className="rounded-xl py-3 px-4 text-[10px] md:text-sm"
+                  className="rounded-xl px-6 py-3 text-sm font-semibold md:px-8 md:py-4 md:text-base"
                 />
               </div>
-              <div className="rounded-[30px] bg-[#0dadd1]/10 p-6 text-right">
-                <p className="text-sm font-semibold text-[#0dadd1]">
+            </div>
+          </section>
+
+          {/* Highlight Section */}
+          <section className="rounded-[32px] bg-white p-8 shadow-xl md:p-12">
+            <div className={`flex items-start gap-4 ${isRtl ? "flex-row-reverse" : "flex-row"}`}>
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0dadd1] to-[#377bc9] text-white shadow-lg">
+                <Heart className="h-7 w-7" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold text-slate-900 md:text-3xl">
                   {content.highlight}
-                </p>
-                <p className="mt-6 text-sm leading-7 text-slate-600">
+                </h2>
+                <p className="mt-3 text-base leading-7 text-slate-600 md:text-lg">
                   {content.highlightText}
                 </p>
               </div>
             </div>
+          </section>
 
-            <div className="mt-10 grid gap-5 md:grid-cols-2">
+          {/* Services Grid */}
+          <section>
+            <div className="grid gap-6 md:grid-cols-2">
               {content.items.map((item) => (
                 <div
                   key={item.title}
-                  className="rounded-[26px] border border-slate-200 bg-[#f8fcff] p-5 shadow-sm"
+                  className="group rounded-[24px] border border-slate-200 bg-white p-6 shadow-lg transition-all hover:shadow-2xl hover:-translate-y-1"
                 >
-                  <h2 className="text-lg font-bold text-slate-900">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0dadd1] to-[#377bc9] text-white shadow-lg">
+                    <item.icon className="h-7 w-7" />
+                  </div>
+                  <h2 className="mt-4 text-lg font-bold text-slate-900 md:text-xl">
                     {item.title}
                   </h2>
-                  <p className="mt-3 text-sm leading-6 text-slate-600">
+                  <p className="mt-3 text-sm leading-6 text-slate-600 md:text-base">
                     {item.description}
                   </p>
                 </div>

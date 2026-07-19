@@ -5,7 +5,7 @@ import { Footer } from "@/sections/footer";
 import { Header } from "@/sections/header";
 import { LanguageDirWrapper } from "@/sections/language-dir-wrapper";
 import { useI18n } from "@/components/i18n-provider";
-import { Mail, Phone } from "lucide-react";
+import { Mail, Phone, MapPin, Send, MessageCircle } from "lucide-react";
 import { CONTACT_WHATSAPP_URL, CONTACT_PHONE_DISPLAY } from "@/lib/contact";
 
 const pageText = {
@@ -69,9 +69,9 @@ const pageText = {
 };
 
 export default function ContactPage() {
-  const { lang } = useI18n();
+  const { lang, dir } = useI18n();
   const content = pageText[lang];
-  const isRTL = lang !== "en";
+  const isRTL = dir === "rtl";
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -81,9 +81,9 @@ export default function ContactPage() {
 
   const handleChange =
     (key: keyof typeof formData) =>
-    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      setFormData((prev) => ({ ...prev, [key]: event.target.value }));
-    };
+      (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setFormData((prev) => ({ ...prev, [key]: event.target.value }));
+      };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -97,29 +97,37 @@ export default function ContactPage() {
   return (
     <LanguageDirWrapper>
       <div
-        className={`mx-auto min-h-screen w-full bg-[#e9ebed] md:max-w-7xl ${isRTL ? "rtl" : "ltr"}`}
+        className={`mx-auto min-h-screen w-full overflow-x-hidden bg-gradient-to-br from-slate-50 to-blue-50 md:max-w-7xl ${isRTL ? "rtl" : "ltr"}`}
       >
-        <main className="space-y-8 px-4 py-6 md:px-8 md:py-12">
+        <main className="space-y-12 px-4 py-8 md:px-8 md:py-12">
           <Header />
 
-          {/* Header Section */}
-          <section className="text-center md:mb-12">
-            <h1 className="text-3xl font-bold text-slate-900 md:text-4xl">
-              {content.heading}
-            </h1>
-            <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-slate-600 md:text-base">
-              {content.description}
-            </p>
+          {/* Hero Section */}
+          <section className="relative overflow-hidden rounded-[32px] bg-gradient-to-r from-[#0dadd1] to-[#377bc9] p-8 md:p-16 shadow-2xl">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+            <div className="relative z-10 text-center">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white/20 text-white backdrop-blur-sm">
+                <MessageCircle className="h-8 w-8" />
+              </div>
+              <h1 className="mt-6 text-3xl font-black text-white md:text-5xl lg:text-6xl">
+                {content.heading}
+              </h1>
+              <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-white/90 md:text-lg md:leading-9">
+                {content.description}
+              </p>
+            </div>
           </section>
 
           {/* Contact Section */}
-          <section className="grid gap-8 rounded-3xl bg-white p-6 md:grid-cols-2 md:gap-12 md:p-8 lg:p-12">
+          <section className="grid gap-8 rounded-[32px] bg-white p-8 shadow-xl md:grid-cols-2 md:p-12 lg:p-16">
             {/* Left - Contact Information */}
-            <div className="rounded-3xl bg-[#1ab5ce] p-6 text-white md:p-8">
+            <div
+              className={`rounded-[24px] bg-gradient-to-br from-[#0dadd1] to-[#377bc9] p-8 text-white ${isRTL ? "text-right" : "text-left"}`}
+            >
               <h2 className="text-2xl font-bold md:text-3xl">
                 {content.contactTitle}
               </h2>
-              <p className="mt-2 text-sm opacity-90 md:text-base">
+              <p className="mt-3 text-sm opacity-90 md:text-base">
                 {content.contactSubtitle}
               </p>
 
@@ -127,10 +135,10 @@ export default function ContactPage() {
                 {/* Phone */}
                 <a
                   href={CONTACT_WHATSAPP_URL}
-                  className="flex items-start gap-3 transition-opacity hover:opacity-80"
+                  className={`flex items-start gap-4 rounded-2xl bg-white/10 p-4 transition-all hover:bg-white/20 ${isRTL ? "flex-row-reverse" : "flex-row"}`}
                 >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20">
-                    <Phone className="h-5 w-5" />
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/20">
+                    <Phone className="h-6 w-6" />
                   </div>
                   <div>
                     <p className="text-sm font-semibold">Phone</p>
@@ -141,10 +149,10 @@ export default function ContactPage() {
                 {/* Email */}
                 <a
                   href={`mailto:${content.email}`}
-                  className="flex items-start gap-3 transition-opacity hover:opacity-80"
+                  className={`flex items-start gap-4 rounded-2xl bg-white/10 p-4 transition-all hover:bg-white/20 ${isRTL ? "flex-row-reverse" : "flex-row"}`}
                 >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20">
-                    <Mail className="h-5 w-5" />
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/20">
+                    <Mail className="h-6 w-6" />
                   </div>
                   <div>
                     <p className="text-sm font-semibold">Email</p>
@@ -152,99 +160,101 @@ export default function ContactPage() {
                   </div>
                 </a>
 
-                <div className="rounded-3xl bg-white/10 p-5">
-                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white/80">
-                    {content.locationTitle}
-                  </p>
-                  <div className="mt-4 space-y-3">
-                    <div className="flex items-center gap-3 rounded-2xl bg-white/10 p-4">
-                      <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/10 text-lg">
-                        🇫🇷
-                      </span>
-                      <div>
-                        <p className="text-sm font-semibold text-white">
-                          {content.locationFrance}
-                        </p>
-                      </div>
+                {/* Locations */}
+                <div className="rounded-2xl bg-white/10 p-5">
+                  <div className="flex items-center gap-3 mb-4">
+                    <MapPin className="h-5 w-5" />
+                    <p className="text-sm font-semibold uppercase tracking-wider">
+                      {content.locationTitle}
+                    </p>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3 rounded-xl bg-white/10 p-4">
+                      <span className="text-2xl">🇫🇷</span>
+                      <p className="text-sm font-semibold">{content.locationFrance}</p>
                     </div>
-                    <div className="flex items-center gap-3 rounded-2xl bg-white/10 p-4">
-                      <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/10 text-lg">
-                        🇸🇪
-                      </span>
-                      <div>
-                        <p className="text-sm font-semibold text-white">
-                          {content.locationSweden}
-                        </p>
-                      </div>
+                    <div className="flex items-center gap-3 rounded-xl bg-white/10 p-4">
+                      <span className="text-2xl">🇸🇪</span>
+                      <p className="text-sm font-semibold">{content.locationSweden}</p>
                     </div>
                   </div>
                 </div>
               </div>
-
-              {/* Decorative circle */}
-              <div className="mt-12 h-32 w-32 rounded-full bg-white/10" />
             </div>
 
             {/* Right - Contact Form */}
-            <form onSubmit={handleSubmit} className="space-y-5 md:space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block text-sm font-semibold text-slate-700 md:text-base">
+                <label
+                  className={`block text-sm font-semibold text-slate-700 md:text-base ${isRTL ? "text-right" : "text-left"}`}
+                >
                   {content.nameLabel}
                 </label>
                 <input
                   type="text"
-                  className="mt-2 w-full border-b-2 border-slate-300 bg-transparent px-0 py-2 text-slate-900 placeholder-slate-400 focus:border-[#1ab5ce] focus:outline-none md:py-3"
-                  placeholder="John Trangely"
+                  className={`mt-2 w-full rounded-xl border-2 border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 transition-all focus:border-[#0dadd1] focus:bg-white focus:outline-none md:py-4 md:text-base ${isRTL ? "text-right" : "text-left"}`}
+                  placeholder="John Doe"
                   value={formData.name}
                   onChange={handleChange("name")}
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-slate-700 md:text-base">
+                <label
+                  className={`block text-sm font-semibold text-slate-700 md:text-base ${isRTL ? "text-right" : "text-left"}`}
+                >
                   {content.emailLabel}
                 </label>
                 <input
                   type="email"
-                  className="mt-2 w-full border-b-2 border-slate-300 bg-transparent px-0 py-2 text-slate-900 placeholder-slate-400 focus:border-[#1ab5ce] focus:outline-none md:py-3"
-                  placeholder="hello@urenergy.com"
+                  className={`mt-2 w-full rounded-xl border-2 border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 transition-all focus:border-[#0dadd1] focus:bg-white focus:outline-none md:py-4 md:text-base ${isRTL ? "text-right" : "text-left"}`}
+                  placeholder="hello@example.com"
                   value={formData.email}
                   onChange={handleChange("email")}
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-slate-700 md:text-base">
+                <label
+                  className={`block text-sm font-semibold text-slate-700 md:text-base ${isRTL ? "text-right" : "text-left"}`}
+                >
                   {content.subjectLabel}
                 </label>
                 <input
                   type="text"
-                  className="mt-2 w-full border-b-2 border-slate-300 bg-transparent px-0 py-2 text-slate-900 placeholder-slate-400 focus:border-[#1ab5ce] focus:outline-none md:py-3"
-                  placeholder="I want to hire you quickly"
+                  className={`mt-2 w-full rounded-xl border-2 border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 transition-all focus:border-[#0dadd1] focus:bg-white focus:outline-none md:py-4 md:text-base ${isRTL ? "text-right" : "text-left"}`}
+                  placeholder="I need help with visa"
                   value={formData.subject}
                   onChange={handleChange("subject")}
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-slate-700 md:text-base">
+                <label
+                  className={`block text-sm font-semibold text-slate-700 md:text-base ${isRTL ? "text-right" : "text-left"}`}
+                >
                   {content.messageLabel}
                 </label>
                 <textarea
-                  className="mt-2 w-full border-b-2 border-slate-300 bg-transparent px-0 py-2 text-slate-900 placeholder-slate-400 focus:border-[#1ab5ce] focus:outline-none md:py-3"
-                  rows={4}
+                  className={`mt-2 w-full rounded-xl border-2 border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 transition-all focus:border-[#0dadd1] focus:bg-white focus:outline-none md:py-4 md:text-base ${isRTL ? "text-right" : "text-left"}`}
+                  rows={5}
                   placeholder={content.writePlaceholder}
                   value={formData.message}
                   onChange={handleChange("message")}
                 />
               </div>
 
-              <button
-                type="submit"
-                className="mt-6 inline-flex items-center gap-2 rounded-lg bg-[#1ab5ce] px-6 py-3 font-semibold text-white transition-transform hover:-translate-y-0.5 md:px-8 md:py-3"
+              <div
+                className={`flex ${isRTL ? "justify-end" : "justify-start"}`}
               >
-                {content.sendButton}
-              </button>
+                <button
+                  type="submit"
+                  className={`inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#0dadd1] to-[#377bc9] px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:shadow-xl hover:-translate-y-0.5 md:px-8 md:py-4 md:text-base ${isRTL ? "flex-row-reverse" : "flex-row"}`}
+                >
+                  <Send className="h-5 w-5" />
+                  {content.sendButton}
+                </button>
+              </div>
             </form>
           </section>
         </main>
