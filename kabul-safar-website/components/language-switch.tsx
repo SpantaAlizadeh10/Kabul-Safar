@@ -38,9 +38,9 @@ export function LanguageSwitch() {
         type="button"
         aria-label={t("header.lang")}
         onClick={() => setOpen((v) => !v)}
-        className="flex h-5 w-5 items-center justify-center text-[#022d37] transition-opacity hover:opacity-80"
+        className="flex h-7 w-7 items-center justify-center rounded-full bg-[#377bc9] text-white transition-opacity hover:opacity-85"
       >
-        <Languages className="h-5 w-5" aria-hidden="true" />
+        <Languages className="h-4 w-4" aria-hidden="true" />
       </button>
 
       <div

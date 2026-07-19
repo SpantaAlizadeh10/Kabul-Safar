@@ -71,25 +71,25 @@ export const Partners = () => {
 
   const allCountries = isRtl
     ? [
-        "افغانستان",
-        "ایران",
-        "ترکیه",
-        "عراق",
-        "فرانسه",
-        "آلمان",
-        "لهستان",
-        "مجارستان",
-      ]
+      "افغانستان",
+      "ایران",
+      "ترکیه",
+      "عراق",
+      "فرانسه",
+      "آلمان",
+      "لهستان",
+      "مجارستان",
+    ]
     : [
-        "Afghanistan",
-        "Iran",
-        "Turkey",
-        "Iraq",
-        "France",
-        "Germany",
-        "Poland",
-        "Hungary",
-      ];
+      "Afghanistan",
+      "Iran",
+      "Turkey",
+      "Iraq",
+      "France",
+      "Germany",
+      "Poland",
+      "Hungary",
+    ];
   const destCountries = isRtl
     ? ["ایران", "افغانستان", "ترکیه", "عراق"]
     : ["Iran", "Afghanistan", "Turkey", "Iraq"];
@@ -108,14 +108,14 @@ export const Partners = () => {
         {partners.map((partner) => (
           <div
             key={partner.name}
-            className="flex shrink-0 items-center justify-center opacity-80"
+            className="flex shrink-0 items-center justify-center"
           >
             <Image
               src={partner.src}
               alt={partner.name}
               width={partner.width}
               height={partner.height}
-              className="h-auto max-h-6 w-auto object-contain grayscale md:max-h-8"
+              className="h-auto max-h-8 w-auto object-contain md:max-h-10"
             />
           </div>
         ))}

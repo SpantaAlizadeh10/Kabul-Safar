@@ -39,11 +39,10 @@ export const Destination = () => {
                 key={slide.id}
                 src={slide.imageSrc}
                 alt={slide.subtitle}
-                width={364}
-                height={152}
-                className={`absolute inset-0 h-[152px] w-full object-cover transition-opacity duration-700 ${
-                  isActive ? "opacity-100" : "opacity-0"
-                }`}
+                width={152}
+                height={364}
+                className={`absolute inset-0 h-[152px] w-full object-cover transition-opacity duration-700 ${isActive ? "opacity-100" : "opacity-0"
+                  }`}
                 priority={idx === 0}
               />
             );
@@ -63,9 +62,8 @@ export const Destination = () => {
               type="button"
               aria-label={`slide ${idx + 1}`}
               onClick={() => setActiveIndex(idx)}
-              className={`h-1.5 w-1.5 rounded-full transition-colors ${
-                idx === activeIndex ? "bg-white" : "bg-white/50"
-              }`}
+              className={`h-1.5 w-1.5 rounded-full transition-colors ${idx === activeIndex ? "bg-white" : "bg-white/50"
+                }`}
             />
           ))}
         </div>
@@ -83,9 +81,9 @@ export const Destination = () => {
               <Image
                 src={slide.imageSrc}
                 alt={slide.subtitle}
-                width={560}
-                height={180}
-                className="h-[160px] w-full object-cover"
+                width={180}
+                height={560}
+                className={`h-[160px] w-full object-cover`}
               />
               <div className="absolute inset-0 bg-[rgba(60,117,158,0.25)]" />
               <h3 className="absolute inset-0 flex items-center justify-center text-[30px] font-semibold text-white">
