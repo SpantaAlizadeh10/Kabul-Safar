@@ -292,7 +292,7 @@ const content: Record<Lang, LocalizedContent> = {
       subTitle: "For Afghan citizens",
       bullets: [
         "Visa issued in less than 72 hours",
-        "Support in Persian / Dari / English",
+        "Support in Dari, Pashto, and English",
         "Free consultation before submission",
       ],
       consultCta: "Get visa consultation",
@@ -470,7 +470,7 @@ const content: Record<Lang, LocalizedContent> = {
       subTitle: "د افغان وګړو لپاره",
       bullets: [
         "ویزه تر ۷۲ ساعتونو کې",
-        "په فارسي / دري / انګلیسي ملاتړ",
+        "په دري / پښتو / انګلیسي ملاتړ",
         "د غوښتنې نه مخکې وړیا مشوره",
       ],
       consultCta: "د ویزې او مشورې ترلاسه کول",
