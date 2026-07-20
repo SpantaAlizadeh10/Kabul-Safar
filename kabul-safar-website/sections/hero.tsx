@@ -30,7 +30,7 @@ export const Hero = () => {
             </h1>
 
             <p
-              className="mt-3 text-sm font-medium text-black/90 md:mt-4 md:text-base"
+              className="mt-3 text-base font-medium text-black/90 md:mt-4 md:text-lg"
             >
               {content.subTitle}
             </p>
@@ -46,7 +46,7 @@ export const Hero = () => {
                     aria-hidden="true"
                   />
                   <span
-                    className="text-sm leading-tight text-black/90 md:text-base md:leading-relaxed"
+                    className="text-base leading-tight text-black/90 md:text-lg md:leading-relaxed"
                   >
                     {item}
                   </span>

@@ -13,7 +13,7 @@ export const WhyChooseUs = () => {
         <h2 id="why-choose-title" className="text-[10px] font-bold text-black md:text-2xl">
           {content.title}
         </h2>
-        <p className="text-[8px] leading-4 tracking-wide text-[rgba(0,0,0,0.74)] md:mx-auto md:max-w-3xl md:text-sm md:leading-6">
+        <p className="text-xs leading-4 tracking-wide text-[rgba(0,0,0,0.74)] md:mx-auto md:max-w-3xl md:text-base md:leading-6">
           {content.subtitle}
         </p>
       </header>
@@ -22,25 +22,22 @@ export const WhyChooseUs = () => {
         {content.features.map((feature) => (
           <article
             key={feature.id}
-            className={`flex flex-col items-center rounded-[10px] px-2.5 py-4 text-center ${
-              feature.variant === "light"
-                ? "min-h-[116px] bg-[rgba(13,173,209,0.8)] text-black md:min-h-[220px]"
-                : "min-h-[128px] bg-[rgba(2,45,55,0.85)] text-white md:min-h-[220px]"
-            }`}
+            className={`flex flex-col items-center rounded-[10px] px-2.5 py-4 text-center ${feature.variant === "light"
+              ? "min-h-[116px] bg-[rgba(13,173,209,0.8)] text-black md:min-h-[220px]"
+              : "min-h-[128px] bg-[rgba(2,45,55,0.85)] text-white md:min-h-[220px]"
+              }`}
           >
             <feature.icon
-              className={`mb-2 h-5 w-5 ${
-                feature.variant === "light" ? "text-[#022d37]" : "text-white"
-              } md:h-8 md:w-8`}
+              className={`mb-2 h-5 w-5 ${feature.variant === "light" ? "text-[#022d37]" : "text-white"
+                } md:h-8 md:w-8`}
               aria-hidden="true"
             />
             <h3 className="text-[10px] font-medium tracking-wide md:text-lg">{feature.title}</h3>
             <p
-              className={`mt-2 text-[6px] leading-4 tracking-wide ${
-                feature.variant === "light"
-                  ? "text-[rgba(0,0,0,0.74)]"
-                  : "text-white/95"
-              } md:text-xs md:leading-6`}
+              className={`mt-2 text-[8px] leading-4 tracking-wide ${feature.variant === "light"
+                ? "text-[rgba(0,0,0,0.74)]"
+                : "text-white/95"
+                } md:text-sm md:leading-6`}
             >
               {feature.description}
             </p>

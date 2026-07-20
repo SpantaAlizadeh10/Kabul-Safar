@@ -13,7 +13,7 @@ export const About = () => {
         <h2 id="about-title" className="text-xs font-bold tracking-wide text-black md:text-2xl">
           {content.title}
         </h2>
-        <p className="text-[10px] font-bold leading-5 tracking-wide text-black md:mx-auto md:max-w-4xl md:text-base md:leading-7">
+        <p className="text-sm font-bold leading-5 tracking-wide text-black md:mx-auto md:max-w-4xl md:text-lg md:leading-7">
           {content.subtitle}
         </p>
       </header>
@@ -24,7 +24,7 @@ export const About = () => {
             {index > 0 ? (
               <div className="w-px shrink-0 bg-slate-300" aria-hidden="true" />
             ) : null}
-            <p className="flex-1 text-right text-[8px] leading-4 tracking-wide text-[rgba(0,0,0,0.8)] md:text-sm md:leading-7">
+            <p className="flex-1 text-right text-xs leading-4 tracking-wide text-[rgba(0,0,0,0.8)] md:text-base md:leading-7">
               {text}
             </p>
           </div>
