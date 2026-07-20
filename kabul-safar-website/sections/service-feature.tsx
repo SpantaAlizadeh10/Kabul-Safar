@@ -31,7 +31,7 @@ export const ServiceFeature = () => {
             <span className="text-[#0dadd1]">{content.titleAccent}</span>{" "}
             {content.titleSuffix}
           </h2>
-          <p className="mt-2 text-[8px] leading-4 tracking-wide text-[rgba(59,57,57,0.96)] md:mt-4 md:text-sm md:leading-7">
+          <p className="mt-2 text-xs leading-4 tracking-wide text-[rgba(59,57,57,0.96)] md:mt-4 md:text-base md:leading-7">
             {content.body}
           </p>
           <div className="mt-3 flex items-center justify-end gap-2 md:mt-5 md:gap-3">

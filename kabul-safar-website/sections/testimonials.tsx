@@ -47,13 +47,13 @@ export const Testimonials = () => {
               ))}
             </div>
 
-            <p className="mt-2 text-right text-[6px] font-bold leading-4 text-black md:text-xs md:leading-6">
+            <p className="mt-2 text-right text-[8px] font-bold leading-4 text-black md:text-sm md:leading-6">
               {testimonial.message}
             </p>
 
             <div className="mt-2 text-right">
-              <p className="text-[6px] font-bold text-black md:text-sm">{testimonial.name}</p>
-              <p className="text-[4px] text-[rgba(0,0,0,0.67)] md:text-[10px]">{testimonial.role}</p>
+              <p className="text-[8px] font-bold text-black md:text-sm">{testimonial.name}</p>
+              <p className="text-[6px] text-[rgba(0,0,0,0.67)] md:text-xs">{testimonial.role}</p>
             </div>
           </article>
         ))}
