@@ -55,13 +55,13 @@ export const Partners = () => {
     if (phone.startsWith("+")) phone = phone.replace(/^\+/, "");
     // fallback: leave as-is if empty
 
-    const title = isRtl ? "درخواست سفر" : "Trip request";
+    const title = lang === "fa" ? "درخواست سفر" : lang === "ps" ? "د سفر غوښتنه" : "Trip request";
     const msgLines = [
       title,
-      `${isRtl ? "مبدأ" : "Origin"}: ${origin || "-"}`,
-      `${isRtl ? "مقصد" : "Destination"}: ${destination || "-"}`,
-      `${isRtl ? "تاریخ" : "Date"}: ${date || "-"}`,
-      `${isRtl ? "مسافران" : "Passengers"}: ${passengers || "-"}`,
+      `${lang === "fa" ? "مبدأ" : lang === "ps" ? "مبدا" : "Origin"}: ${origin || "-"}`,
+      `${lang === "fa" ? "مقصد" : lang === "ps" ? "مقصد" : "Destination"}: ${destination || "-"}`,
+      `${lang === "fa" ? "تاریخ" : lang === "ps" ? "نېټه" : "Date"}: ${date || "-"}`,
+      `${lang === "fa" ? "مسافران" : lang === "ps" ? "مسافرین" : "Passengers"}: ${passengers || "-"}`,
     ];
     const message = msgLines.join("\n");
     const encoded = encodeURIComponent(message);
@@ -69,7 +69,7 @@ export const Partners = () => {
     window.open(waBase, "_blank");
   }
 
-  const allCountries = isRtl
+  const allCountries = lang === "fa"
     ? [
       "افغانستان",
       "ایران",
@@ -80,19 +80,32 @@ export const Partners = () => {
       "لهستان",
       "مجارستان",
     ]
-    : [
-      "Afghanistan",
-      "Iran",
-      "Turkey",
-      "Iraq",
-      "France",
-      "Germany",
-      "Poland",
-      "Hungary",
-    ];
-  const destCountries = isRtl
+    : lang === "ps"
+      ? [
+        "افغانستان",
+        "ایران",
+        "ترکیه",
+        "عراق",
+        "فرانسه",
+        "جرمني",
+        "پولنډ",
+        "مجارستان",
+      ]
+      : [
+        "Afghanistan",
+        "Iran",
+        "Turkey",
+        "Iraq",
+        "France",
+        "Germany",
+        "Poland",
+        "Hungary",
+      ];
+  const destCountries = lang === "fa"
     ? ["ایران", "افغانستان", "ترکیه", "عراق"]
-    : ["Iran", "Afghanistan", "Turkey", "Iraq"];
+    : lang === "ps"
+      ? ["ایران", "افغانستان", "ترکیه", "عراق"]
+      : ["Iran", "Afghanistan", "Turkey", "Iraq"];
 
   return (
     <section
@@ -123,7 +136,7 @@ export const Partners = () => {
 
       {/* Search header */}
       <h3 className="mt-4 text-center text-lg font-bold text-slate-900 md:text-center md:ml-0">
-        {isRtl ? "سفر خود را آغاز کنید" : "Start your trip"}
+        {lang === "fa" ? "سفر خود را آغاز کنید" : lang === "ps" ? "خپل سفر پیل کړئ" : "Start your trip"}
       </h3>
 
       {/* Beautiful visa form button (icon + label) */}
@@ -131,7 +144,7 @@ export const Partners = () => {
         <Link
           href="/visa"
           className="flex w-full items-center justify-center gap-3 rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#0f3e66] shadow-sm border border-transparent hover:border-[#0dadd1] hover:bg-[#0dadd1] hover:text-white transition-colors"
-          aria-label={isRtl ? "رفتن به فرم ویزا" : "Go to visa form"}
+          aria-label={lang === "fa" ? "رفتن به فرم ویزا" : lang === "ps" ? "د ویزې فورمې ته تګ" : "Go to visa form"}
         >
           <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0dadd1] text-white">
             <svg
@@ -149,7 +162,7 @@ export const Partners = () => {
             </svg>
           </span>
           <span className="whitespace-nowrap">
-            {isRtl ? "فرم ویزا" : "Visa form"}
+            {lang === "fa" ? "فرم ویزا" : lang === "ps" ? "د ویزې فورمه" : "Visa form"}
           </span>
         </Link>
       </div>
