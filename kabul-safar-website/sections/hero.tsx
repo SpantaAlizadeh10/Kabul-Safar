@@ -90,6 +90,73 @@ export const Hero = () => {
                 aria-hidden="true"
                 priority
               />
+
+              {/* Feature Bubbles */}
+              {/* Top Left - Speed */}
+              <div className="absolute left-1 top-1 md:left-2 md:top-2">
+                <div className="relative group">
+                  <div className="absolute -left-0.5 -top-0.5 h-2 w-2 md:h-3 md:w-3 rounded-full bg-white/60 animate-ping" />
+                  <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-white/30 backdrop-blur-md shadow-lg border border-white/40 transition-transform group-hover:scale-110 md:h-10 md:w-10">
+                    <Clock className="h-4 w-4 text-orange-500 md:h-5 md:w-5" />
+                  </div>
+                  <div className="absolute left-10 top-1/2 -translate-y-1/2 w-32 md:left-12 md:w-40 rounded-lg bg-white/80 backdrop-blur-md px-2 py-1.5 md:px-3 md:py-2 shadow-xl opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none">
+                    <p className="text-[10px] font-semibold text-gray-900 md:text-xs">
+                      {content.bullets[0]}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Top Right - Multilingual */}
+              <div className="absolute right-1 top-1 md:right-2 md:top-2">
+                <div className="relative group">
+                  <div className="absolute -right-0.5 -top-0.5 h-2 w-2 md:h-3 md:w-3 rounded-full bg-white/60 animate-ping" />
+                  <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-white/30 backdrop-blur-md shadow-lg border border-white/40 transition-transform group-hover:scale-110 md:h-10 md:w-10">
+                    <Languages className="h-4 w-4 text-blue-500 md:h-5 md:w-5" />
+                  </div>
+                  <div className="absolute right-10 top-1/2 -translate-y-1/2 w-32 md:right-12 md:w-40 rounded-lg bg-white/80 backdrop-blur-md px-2 py-1.5 md:px-3 md:py-2 shadow-xl opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none">
+                    <p className="text-[10px] font-semibold text-gray-900 md:text-xs">
+                      {content.bullets[1]}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom Left - Free Consultation */}
+              <div className="absolute left-1 bottom-1 md:left-2 md:bottom-2">
+                <div className="relative group">
+                  <div className="absolute -left-0.5 -bottom-0.5 h-2 w-2 md:h-3 md:w-3 rounded-full bg-white/60 animate-ping" />
+                  <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-white/30 backdrop-blur-md shadow-lg border border-white/40 transition-transform group-hover:scale-110 md:h-10 md:w-10">
+                    <MessageCircle className="h-4 w-4 text-green-500 md:h-5 md:w-5" />
+                  </div>
+                  <div className="absolute left-10 top-1/2 -translate-y-1/2 w-32 md:left-12 md:w-40 rounded-lg bg-white/80 backdrop-blur-md px-2 py-1.5 md:px-3 md:py-2 shadow-xl opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none">
+                    <p className="text-[10px] font-semibold text-gray-900 md:text-xs">
+                      {content.bullets[2]}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom Right - Trust Badge */}
+              <div className="absolute right-1 bottom-1 md:right-2 md:bottom-2">
+                <div className="relative group">
+                  <div className="absolute -right-0.5 -bottom-0.5 h-2 w-2 md:h-3 md:w-3 rounded-full bg-white/60 animate-ping" />
+                  <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-white/30 backdrop-blur-md shadow-lg border border-white/40 transition-transform group-hover:scale-110 md:h-10 md:w-10">
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="h-4 w-4 text-yellow-500 md:h-5 md:w-5"
+                      fill="currentColor"
+                    >
+                      <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                    </svg>
+                  </div>
+                  <div className="absolute right-10 top-1/2 -translate-y-1/2 w-32 md:right-12 md:w-40 rounded-lg bg-white/80 backdrop-blur-md px-2 py-1.5 md:px-3 md:py-2 shadow-xl opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none">
+                    <p className="text-[10px] font-semibold text-gray-900 md:text-xs">
+                      {isRtl ? "۵۰۰۰+ مسافر راضی" : "5000+ Happy Travelers"}
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
