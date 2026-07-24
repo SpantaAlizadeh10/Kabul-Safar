@@ -1,6 +1,6 @@
 "use client";
 
-import { Check } from "lucide-react";
+import { Clock, Languages, MessageCircle } from "lucide-react";
 import Image from "next/image";
 import { useI18n } from "@/components/i18n-provider";
 import { ConsultButton } from "@/components/consult-button";
@@ -35,24 +35,38 @@ export const Hero = () => {
               {content.subTitle}
             </p>
 
-            <ul className="mt-4 space-y-2 md:mt-5 md:space-y-2.5">
-              {content.bullets.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-center justify-center gap-2"
-                >
-                  <Check
-                    className="mt-0.5 h-4 w-4 shrink-0 text-black md:h-5 md:w-5"
-                    aria-hidden="true"
-                  />
-                  <span
-                    className="text-base leading-tight text-black/90 md:text-lg md:leading-relaxed"
-                  >
-                    {item}
+            <div className="mt-4 grid gap-2 md:mt-5 md:grid-cols-3 md:gap-3">
+              <div className="rounded-lg bg-white/20 p-2.5 backdrop-blur-sm transition-all hover:bg-white/30 md:p-3">
+                <div className="flex items-center gap-2 text-center md:gap-2.5">
+                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/40 md:h-8 md:w-8">
+                    <Clock className="h-3.5 w-3.5 text-black md:h-4 md:w-4" />
+                  </div>
+                  <span className="text-xs font-medium text-black/90 md:text-sm">
+                    {content.bullets[0]}
                   </span>
-                </li>
-              ))}
-            </ul>
+                </div>
+              </div>
+              <div className="rounded-lg bg-white/20 p-2.5 backdrop-blur-sm transition-all hover:bg-white/30 md:p-3">
+                <div className="flex items-center gap-2 text-center md:gap-2.5">
+                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/40 md:h-8 md:w-8">
+                    <Languages className="h-3.5 w-3.5 text-black md:h-4 md:w-4" />
+                  </div>
+                  <span className="text-xs font-medium text-black/90 md:text-sm">
+                    {content.bullets[1]}
+                  </span>
+                </div>
+              </div>
+              <div className="rounded-lg bg-white/20 p-2.5 backdrop-blur-sm transition-all hover:bg-white/30 md:p-3">
+                <div className="flex items-center gap-2 text-center md:gap-2.5">
+                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/40 md:h-8 md:w-8">
+                    <MessageCircle className="h-3.5 w-3.5 text-black md:h-4 md:w-4" />
+                  </div>
+                  <span className="text-xs font-medium text-black/90 md:text-sm">
+                    {content.bullets[2]}
+                  </span>
+                </div>
+              </div>
+            </div>
 
             <div
               className="mt-5 flex flex-wrap items-center justify-center gap-3 md:mt-6"
