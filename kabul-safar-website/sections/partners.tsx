@@ -117,7 +117,7 @@ export const Partners = () => {
       </h2>
 
       {/* Airline logos (show under title) */}
-      <div className="mt-3 flex items-center justify-center gap-3 px-2 md:mt-4 md:gap-12">
+      <div className="mt-3 flex w-full items-center justify-center gap-4 px-2 md:mt-6 md:gap-16">
         {partners.map((partner) => (
           <div
             key={partner.name}
@@ -126,9 +126,9 @@ export const Partners = () => {
             <Image
               src={partner.src}
               alt={partner.name}
-              width={partner.width}
-              height={partner.height}
-              className="h-auto max-h-8 w-auto object-contain md:max-h-10"
+              width={partner.width * 2}
+              height={partner.height * 2}
+              className="h-auto max-h-10 w-auto object-contain md:max-h-16"
             />
           </div>
         ))}
@@ -143,24 +143,22 @@ export const Partners = () => {
       <div className="mt-3 flex w-full items-center">
         <Link
           href="/visa"
-          className="flex w-full items-center justify-center gap-3 rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#0f3e66] shadow-sm border border-transparent hover:border-[#0dadd1] hover:bg-[#0dadd1] hover:text-white transition-colors"
+          className="flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#0dadd1] to-[#377bc9] px-4 py-3 text-sm font-semibold text-white shadow-lg hover:shadow-xl transition-all hover:scale-105"
           aria-label={lang === "fa" ? "رفتن به فرم ویزا" : lang === "ps" ? "د ویزې فورمې ته تګ" : "Go to visa form"}
         >
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0dadd1] text-white">
-            <svg
-              className="h-4 w-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M21 21l-4.35-4.35"></path>
-              <circle cx="11" cy="11" r="6"></circle>
-            </svg>
-          </span>
+          <svg
+            className="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M21 21l-4.35-4.35"></path>
+            <circle cx="11" cy="11" r="6"></circle>
+          </svg>
           <span className="whitespace-nowrap">
             {lang === "fa" ? "فرم ویزا" : lang === "ps" ? "د ویزې فورمه" : "Visa form"}
           </span>

@@ -464,9 +464,9 @@ const content: Record<Lang, LocalizedContent> = {
       { label: "اړیکه" },
     ],
     hero: {
-      titlePrefix: "ویزه د",
+      titlePrefix: "د",
       titleIran: "ایران",
-      titleAsia: "ترکیه",
+      titleAsia: "ترکیې ویزې",
       subTitle: "د افغان وګړو لپاره",
       bullets: [
         "ویزه تر ۷۲ ساعتونو کې",

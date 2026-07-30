@@ -11,7 +11,7 @@ export const Hero = () => {
   const content = getHeroContent(lang);
   const isRtl = lang === "fa" || lang === "ps";
   const titleText = isRtl
-    ? `${content.titlePrefix} ${content.titleIran} و ${content.titleAsia}`
+    ? `${content.titlePrefix} ${content.titleIran} او ${content.titleAsia}`
     : `${content.titlePrefix} ${content.titleIran} and ${content.titleAsia}`;
 
   return (
