@@ -117,18 +117,19 @@ export const Partners = () => {
       </h2>
 
       {/* Airline logos (show under title) */}
-      <div className="mt-3 flex w-full items-center justify-center gap-4 px-2 md:mt-6 md:gap-16">
+      <div className="mt-3 flex w-full items-center justify-center gap-2 px-2 md:mt-6 md:gap-8">
         {partners.map((partner) => (
           <div
             key={partner.name}
-            className="flex shrink-0 items-center justify-center"
+            className="flex shrink-0 items-center justify-center md:max-w-[120px]"
+            style={{ width: 'calc(25% - 8px)' }}
           >
             <Image
               src={partner.src}
               alt={partner.name}
               width={partner.width * 2}
               height={partner.height * 2}
-              className="h-auto max-h-10 w-auto object-contain md:max-h-16"
+              className="h-auto w-full object-contain"
             />
           </div>
         ))}
