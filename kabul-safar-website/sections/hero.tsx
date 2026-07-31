@@ -12,7 +12,9 @@ export const Hero = () => {
   const isRtl = lang === "fa" || lang === "ps";
   const titleText = isRtl
     ? `${content.titlePrefix} ${content.titleIran} او ${content.titleAsia}`
-    : `${content.titlePrefix} ${content.titleIran} and ${content.titleAsia}`;
+    : content.titleIran && content.titleAsia
+      ? `${content.titlePrefix} ${content.titleIran} and ${content.titleAsia}`
+      : content.titlePrefix;
 
   return (
     <section aria-labelledby="hero-title" dir={isRtl ? "rtl" : "ltr"}>
@@ -41,7 +43,7 @@ export const Hero = () => {
                   <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/40 md:h-8 md:w-8">
                     <Clock className="h-3.5 w-3.5 text-black md:h-4 md:w-4" />
                   </div>
-                  <span className="text-xs font-medium text-black/90 md:text-sm">
+                  <span className="text-[10px] font-medium text-black/90 md:text-xs">
                     {content.bullets[0]}
                   </span>
                 </div>
@@ -51,7 +53,7 @@ export const Hero = () => {
                   <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/40 md:h-8 md:w-8">
                     <Languages className="h-3.5 w-3.5 text-black md:h-4 md:w-4" />
                   </div>
-                  <span className="text-xs font-medium text-black/90 md:text-sm">
+                  <span className="text-[10px] font-medium text-black/90 md:text-xs">
                     {content.bullets[1]}
                   </span>
                 </div>
@@ -61,7 +63,7 @@ export const Hero = () => {
                   <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/40 md:h-8 md:w-8">
                     <MessageCircle className="h-3.5 w-3.5 text-black md:h-4 md:w-4" />
                   </div>
-                  <span className="text-xs font-medium text-black/90 md:text-sm">
+                  <span className="text-[10px] font-medium text-black/90 md:text-xs">
                     {content.bullets[2]}
                   </span>
                 </div>
