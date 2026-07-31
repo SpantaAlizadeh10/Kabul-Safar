@@ -108,7 +108,7 @@ const content: Record<Lang, LocalizedContent> = {
     ],
     hero: {
       titlePrefix: "ویزای",
-      titleIran: "ایران",
+      titleIran: "ایران و",
       titleAsia: "ترکیه",
       subTitle: "برای شهروندان افغانستانی",
       bullets: [
@@ -465,7 +465,7 @@ const content: Record<Lang, LocalizedContent> = {
     ],
     hero: {
       titlePrefix: "د",
-      titleIran: "ایران",
+      titleIran: "ایران او",
       titleAsia: "ترکیې ویزې",
       subTitle: "د افغان وګړو لپاره",
       bullets: [
