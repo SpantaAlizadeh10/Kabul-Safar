@@ -789,3 +789,366 @@ export function getFooterContent(lang: Lang): {
     })),
   };
 }
+
+// Blog data structure
+export interface BlogPost {
+  id: string;
+  title: string;
+  category: string;
+  author: string;
+  date: string;
+  excerpt: string;
+  image: string;
+}
+
+export interface FeaturedPost {
+  id: string;
+  title: string;
+  category: string;
+  author: string;
+  date: string;
+  image: string;
+}
+
+export interface TrendingItem {
+  id: string;
+  title: string;
+  description: string;
+}
+
+const blogContent = {
+  fa: {
+    hero: {
+      title: "داستان‌های سفر: تجربه‌های واقعی از سفر به ایران و ترکیه",
+      subtitle: "کابل سفر منبع شما برای راهنمایی‌های سفر است! محتوای انتخابی را برای روشن کردن، سرگرم کردن و درگیر کردن مسافران جهانی کاوش کنید.",
+    },
+    trendingTopics: [
+      { id: "topic-1", name: "ویزا", icon: "FileText" },
+      { id: "topic-2", name: "سفر", icon: "Plane" },
+      { id: "topic-3", name: "مقاصد", icon: "MapPin" },
+      { id: "topic-4", name: "بلیط", icon: "Ticket" },
+      { id: "topic-5", name: "مشاوره", icon: "MessageCircle" },
+      { id: "topic-6", name: "تجربه", icon: "Star" },
+      { id: "topic-7", name: "راهنما", icon: "Compass" },
+      { id: "topic-8", name: "اخبار", icon: "Newspaper" },
+    ],
+    posts: [
+      {
+        id: "1",
+        title: "راهنمای کامل دریافت ویزای ایران برای افغانستانی‌ها",
+        category: "ویزای ایران",
+        author: "شعیب نوروزی",
+        date: "۲۸ خرداد ۱۴۰۳",
+        excerpt: "همه چیزهایی که باید درباره دریافت ویزای ایران بدانید، از مدارک مورد نیاز تا نکات مهم برای مصاحبه سفارت.",
+        image: "/images/destination-iran.jpg",
+      },
+      {
+        id: "2",
+        title: "بهترین مسیرهای پرواز به اروپا برای مسافران افغان",
+        category: "بلیط هواپیما",
+        author: "قمر حمیدزی",
+        date: "۱۵ تیر ۱۴۰۳",
+        excerpt: "مسیر مناسب، قیمت بهتر و تجربه سفر آرام‌تر را با نکات حرفه‌ای ما بیابید.",
+        image: "/images/destination-turkey.jpg",
+      },
+      {
+        id: "3",
+        title: "چرا مشاوره سفر قبل از خروج ضروری است",
+        category: "خدمات سفر",
+        author: "مریم احمدی",
+        date: "۵ مرداد ۱۴۰۳",
+        excerpt: "مشاوره درست باعث می‌شود هزینه کمتر و مسیر مطمئن‌تری برای سفر خود انتخاب کنید.",
+        image: "/images/destination.jpg",
+      },
+      {
+        id: "4",
+        title: "مقاصد کم‌هزینه برای افغان‌ها در سال جاری",
+        category: "سفر اقتصادی",
+        author: "علی رضایی",
+        date: "۱۸ شهریور ۱۴۰۳",
+        excerpt: "مقاصدی که هم هزینه مناسب دارند و هم تجربه‌ای جذاب و امن برای شما فراهم می‌کنند.",
+        image: "/images/destination-iraq.jpg",
+      },
+      {
+        id: "5",
+        title: "سفر به مکه: راهنمای کامل حج و عمره",
+        category: "حج و عمره",
+        author: "حسین کریمی",
+        date: "۲۵ مهر ۱۴۰۳",
+        excerpt: "راهنمای جامع برای سفر به مکه و مدینه، از ویزا تا اقامت.",
+        image: "/images/Makke.jpeg",
+      },
+      {
+        id: "6",
+        title: "نکات مهم سفر به ترکیه برای افغانستانی‌ها",
+        category: "ویزای ترکیه",
+        author: "زهرا محمدی",
+        date: "۱۰ آبان ۱۴۰۳",
+        excerpt: "تمام آنچه باید درباره سفر به ترکیه بدانید، از ویزا تا مکان‌های دیدنی.",
+        image: "/images/destination-turkey.jpg",
+      },
+    ],
+    featuredPost: {
+      id: "featured-1",
+      title: "مدیریت سفر: چگونه برنامه‌ریزی سفر را بهینه کنیم",
+      category: "مشاوره سفر",
+      author: "شعیب نوروزی",
+      date: "۱۰ آبان ۱۴۰۳",
+      image: "/images/destination.jpg",
+    },
+    trendingItems: [
+      {
+        id: "trend-1",
+        title: "تجربه‌های سفر",
+        description: "داستان‌های واقعی از مسافران",
+      },
+      {
+        id: "trend-2",
+        title: "راهنمای ویزا",
+        description: "نکات مهم برای دریافت ویزا",
+      },
+      {
+        id: "trend-3",
+        title: "مقاصد محبوب",
+        description: "بهترین مکان‌ها برای سفر",
+      },
+    ],
+    newsletter: {
+      title: "مشترک شدن در خبرنامه",
+      subtitle: "برای دریافت آخرین مقالات به ایمیل خود، مشترک خبرنامه شوید.",
+      placeholder: "ایمیل خود را وارد کنید",
+      button: "مشترک شدن",
+    },
+    footer: {
+      brand: "Kabul Safar",
+      description: "کابل سفر منبع شما برای راهنمایی‌های سفر است! محتوای انتخابی را برای روشن کردن، سرگرم کردن و درگیر کردن مسافران جهانی کاوش کنید.",
+      homepages: ["لیست کلاسیک", "گرید کلاسیک", "اورلی کلاسیک", "اسلایدر هیرو", "مقالات ویژه"],
+      categories: ["ویزا", "سفر", "مقاصد", "بلیط"],
+      pages: ["درباره ما", "دسته‌بندی‌ها", "تماس با ما"],
+    },
+  },
+  en: {
+    hero: {
+      title: "Travel Stories: Real Experiences from Iran and Turkey",
+      subtitle: "Kabul Safar is your ultimate source for travel insights! Explore curated content to enlighten, entertain and engage global travelers.",
+    },
+    trendingTopics: [
+      { id: "topic-1", name: "Visa", icon: "FileText" },
+      { id: "topic-2", name: "Travel", icon: "Plane" },
+      { id: "topic-3", name: "Destinations", icon: "MapPin" },
+      { id: "topic-4", name: "Tickets", icon: "Ticket" },
+      { id: "topic-5", name: "Consultation", icon: "MessageCircle" },
+      { id: "topic-6", name: "Experience", icon: "Star" },
+      { id: "topic-7", name: "Guide", icon: "Compass" },
+      { id: "topic-8", name: "News", icon: "Newspaper" },
+    ],
+    posts: [
+      {
+        id: "1",
+        title: "Complete Guide to Iran Visa for Afghan Citizens",
+        category: "Iran Visa",
+        author: "Shoaib Norouzi",
+        date: "June 18, 2024",
+        excerpt: "Everything you need to know about getting Iran visa, from required documents to important embassy interview tips.",
+        image: "/images/destination-iran.jpg",
+      },
+      {
+        id: "2",
+        title: "Best Flight Routes to Europe for Afghan Travelers",
+        category: "Flight Tickets",
+        author: "Qamar Hamidzi",
+        date: "July 5, 2024",
+        excerpt: "Choose a better route, save money, and enjoy a more relaxed journey with our professional tips.",
+        image: "/images/destination-turkey.jpg",
+      },
+      {
+        id: "3",
+        title: "Why Travel Consultation Matters Before Departure",
+        category: "Travel Services",
+        author: "Maryam Ahmadi",
+        date: "August 28, 2024",
+        excerpt: "The right advice helps you avoid mistakes, save time, and plan your trip clearly.",
+        image: "/images/destination.jpg",
+      },
+      {
+        id: "4",
+        title: "Budget Destinations for Afghan Travelers This Year",
+        category: "Affordable Travel",
+        author: "Ali Rezaei",
+        date: "September 9, 2024",
+        excerpt: "Discover destinations that are friendly on price and rich in travel experience.",
+        image: "/images/destination-iraq.jpg",
+      },
+      {
+        id: "5",
+        title: "Travel to Mecca: Complete Hajj and Umrah Guide",
+        category: "Hajj & Umrah",
+        author: "Hossein Karimi",
+        date: "October 16, 2024",
+        excerpt: "Comprehensive guide for traveling to Mecca and Medina, from visa to accommodation.",
+        image: "/images/Makke.jpeg",
+      },
+      {
+        id: "6",
+        title: "Important Tips for Traveling to Turkey for Afghans",
+        category: "Turkey Visa",
+        author: "Zahra Mohammadi",
+        date: "November 1, 2024",
+        excerpt: "All you need to know about traveling to Turkey, from visa to must-visit places.",
+        image: "/images/destination-turkey.jpg",
+      },
+    ],
+    featuredPost: {
+      id: "featured-1",
+      title: "Travel Management: How to Optimize Trip Planning",
+      category: "Travel Consultation",
+      author: "Shoaib Norouzi",
+      date: "November 1, 2024",
+      image: "/images/destination.jpg",
+    },
+    trendingItems: [
+      {
+        id: "trend-1",
+        title: "Travel Experiences",
+        description: "Real stories from travelers",
+      },
+      {
+        id: "trend-2",
+        title: "Visa Guide",
+        description: "Important tips for getting visa",
+      },
+      {
+        id: "trend-3",
+        title: "Popular Destinations",
+        description: "Best places to visit",
+      },
+    ],
+    newsletter: {
+      title: "Subscribe to our Newsletter",
+      subtitle: "Subscribe to our email newsletter to get the latest posts delivered right to your email.",
+      placeholder: "Enter your email",
+      button: "Subscribe",
+    },
+    footer: {
+      brand: "Kabul Safar",
+      description: "Kabul Safar is your ultimate source for travel insights! Explore curated content to enlighten, entertain and engage global travelers.",
+      homepages: ["Classic List", "Classic Grid", "Classic Overlay", "Hero Slider", "Featured Posts"],
+      categories: ["Visa", "Travel", "Destinations", "Tickets"],
+      pages: ["About", "Categories", "Contacts"],
+    },
+  },
+  ps: {
+    hero: {
+      title: "د سفر کیسې: له ایران او ترکیې څخه واقعي تجربې",
+      subtitle: "کابل سفر ستاسو د سفر لارښوونې لپاره سرچینه ده! غوره شوي محتوا وګورئ چې نړیوال مسافران روزي، ښځندوي او په کې ښکې کوي.",
+    },
+    trendingTopics: [
+      { id: "topic-1", name: "ویزه", icon: "FileText" },
+      { id: "topic-2", name: "سفر", icon: "Plane" },
+      { id: "topic-3", name: "ځایونه", icon: "MapPin" },
+      { id: "topic-4", name: "ټکټ", icon: "Ticket" },
+      { id: "topic-5", name: "مشوره", icon: "MessageCircle" },
+      { id: "topic-6", name: "تجربه", icon: "Star" },
+      { id: "topic-7", name: "لارښوونې", icon: "Compass" },
+      { id: "topic-8", name: "خبرونه", icon: "Newspaper" },
+    ],
+    posts: [
+      {
+        id: "1",
+        title: "د ایران ویزې لپاره بشپړ لارښونه",
+        category: "د ایران ویزه",
+        author: "شعیب نوروزي",
+        date: "۲۸ سلواغه ۱۴۰۲",
+        excerpt: "هر څه چې تاسو باید د ایران ویزې په اړه پوه شئ، له اړینو اسنادو څخه تر مهمو سفارتې مشورو پورې.",
+        image: "/images/destination-iran.jpg",
+      },
+      {
+        id: "2",
+        title: "اروپا ته د سفر غوره الوتکې لارې",
+        category: "د الوتنې ټکټ",
+        author: "قمر حمیدزي",
+        date: "۱۵ کب ۱۴۰۲",
+        excerpt: "غوره لاره، ارزانه بیه او آرام سفر زموږ د مسلکي مشورو سره ومومئ.",
+        image: "/images/destination-turkey.jpg",
+      },
+      {
+        id: "3",
+        title: "ولې د سفر د وړاندې مشوره مهمه ده",
+        category: "د سفر خدمتونه",
+        author: "مریم احمدي",
+        date: "۵ حمل ۱۴۰۳",
+        excerpt: "سمه مشوره تاسو له تېرونو څخه ژغوري، وخت خوندي کوي او ستاسو سفر په ښه توګه پلان کوي.",
+        image: "/images/destination.jpg",
+      },
+      {
+        id: "4",
+        title: "د افغانانو لپاره ارزانه سفرونه",
+        category: "اقتصادي سفر",
+        author: "علي رضایی",
+        date: "۱۸ ثور ۱۴۰۳",
+        excerpt: "هغه ځایونه چې ارزانه قیمت لري او د سفر لپاره ښه تجربه ورکوي.",
+        image: "/images/destination-iraq.jpg",
+      },
+      {
+        id: "5",
+        title: "مکې ته سفر: حج او عمرې لپاره بشپړ لارښونه",
+        category: "حج او عمره",
+        author: "حسین کریمی",
+        date: "۲۵ وری ۱۴۰۳",
+        excerpt: "د مکې او مدینې ته د سفر لپاره بشپړ لارښونه، له ویزې څخه تر اوسېدلو پورې.",
+        image: "/images/Makke.jpeg",
+      },
+      {
+        id: "6",
+        title: "د ترکیې ته سفر لپاره مهمې مشورې",
+        category: "د ترکیې ویزه",
+        author: "زهرا محمدی",
+        date: "۱۰ غبرګولی ۱۴۰۳",
+        excerpt: "هر څه چې تاسو باید د ترکیې ته د سفر په اړه پوه شئ.",
+        image: "/images/destination-turkey.jpg",
+      },
+    ],
+    featuredPost: {
+      id: "featured-1",
+      title: "د سفر مدیریت: څنګه سفر پلان غوره کړو",
+      category: "د سفر مشوره",
+      author: "شعیب نوروزي",
+      date: "۱۰ غبرګولی ۱۴۰۳",
+      image: "/images/destination.jpg",
+    },
+    trendingItems: [
+      {
+        id: "trend-1",
+        title: "د سفر تجربې",
+        description: "مسافرونه واقعي کیسې",
+      },
+      {
+        id: "trend-2",
+        title: "ویزه لارښونه",
+        description: "د ویزې لپاره مهم مشورې",
+      },
+      {
+        id: "trend-3",
+        title: "غوره ځایونه",
+        description: "د لیدلو لپاره غوره ځایونه",
+      },
+    ],
+    newsletter: {
+      title: "خبرنامې ته مشترک کیدل",
+      subtitle: "د وروستیو مقالاتو لپاره خبرنامې ته مشترک شئ.",
+      placeholder: "خپل برېښنالیک وارد کړئ",
+      button: "مشترک کیدل",
+    },
+    footer: {
+      brand: "Kabul Safar",
+      description: "کابل سفر ستاسو د سفر لارښوونې لپاره سرچینه ده! غوره شوي محتوا وګورئ چې نړیوال مسافران روزي، ښځندوي او په کې ښکې کوي.",
+      homepages: ["کلاسیک لړ", "کلاسیک گرید", "کلاسیک اورلی", "هیرو سلاډر", "ویژه مقالات"],
+      categories: ["ویزه", "سفر", "ځایونه", "ټکټ"],
+      pages: ["زموږ په اړه", "دسته بندي", "اړیکه"],
+    },
+  },
+};
+
+export function getBlogContent(lang: Lang) {
+  return blogContent[lang] ?? blogContent.en;
+}

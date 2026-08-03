@@ -9,7 +9,7 @@ import { SectionTitle } from "@/components/section-title";
 import { ConsultButton } from "@/components/consult-button";
 import { useI18n } from "@/components/i18n-provider";
 import { VisaRequestForm } from "@/sections/visa-request-form";
-import { FileCheck, Send, Clock, Shield } from "lucide-react";
+import { FileCheck, Send, Clock, Shield, Plane, MapPin } from "lucide-react";
 import { CONTACT_WHATSAPP_URL } from "@/lib/contact";
 
 const pageText = {
@@ -116,16 +116,41 @@ export default function VisaPage() {
           <Header />
 
           {/* Hero Section */}
-          <section className="relative overflow-hidden rounded-[24px] bg-gradient-to-r from-[#0dadd1] to-[#377bc9] p-6 md:p-10 shadow-xl">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+          <section className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-slate-900 via-[#0dadd1] to-[#377bc9] p-6 md:p-10 shadow-xl">
+            {/* Decorative Elements */}
+            <div className="absolute inset-0">
+              <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-white/5 blur-3xl" />
+              <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-[#0dadd1]/20 blur-3xl" />
+              <div className="absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#377bc9]/10 blur-2xl" />
+            </div>
+
+            {/* Pattern Overlay */}
+            <div className="absolute inset-0 opacity-5">
+              <div className="absolute inset-0" style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+              }} />
+            </div>
+
+            {/* Floating Icons */}
+            <div className="absolute right-10 top-20 hidden animate-bounce md:block">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-white backdrop-blur-sm">
+                <Plane className="h-8 w-8" />
+              </div>
+            </div>
+            <div className="absolute left-10 bottom-20 hidden animate-pulse md:block">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-white backdrop-blur-sm">
+                <MapPin className="h-8 w-8" />
+              </div>
+            </div>
+
             <div className="relative z-10">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/20 text-white backdrop-blur-sm">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/20 text-white backdrop-blur-sm shadow-2xl">
                 <Shield className="h-6 w-6" />
               </div>
-              <h1 className="mt-4 max-w-3xl text-2xl font-black text-white md:text-4xl leading-tight">
+              <h1 className="mt-4 max-w-3xl text-2xl font-black text-white md:text-4xl leading-tight drop-shadow-lg">
                 {content.title}
               </h1>
-              <p className="mt-3 max-w-2xl text-sm leading-7 text-white/90 md:text-base md:leading-8">
+              <p className="mt-3 max-w-2xl text-sm leading-7 text-white/90 md:text-base md:leading-8 drop-shadow">
                 {content.subtitle}
               </p>
               <div className="mt-6">
@@ -149,11 +174,18 @@ export default function VisaPage() {
                   </svg>
                 </a>
               </div>
+
+              {/* Decorative Dots */}
+              <div className="mt-6 flex gap-2">
+                <div className="h-2 w-2 rounded-full bg-white/60" />
+                <div className="h-2 w-2 rounded-full bg-white/40" />
+                <div className="h-2 w-2 rounded-full bg-white/20" />
+              </div>
             </div>
           </section>
 
           {/* Steps Section */}
-          <section className="rounded-[32px] bg-white p-6 shadow-xl md:p-12">
+          <section className="rounded-[32px] bg-gradient-to-br from-white to-slate-50 p-6 shadow-xl ring-1 ring-slate-200/50 md:p-12">
             <div className="mb-6">
               <h2 className="text-xl font-black text-slate-900 md:text-3xl">
                 {content.highlight}
@@ -163,12 +195,12 @@ export default function VisaPage() {
               {content.steps.map((step, idx) => (
                 <div
                   key={step.title}
-                  className="group rounded-[20px] border border-slate-200 bg-gradient-to-br from-slate-50 to-blue-50 p-3 shadow-lg transition-all hover:shadow-2xl hover:-translate-y-1"
+                  className="group overflow-hidden rounded-[20px] border border-slate-200/50 bg-gradient-to-br from-white to-slate-50 p-3 shadow-lg ring-1 ring-slate-200/50 transition-all hover:shadow-2xl hover:-translate-y-2"
                 >
-                  <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-[#0dadd1] to-[#377bc9] text-white shadow-lg md:h-10 md:w-10">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-[#0dadd1] to-[#377bc9] text-white shadow-lg transition-transform group-hover:scale-110 md:h-10 md:w-10">
                     <step.icon className="h-4 w-4 md:h-5 md:w-5" />
                   </div>
-                  <h3 className="mt-2 text-[10px] font-bold text-slate-900 md:text-sm">
+                  <h3 className="mt-2 text-[10px] font-bold text-slate-900 md:text-sm group-hover:text-[#0dadd1] transition-colors">
                     {step.title}
                   </h3>
                   <p className="mt-1.5 text-[9px] leading-3 text-slate-600 md:text-xs md:leading-4">
