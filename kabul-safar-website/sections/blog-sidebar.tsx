@@ -14,9 +14,9 @@ export const BlogSidebar = () => {
       {/* About Section */}
       <div className="group overflow-hidden rounded-2xl bg-gradient-to-br from-white to-slate-50 p-6 shadow-lg ring-1 ring-slate-200/50 transition-all hover:shadow-xl">
         <div className="flex flex-col items-center text-center">
-          <div className="relative h-24 w-24 overflow-hidden rounded-full ring-4 ring-white shadow-lg">
+          <div className="relative h-24 w-24 overflow-hidden rounded-2xl ring-4 ring-white shadow-lg bg-gradient-to-br from-[#0dadd1] to-[#377bc9] p-2">
             <Image
-              src="/images/avatar-1.jpg"
+              src="/Logo.jpeg"
               alt="Kabul Safar"
               fill
               className="object-cover transition-transform duration-300 group-hover:scale-110"

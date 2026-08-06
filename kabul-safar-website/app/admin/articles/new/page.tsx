@@ -107,22 +107,25 @@ export default function NewArticlePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8" dir="rtl">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50 p-8" dir="rtl">
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center gap-4 mb-8">
           <Link
             href="/admin"
-            className="p-2 hover:bg-gray-200 rounded-lg transition"
+            className="flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-md transition-all hover:bg-[#0dadd1] hover:text-white hover:shadow-lg"
           >
-            <ArrowRight size={24} />
+            <ArrowRight size={20} />
           </Link>
-          <h1 className="text-3xl font-bold">مقاله جدید</h1>
+          <div>
+            <h1 className="text-3xl font-black text-slate-900">مقاله جدید</h1>
+            <p className="text-sm text-slate-500">مقاله جدید را ایجاد و منتشر کنید</p>
+          </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6 space-y-6">
+        <div className="rounded-2xl bg-white shadow-xl ring-1 ring-slate-200/50 p-8 space-y-8">
           {/* Title */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-bold text-slate-800 mb-2">
               عنوان مقاله *
             </label>
             <input
@@ -134,21 +137,21 @@ export default function NewArticlePage() {
                   setFormData({ ...formData, title: e.target.value, slug: generateSlug(e.target.value) })
                 }
               }}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full rounded-xl border-2 border-slate-200 px-4 py-3 text-slate-900 transition-all focus:border-[#0dadd1] focus:ring-4 focus:ring-[#0dadd1]/10 focus:outline-none"
               placeholder="عنوان مقاله را وارد کنید"
             />
           </div>
 
           {/* Slug */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-bold text-slate-800 mb-2">
               Slug (URL)
             </label>
             <input
               type="text"
               value={formData.slug}
               onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full rounded-xl border-2 border-slate-200 px-4 py-3 text-slate-900 transition-all focus:border-[#0dadd1] focus:ring-4 focus:ring-[#0dadd1]/10 focus:outline-none font-mono text-sm"
               placeholder="slug-magale"
               dir="ltr"
             />
@@ -156,41 +159,41 @@ export default function NewArticlePage() {
 
           {/* Excerpt */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-bold text-slate-800 mb-2">
               خلاصه مقاله
             </label>
             <textarea
               value={formData.excerpt}
               onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full rounded-xl border-2 border-slate-200 px-4 py-3 text-slate-900 transition-all focus:border-[#0dadd1] focus:ring-4 focus:ring-[#0dadd1]/10 focus:outline-none resize-none"
               rows={3}
               placeholder="خلاصه کوتاه از مقاله"
             />
           </div>
 
           {/* Category & Author */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-bold text-slate-800 mb-2">
                 دسته‌بندی
               </label>
               <input
                 type="text"
                 value={formData.category}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full rounded-xl border-2 border-slate-200 px-4 py-3 text-slate-900 transition-all focus:border-[#0dadd1] focus:ring-4 focus:ring-[#0dadd1]/10 focus:outline-none"
                 placeholder="مثال: ویزای ایران"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-bold text-slate-800 mb-2">
                 نویسنده
               </label>
               <input
                 type="text"
                 value={formData.author}
                 onChange={(e) => setFormData({ ...formData, author: e.target.value })}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full rounded-xl border-2 border-slate-200 px-4 py-3 text-slate-900 transition-all focus:border-[#0dadd1] focus:ring-4 focus:ring-[#0dadd1]/10 focus:outline-none"
                 placeholder="نام نویسنده"
               />
             </div>
@@ -198,13 +201,13 @@ export default function NewArticlePage() {
 
           {/* Cover Image */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-bold text-slate-800 mb-2">
               تصویر کاور
             </label>
             <div className="flex items-center gap-4">
-              <label className="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-lg cursor-pointer hover:bg-gray-200 transition">
-                <Upload size={18} />
-                <span>انتخاب تصویر</span>
+              <label className="group flex items-center gap-2 rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 px-6 py-3 cursor-pointer transition-all hover:border-[#0dadd1] hover:bg-[#0dadd1]/5">
+                <Upload size={18} className="text-slate-400 group-hover:text-[#0dadd1] transition-colors" />
+                <span className="text-sm font-medium text-slate-600 group-hover:text-[#0dadd1] transition-colors">انتخاب تصویر</span>
                 <input
                   type="file"
                   accept="image/*"
@@ -217,13 +220,13 @@ export default function NewArticlePage() {
                   <img
                     src={formData.cover_image}
                     alt="Cover"
-                    className="h-20 rounded-lg"
+                    className="h-20 w-20 rounded-xl object-cover shadow-md ring-2 ring-white"
                   />
                   <button
                     onClick={() => setFormData({ ...formData, cover_image: '' })}
-                    className="absolute -top-2 -right-2 p-1 bg-red-500 text-white rounded-full hover:bg-red-600"
+                    className="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-red-500 text-white shadow-md transition-all hover:bg-red-600 hover:scale-110"
                   >
-                    <X size={14} />
+                    <X size={12} />
                   </button>
                 </div>
               )}
@@ -232,13 +235,13 @@ export default function NewArticlePage() {
 
           {/* Audio Upload */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-bold text-slate-800 mb-2">
               فایل صوتی (اختیاری)
             </label>
             <div className="flex items-center gap-4">
-              <label className="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-lg cursor-pointer hover:bg-gray-200 transition">
-                <Upload size={18} />
-                <span>انتخاب فایل صوتی</span>
+              <label className="group flex items-center gap-2 rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 px-6 py-3 cursor-pointer transition-all hover:border-[#0dadd1] hover:bg-[#0dadd1]/5">
+                <Upload size={18} className="text-slate-400 group-hover:text-[#0dadd1] transition-colors" />
+                <span className="text-sm font-medium text-slate-600 group-hover:text-[#0dadd1] transition-colors">انتخاب فایل صوتی</span>
                 <input
                   type="file"
                   accept="audio/*"
@@ -247,14 +250,14 @@ export default function NewArticlePage() {
                 />
               </label>
               {audioFile && (
-                <div className="flex items-center gap-2">
-                  <span className="text-sm text-gray-600">{audioFile.name}</span>
+                <div className="flex items-center gap-2 rounded-xl bg-slate-100 px-4 py-2">
+                  <span className="text-sm font-medium text-slate-700">{audioFile.name}</span>
                   <button
                     onClick={() => {
                       setAudioFile(null)
                       setAudioUrl('')
                     }}
-                    className="p-1 text-red-500 hover:text-red-600"
+                    className="rounded-lg p-1 text-red-500 transition-all hover:bg-red-100 hover:text-red-600"
                   >
                     <X size={14} />
                   </button>
@@ -265,28 +268,30 @@ export default function NewArticlePage() {
 
           {/* Content Editor */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-bold text-slate-800 mb-2">
               محتوای مقاله *
             </label>
-            <RichTextEditor
-              content={formData.content}
-              onChange={(content) => setFormData({ ...formData, content })}
-              onImageUpload={handleImageUpload}
-            />
+            <div className="rounded-xl border-2 border-slate-200 ring-4 ring-transparent transition-all focus-within:border-[#0dadd1] focus-within:ring-[#0dadd1]/10">
+              <RichTextEditor
+                content={formData.content}
+                onChange={(content) => setFormData({ ...formData, content })}
+                onImageUpload={handleImageUpload}
+              />
+            </div>
           </div>
 
           {/* Actions */}
-          <div className="flex items-center justify-end gap-4 pt-4 border-t">
+          <div className="flex items-center justify-end gap-4 pt-6 border-t border-slate-200">
             <Link
               href="/admin"
-              className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition"
+              className="rounded-xl border-2 border-slate-300 px-6 py-3 font-semibold text-slate-700 transition-all hover:bg-slate-100 hover:border-slate-400"
             >
               انصراف
             </Link>
             <button
               onClick={() => handleSubmit(false)}
               disabled={loading}
-              className="flex items-center gap-2 px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition disabled:opacity-50"
+              className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-slate-600 to-slate-700 px-6 py-3 font-semibold text-white shadow-md transition-all hover:from-slate-700 hover:to-slate-800 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Save size={18} />
               <span>ذخیره پیش‌نویس</span>
@@ -294,7 +299,7 @@ export default function NewArticlePage() {
             <button
               onClick={() => handleSubmit(true)}
               disabled={loading}
-              className="flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
+              className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#0dadd1] to-[#377bc9] px-6 py-3 font-semibold text-white shadow-md transition-all hover:from-[#0c9cc0] hover:to-[#306bb0] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Save size={18} />
               <span>انتشار</span>

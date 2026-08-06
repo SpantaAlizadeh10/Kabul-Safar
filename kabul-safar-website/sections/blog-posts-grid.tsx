@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+import { useI18n } from "@/components/i18n-provider";
 
 interface Article {
   id: string;
@@ -17,6 +18,7 @@ interface Article {
 }
 
 export const BlogPostsGrid = () => {
+  const { lang } = useI18n();
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -55,8 +57,13 @@ export const BlogPostsGrid = () => {
           href={`/blog/${article.slug}`}
           className="group overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-slate-200/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
         >
-          <div className="relative h-48 overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          <div className="relative h-56 overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            <div className="absolute top-3 right-3 z-10">
+              <div className="rounded-full bg-white/90 backdrop-blur-sm px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#0dadd1] shadow-md">
+                {article.category || 'عمومی'}
+              </div>
+            </div>
             <Image
               src={article.cover_image || '/images/destination.jpg'}
               alt={article.title}
@@ -65,18 +72,22 @@ export const BlogPostsGrid = () => {
             />
           </div>
           <div className="space-y-3 p-5">
-            <div className="inline-block rounded-full bg-gradient-to-r from-[#0dadd1]/10 to-[#377bc9]/10 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-[#0dadd1]">
-              {article.category || 'عمومی'}
+            <div className="flex items-center gap-2 text-xs text-slate-500">
+              <span className="font-semibold text-[#0dadd1]">{article.author || 'ناشناس'}</span>
+              <span className="text-slate-300">•</span>
+              <span>{new Date(article.created_at).toLocaleDateString('fa-IR')}</span>
             </div>
-            <div className="text-xs text-slate-500">
-              {article.author || 'ناشناس'} • {new Date(article.created_at).toLocaleDateString('fa-IR')}
-            </div>
-            <h3 className="text-lg font-bold text-slate-900 leading-tight group-hover:text-[#0dadd1] transition-colors">
+            <h3 className="text-lg font-bold text-slate-900 leading-tight group-hover:text-[#0dadd1] transition-colors line-clamp-2">
               {article.title}
             </h3>
             <p className="text-sm leading-6 text-slate-600 line-clamp-2">
               {article.excerpt}
             </p>
+            <div className="pt-2">
+              <span className="text-xs font-semibold text-[#0dadd1] group-hover:underline">
+                {lang === "fa" ? "ادامه مطلب" : lang === "ps" ? "ادامه وګورئ" : "Read more"} →
+              </span>
+            </div>
           </div>
         </Link>
       ))}

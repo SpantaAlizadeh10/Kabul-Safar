@@ -20,7 +20,7 @@ export const TrendingTopics = () => {
   const content = getBlogContent(lang);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-r from-slate-50 to-blue-50 py-8 md:py-12">
+    <section className="relative overflow-hidden bg-gradient-to-r from-slate-50 via-blue-50 to-slate-50 py-10 md:py-14">
       {/* Decorative Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -29,16 +29,20 @@ export const TrendingTopics = () => {
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="mb-6 text-sm font-bold uppercase tracking-widest text-slate-900">
-          {lang === "fa" ? "موضوعات محبوب را کاوش کنید" : lang === "ps" ? "غوره موضوعات وګورئ" : "EXPLORE TRENDING TOPICS"}
-        </h2>
-        <div className="flex flex-wrap gap-3">
+        <div className="mb-8 flex items-center gap-3">
+          <div className="h-1 flex-1 bg-gradient-to-r from-transparent via-[#0dadd1]/30 to-transparent" />
+          <h2 className="text-sm font-bold uppercase tracking-widest text-slate-900">
+            {lang === "fa" ? "موضوعات محبوب را کاوش کنید" : lang === "ps" ? "غوره موضوعات وګورئ" : "EXPLORE TRENDING TOPICS"}
+          </h2>
+          <div className="h-1 flex-1 bg-gradient-to-r from-transparent via-[#0dadd1]/30 to-transparent" />
+        </div>
+        <div className="flex flex-wrap gap-3 justify-center">
           {content.trendingTopics.map((topic) => {
             const Icon = iconMap[topic.icon as keyof typeof iconMap];
             return (
               <button
                 key={topic.id}
-                className="group flex items-center gap-2 rounded-full border-2 border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition-all hover:border-[#0dadd1] hover:text-[#0dadd1] hover:shadow-md hover:-translate-y-0.5"
+                className="group flex items-center gap-2 rounded-full border-2 border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition-all hover:border-[#0dadd1] hover:bg-gradient-to-r hover:from-[#0dadd1] hover:to-[#377bc9] hover:text-white hover:shadow-lg hover:-translate-y-0.5"
               >
                 <Icon className="h-4 w-4 transition-transform group-hover:scale-110" />
                 {topic.name}

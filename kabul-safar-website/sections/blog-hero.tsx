@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpen, Plane, MapPin } from "lucide-react";
+import { BookOpen, Plane, MapPin, Globe, Compass } from "lucide-react";
 import { useI18n } from "@/components/i18n-provider";
 import { getBlogContent } from "@/lib/data";
 
@@ -9,7 +9,7 @@ export const BlogHero = () => {
   const content = getBlogContent(lang);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-[#0dadd1] to-[#377bc9] py-16 md:py-24">
+    <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-[#0dadd1] to-[#377bc9] py-20 md:py-32">
       {/* Decorative Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-white/5 blur-3xl" />
@@ -26,29 +26,39 @@ export const BlogHero = () => {
 
       {/* Floating Icons */}
       <div className="absolute right-10 top-20 hidden animate-bounce md:block">
-        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-white backdrop-blur-sm">
+        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-white backdrop-blur-sm shadow-xl">
           <Plane className="h-8 w-8" />
         </div>
       </div>
       <div className="absolute left-10 bottom-20 hidden animate-pulse md:block">
-        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-white backdrop-blur-sm">
+        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-white backdrop-blur-sm shadow-xl">
           <MapPin className="h-8 w-8" />
+        </div>
+      </div>
+      <div className="absolute right-1/4 top-1/3 hidden animate-bounce md:block" style={{ animationDelay: '0.5s' }}>
+        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-white backdrop-blur-sm shadow-xl">
+          <Globe className="h-6 w-6" />
+        </div>
+      </div>
+      <div className="absolute left-1/4 bottom-1/3 hidden animate-pulse md:block" style={{ animationDelay: '1s' }}>
+        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-white backdrop-blur-sm shadow-xl">
+          <Compass className="h-6 w-6" />
         </div>
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/20 text-white backdrop-blur-sm shadow-2xl">
-          <BookOpen className="h-8 w-8" />
+        <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-white/20 text-white backdrop-blur-sm shadow-2xl md:h-24 md:w-24">
+          <BookOpen className="h-10 w-10 md:h-12 md:w-12" />
         </div>
-        <h1 className="mt-6 max-w-3xl text-3xl font-black text-white md:text-5xl lg:text-6xl leading-tight drop-shadow-lg">
+        <h1 className="mt-8 max-w-3xl text-3xl font-black text-white md:text-5xl lg:text-6xl leading-tight drop-shadow-lg">
           {content.hero.title}
         </h1>
-        <p className="mt-4 max-w-2xl text-base leading-8 text-white/90 md:text-lg md:leading-9 drop-shadow">
+        <p className="mt-6 max-w-2xl text-base leading-8 text-white/90 md:text-lg md:leading-9 drop-shadow">
           {content.hero.subtitle}
         </p>
 
         {/* Decorative Dots */}
-        <div className="mt-8 flex gap-2">
+        <div className="mt-10 flex gap-2">
           <div className="h-2 w-2 rounded-full bg-white/60" />
           <div className="h-2 w-2 rounded-full bg-white/40" />
           <div className="h-2 w-2 rounded-full bg-white/20" />
