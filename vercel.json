@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd kabul-safar-website && npm run build",
+  "outputDirectory": "kabul-safar-website/.next",
+  "framework": "nextjs",
+  "installCommand": "cd kabul-safar-website && npm install"
+}
