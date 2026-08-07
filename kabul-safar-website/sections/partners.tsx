@@ -186,7 +186,7 @@ export const Partners = () => {
       </h3>
 
       {/* Flight search form */}
-      <form ref={formRef} onSubmit={handleSubmit} className="mt-4 rounded-xl bg-gradient-to-br from-slate-50 to-blue-50 p-4 shadow-md md:p-6">
+      <form id="flight-search-form" ref={formRef} onSubmit={handleSubmit} className="mt-4 rounded-xl bg-gradient-to-br from-slate-50 to-blue-50 p-4 shadow-md md:p-6">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {/* Origin */}
           <div className="relative" ref={originRef}>

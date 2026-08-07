@@ -28,7 +28,7 @@ export const MobileFooter = () => {
       ),
     },
     {
-      href: "/#booking",
+      href: "/#flight-search-form",
       label: lang === "fa" ? "جستجو بلیط" : "Search",
       icon: (
         <svg
