@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import { I18nProvider } from "@/components/i18n-provider";
 import { CONTACT_WHATSAPP_URL } from "@/lib/contact";
+import { MobileFooter } from "@/components/mobile-footer";
 
 const vazirmatn = Vazirmatn({
   variable: "--font-vazirmatn",
@@ -46,15 +47,16 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col pb-20 md:pb-0">
         <I18nProvider>
           {children}
+          <MobileFooter />
           <a
             href={CONTACT_WHATSAPP_URL}
             aria-label="واتساپ کابل سفر"
             target="_blank"
             rel="noreferrer"
-            className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl shadow-[#25d36680] transition-transform duration-200 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#25d366]/60"
+            className="fixed bottom-20 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl shadow-[#25d36680] transition-transform duration-200 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#25d366]/60 md:bottom-6"
           >
             <svg
               viewBox="0 0 32 32"

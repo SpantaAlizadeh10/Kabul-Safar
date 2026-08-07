@@ -253,23 +253,23 @@ const content: Record<Lang, LocalizedContent> = {
       groups: [
         {
           title: "شرکت",
-          links: ["درباره ما", "سرویس های ما", "مراحل ویزا", "تماس با ما"],
+          links: ["درباره ما", "خدمات", "مراحل ویزا", "تماس"],
         },
         {
           title: "خدمات",
           links: [
-            "دریافت ویزای ایران",
-            "راهنمایی تهیه بلیط",
-            "مشاوره سفر",
-            "پشتیبانی واتساپ",
+            "ویزای ایران",
+            "بلیط",
+            "مشاوره",
+            "واتساپ",
           ],
         },
         {
           title: "پشتیبانی",
           links: [
             "حریم خصوصی",
-            "قوانین و مقررات",
-            "ارتباط با پشتیبانی",
+            "قوانین",
+            "پشتیبانی",
             "ایمیل",
           ],
         },
@@ -436,20 +436,20 @@ const content: Record<Lang, LocalizedContent> = {
       groups: [
         {
           title: "Company",
-          links: ["About", "Our Services", "Visa Steps", "Contact"],
+          links: ["About", "Services", "Visa Steps", "Contact"],
         },
         {
           title: "Services",
           links: [
             "Iran Visa",
-            "Flight Guidance",
-            "Travel Consultation",
-            "WhatsApp Support",
+            "Flights",
+            "Consultation",
+            "WhatsApp",
           ],
         },
         {
           title: "Support",
-          links: ["Privacy", "Terms", "Support Contact", "Email"],
+          links: ["Privacy", "Terms", "Support", "Email"],
         },
       ],
     },
@@ -604,20 +604,20 @@ const content: Record<Lang, LocalizedContent> = {
       groups: [
         {
           title: "شرکت",
-          links: ["زموږ په اړه", "زموږ خدمتونه", "د ویزې پړاوونه", "اړیکه"],
+          links: ["زموږ په اړه", "خدمتونه", "ویزې پړاوونه", "اړیکه"],
         },
         {
           title: "خدمتونه",
           links: [
             "د ایران ویزه",
-            "د الوتنې لارښوونه",
-            "د سفر مشوره",
-            "واتساپ ملاتړ",
+            "الوتنه",
+            "سفر مشوره",
+            "واتساپ",
           ],
         },
         {
           title: "ملاتړ",
-          links: ["محرمیت", "شرایط", "د ملاتړ اړیکه", "برېښنالیک"],
+          links: ["محرمیت", "شرایط", "ملاتړ", "برېښنالیک"],
         },
       ],
     },

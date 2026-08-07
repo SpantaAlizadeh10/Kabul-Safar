@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
-  const origin = searchParams.get('origin');
-  const destination = searchParams.get('destination');
+  const origin = searchParams.get('origin'); // IATA code
+  const destination = searchParams.get('destination'); // IATA code
   const date = searchParams.get('date');
   const passengers = searchParams.get('passengers') || '1';
 
@@ -14,43 +14,97 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  // For now, redirect to Google Flights with search parameters
-  // This provides immediate functionality while API integration is set up
-  const googleFlightsUrl = new URL('https://www.google.com/travel/flights');
-  googleFlightsUrl.searchParams.append('q', `flights from ${origin} to ${destination} on ${date}`);
-  googleFlightsUrl.searchParams.append('tpp', '1'); // Enable price tracking
-  
-  // Alternative: Skyscanner redirect
-  const skyscannerUrl = new URL('https://www.skyscanner.net/transport/flights');
-  skyscannerUrl.searchParams.append('from', origin);
-  skyscannerUrl.searchParams.append('to', destination);
-  skyscannerUrl.searchParams.append('date', date);
-  skyscannerUrl.searchParams.append('adults', passengers);
+  const token = process.env.TRAVELPAYOUTS_API_TOKEN;
+  const marker = process.env.TRAVELPAYOUTS_MARKER;
 
-  // Return both options for the user to choose
-  return NextResponse.json({
-    success: true,
-    searchParams: {
-      origin,
-      destination,
-      date,
-      passengers
-    },
-    externalLinks: {
-      googleFlights: googleFlightsUrl.toString(),
-      skyscanner: skyscannerUrl.toString()
-    },
-    message: 'API integration requires credentials. Redirecting to external search engines.'
-  });
+  if (!token) {
+    return NextResponse.json(
+      { error: 'Travelpayouts API token not configured' },
+      { status: 500 }
+    );
+  }
+
+  try {
+    // Step 1: Initialize flight search with Travelpayouts
+    const searchParamsFlight = new URLSearchParams({
+      token,
+      marker: marker || '',
+      currency: 'usd',
+      locale: 'en',
+      trip_class: '0', // Economy
+      passengers: passengers,
+      segments: JSON.stringify([
+        {
+          origin,
+          destination,
+          date,
+        }
+      ]),
+    });
+
+    const searchResponse = await fetch(
+      `https://api.travelpayouts.com/aviasales/v3/prices_for_dates?${searchParamsFlight.toString()}`,
+      {
+        headers: {
+          'X-Access-Token': token,
+          'Accept-Encoding': 'gzip, deflate',
+        },
+      }
+    );
+
+    if (!searchResponse.ok) {
+      throw new Error(`Travelpayouts API error: ${searchResponse.status}`);
+    }
+
+    const searchData = await searchResponse.json();
+
+    // If we got flight data, return it
+    if (searchData && searchData.success !== false) {
+      return NextResponse.json({
+        success: true,
+        data: searchData,
+        searchParams: {
+          origin,
+          destination,
+          date,
+          passengers
+        },
+        message: 'Flight search results from Travelpayouts'
+      });
+    }
+
+    // Fallback: If no direct results, generate Travelpayouts affiliate link
+    const affiliateUrl = `https://www.aviasales.com/search?marker=${marker || ''}&currency=usd&locale=en&origin_iata=${origin}&destination_iata=${destination}&depart_date=${date}&adults=${passengers}`;
+
+    return NextResponse.json({
+      success: true,
+      searchParams: {
+        origin,
+        destination,
+        date,
+        passengers
+      },
+      affiliateLink: affiliateUrl,
+      message: 'Redirecting to Travelpayouts affiliate search'
+    });
+
+  } catch (error) {
+    console.error('Travelpayouts API error:', error);
+
+    // Fallback to Travelpayouts affiliate link on error
+    const marker = process.env.TRAVELPAYOUTS_MARKER || '';
+    const affiliateUrl = `https://www.aviasales.com/search?marker=${marker}&currency=usd&locale=en&origin_iata=${origin}&destination_iata=${destination}&depart_date=${date}&adults=${passengers}`;
+
+    return NextResponse.json({
+      success: true,
+      searchParams: {
+        origin,
+        destination,
+        date,
+        passengers
+      },
+      affiliateLink: affiliateUrl,
+      message: 'Using fallback affiliate link due to API error'
+    });
+  }
 }
-
-// TODO: Implement Amadeus API integration
-// 1. Get API credentials from https://developers.amadeus.com
-// 2. Add AMADEUS_CLIENT_ID and AMADEUS_CLIENT_SECRET to .env.local
-// 3. Implement OAuth2 token retrieval
-// 4. Call Amadeus Flight Offers Search API
-
-// TODO: Implement Kiwi/Tequila API integration  
-// 1. Get API key from https://tequila.kiwi.com
-// 2. Add KIWI_API_KEY to .env.local
-// 3. Call Kiwi search endpoint with parameters
