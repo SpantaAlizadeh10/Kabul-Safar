@@ -11,7 +11,7 @@ export const MobileFooter = () => {
   const navItems = [
     {
       href: "/",
-      label: lang === "fa" ? "خانه" : "Home",
+      label: lang === "fa" ? "خانه" : lang === "ps" ? "کور" : "Home",
       icon: (
         <svg
           viewBox="0 0 24 24"
@@ -28,8 +28,8 @@ export const MobileFooter = () => {
       ),
     },
     {
-      href: "/#flight-search-form",
-      label: lang === "fa" ? "جستجو بلیط" : "Search",
+      href: "/flights",
+      label: lang === "fa" ? "جستجو بلیط" : lang === "ps" ? "د لټون" : "Search",
       icon: (
         <svg
           viewBox="0 0 24 24"
@@ -47,7 +47,7 @@ export const MobileFooter = () => {
     },
     {
       href: "/blog",
-      label: lang === "fa" ? "مقاله" : "Blog",
+      label: lang === "fa" ? "مقاله" : lang === "ps" ? "مقاله" : "Blog",
       icon: (
         <svg
           viewBox="0 0 24 24"
@@ -65,7 +65,7 @@ export const MobileFooter = () => {
     },
     {
       href: "/about",
-      label: lang === "fa" ? "درباره ما" : "About",
+      label: lang === "fa" ? "درباره ما" : lang === "ps" ? "زمونږ په اړه" : "About",
       icon: (
         <svg
           viewBox="0 0 24 24"

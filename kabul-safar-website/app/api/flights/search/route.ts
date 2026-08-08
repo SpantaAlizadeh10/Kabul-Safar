@@ -6,10 +6,19 @@ export async function GET(request: NextRequest) {
   const destination = searchParams.get('destination'); // IATA code
   const date = searchParams.get('date');
   const passengers = searchParams.get('passengers') || '1';
+  const tripType = searchParams.get('tripType') || 'one-way';
+  const returnDate = searchParams.get('returnDate');
 
   if (!origin || !destination || !date) {
     return NextResponse.json(
       { error: 'Missing required parameters: origin, destination, date' },
+      { status: 400 }
+    );
+  }
+
+  if (tripType === 'round-trip' && !returnDate) {
+    return NextResponse.json(
+      { error: 'Return date is required for round-trip flights' },
       { status: 400 }
     );
   }
@@ -33,14 +42,26 @@ export async function GET(request: NextRequest) {
       locale: 'en',
       trip_class: '0', // Economy
       passengers: passengers,
-      segments: JSON.stringify([
-        {
-          origin,
-          destination,
-          date,
-        }
-      ]),
     });
+
+    // Build segments based on trip type
+    const segments = [
+      {
+        origin,
+        destination,
+        date,
+      }
+    ];
+
+    if (tripType === 'round-trip' && returnDate) {
+      segments.push({
+        origin: destination,
+        destination: origin,
+        date: returnDate,
+      });
+    }
+
+    searchParamsFlight.append('segments', JSON.stringify(segments));
 
     const searchResponse = await fetch(
       `https://api.travelpayouts.com/aviasales/v3/prices_for_dates?${searchParamsFlight.toString()}`,
@@ -67,14 +88,20 @@ export async function GET(request: NextRequest) {
           origin,
           destination,
           date,
-          passengers
+          passengers,
+          tripType,
+          returnDate
         },
         message: 'Flight search results from Travelpayouts'
       });
     }
 
     // Fallback: If no direct results, generate Travelpayouts affiliate link
-    const affiliateUrl = `https://www.aviasales.com/search?marker=${marker || ''}&currency=usd&locale=en&origin_iata=${origin}&destination_iata=${destination}&depart_date=${date}&adults=${passengers}`;
+    let affiliateUrl = `https://www.aviasales.com/search?marker=${marker || ''}&currency=usd&locale=en&origin_iata=${origin}&destination_iata=${destination}&depart_date=${date}&adults=${passengers}`;
+
+    if (tripType === 'round-trip' && returnDate) {
+      affiliateUrl += `&return_date=${returnDate}`;
+    }
 
     return NextResponse.json({
       success: true,
@@ -82,7 +109,9 @@ export async function GET(request: NextRequest) {
         origin,
         destination,
         date,
-        passengers
+        passengers,
+        tripType,
+        returnDate
       },
       affiliateLink: affiliateUrl,
       message: 'Redirecting to Travelpayouts affiliate search'
@@ -93,7 +122,11 @@ export async function GET(request: NextRequest) {
 
     // Fallback to Travelpayouts affiliate link on error
     const marker = process.env.TRAVELPAYOUTS_MARKER || '';
-    const affiliateUrl = `https://www.aviasales.com/search?marker=${marker}&currency=usd&locale=en&origin_iata=${origin}&destination_iata=${destination}&depart_date=${date}&adults=${passengers}`;
+    let affiliateUrl = `https://www.aviasales.com/search?marker=${marker}&currency=usd&locale=en&origin_iata=${origin}&destination_iata=${destination}&depart_date=${date}&adults=${passengers}`;
+
+    if (tripType === 'round-trip' && returnDate) {
+      affiliateUrl += `&return_date=${returnDate}`;
+    }
 
     return NextResponse.json({
       success: true,
@@ -101,7 +134,9 @@ export async function GET(request: NextRequest) {
         origin,
         destination,
         date,
-        passengers
+        passengers,
+        tripType,
+        returnDate
       },
       affiliateLink: affiliateUrl,
       message: 'Using fallback affiliate link due to API error'

@@ -7,98 +7,99 @@ import { Header } from "@/sections/header";
 import { LanguageDirWrapper } from "@/sections/language-dir-wrapper";
 import { SectionTitle } from "@/components/section-title";
 import { ConsultButton } from "@/components/consult-button";
+import { FlightSearchForm } from "@/components/flight-search-form";
 import { useI18n } from "@/components/i18n-provider";
-import { VisaRequestForm } from "@/sections/visa-request-form";
-import { FileCheck, Send, Clock, Shield, Plane, MapPin } from "lucide-react";
+
+import { FileCheck, Send, Clock, Shield, Plane, MapPin, Search } from "lucide-react";
 import { CONTACT_WHATSAPP_URL } from "@/lib/contact";
 
 const pageText = {
   fa: {
-    title: "سریع‌تر مدارک ویزای خود را کامل کنید.",
+    title: "بهترین پروازها را با بهترین قیمت پیدا کنید.",
     subtitle:
-      "راهنمای گام‌به‌گام و پشتیبانی حرفه‌ای برای دریافت ویزا بدون دردسر.",
-    action: "راهنمای ویزا",
-    highlight: "قدم‌های ساده برای دریافت سریع ویزا",
+      "جستجوی سریع و مقایسه قیمت‌ها از بهترین ایرلاین‌ها برای سفر راحت و ارزان.",
+    action: "جستجوی پرواز",
+    highlight: "چرا پرواز را از ما رزرو کنید؟",
     points: [
-      "چک‌لیست مدارک، ارسال آنلاین و پیگیری مستمر تا دریافت ویزا.",
-      "سازماندهی کامل مسیر درخواست و پشتیبانی چند زبانه.",
+      "قیمت‌های رقابتی از بیش از 100 ایرلاین معتبر.",
+      "پشتیبانی 24 ساعته و خدمات مشتریان برجسته.",
     ],
     steps: [
       {
-        title: "بررسی مدارک سریع",
+        title: "جستجوی سریع",
         description:
-          "ما مدارک شما را بررسی می‌کنیم تا مسیر درخواست ویزا سریع‌تر شود.",
+          "در چند ثانیه بهترین پروازها را برای مسیر خود پیدا کنید.",
         icon: FileCheck,
       },
       {
-        title: "ارسال دقیق اسناد",
+        title: "مقایسه قیمت‌ها",
         description:
-          "ایمیل و واتساپ ما برای ارسال دقیق‌ترین مدارک در اختیار شماست.",
+          "قیمت‌ها را از ایرلاین‌های مختلف مقایسه کنید و بهترین گزینه را انتخاب کنید.",
         icon: Send,
       },
       {
-        title: "پیگیری لحظه‌ای",
+        title: "رزرو آسان",
         description:
-          "وضعیت درخواست ویزا را تا دریافت نهایی برای شما پیگیری می‌کنیم.",
+          "فرآیند رزرو ساده و سریع با پشتیبانی در تمام مراحل.",
         icon: Clock,
       },
     ],
   },
   en: {
-    title: "Complete your visa documents faster.",
+    title: "Find the best flights at the best prices.",
     subtitle:
-      "Step-by-step guidance and expert support for a smooth visa process.",
-    action: "Visa guide",
-    highlight: "Easy steps to fast visa approval",
+      "Fast search and price comparison from top airlines for comfortable and affordable travel.",
+    action: "Search flights",
+    highlight: "Why book flights with us?",
     points: [
-      "Document checklist, online submission, and continuous follow-up until approval.",
-      "Complete process coordination with multilingual support.",
+      "Competitive prices from over 100 trusted airlines.",
+      "24/7 support and excellent customer service.",
     ],
     steps: [
       {
-        title: "Fast document review",
-        description: "We review your papers so the visa request moves faster.",
+        title: "Fast search",
+        description: "Find the best flights for your route in seconds.",
         icon: FileCheck,
       },
       {
-        title: "Precise document submission",
+        title: "Compare prices",
         description:
-          "Email and WhatsApp are ready for sending the correct documents.",
+          "Compare prices from different airlines and choose the best option.",
         icon: Send,
       },
       {
-        title: "Real-time tracking",
-        description: "We follow your visa request status until final approval.",
+        title: "Easy booking",
+        description: "Simple and quick booking process with support at every step.",
         icon: Clock,
       },
     ],
   },
   ps: {
-    title: "خپل د ویزې اسناد ژر بشپړ کړئ.",
-    subtitle: "ګام په ګام لارښود او مسلکي مرسته د یو نرم ویزې پروسې لپاره.",
-    action: "د ویزې لارښود",
-    highlight: "د ویزې د چ٫ک تصویب ساده پړاوونه",
+    title: "غوره الوتنې په غوره قیمتونو ومومئ.",
+    subtitle: "د ښو الوتونکو شرکتونو لپاره چ٫که لټون او قیمتونو پرتګال د راحته او ارزانه سفر لپاره.",
+    action: "الوتنه وپلټئ",
+    highlight: "ولې زمونږ سره الوتنه راجستر کړئ؟",
     points: [
-      "د اسنادو لیست، آنلاین سپارنه، او تر تایید پورې دوامداره تعقیب.",
-      "د څو ژبني ملاتړ سره بشپړ پروسې همغږي.",
+      "د 100 څخه ډیر باوري الوتونکو شرکتونو څخه رقابتي قیمتونه.",
+      "24 ساعته ملاتړ او ښې د مشتریان خدمتونه.",
     ],
     steps: [
       {
-        title: "د اسنادو چ٫که کتنه",
+        title: "چ٫که لټون",
         description:
-          "موږ ستاسو اسناد ګورو ترڅو د ویزې غوښتنه ژر پرمخ ولاړه شي.",
+          "خپل لار لپاره غوره الوتنې په چندانو ثانیو کې ومومئ.",
         icon: FileCheck,
       },
       {
-        title: "دقیق د اسنادو سپارل",
+        title: "د قیمتونو پرتګال",
         description:
-          "ایمیل او واتساپ ستاسو د سم اسنادو د استولو لپاره چمتو دي.",
+          "د مختلفو الوتونکو شرکتونو څخه قیمتونه پرتګال کړئ او غوره غوره وټاکئ.",
         icon: Send,
       },
       {
-        title: "په ریښتیني وخت کې تعقیب",
+        title: "اسانه راجستر",
         description:
-          "موږ ستاسو د ویزې غوښتنې حالت تر وروستي تایید پورې تعقیبوو.",
+          "ساده او چ٫که راجستر پروسه په هر پړاو کې ملاتڬ سره.",
         icon: Clock,
       },
     ],
@@ -145,7 +146,7 @@ export default function VisaPage() {
 
             <div className="relative z-10">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/20 text-white backdrop-blur-sm shadow-2xl">
-                <Shield className="h-6 w-6" />
+                <Plane className="h-6 w-6" />
               </div>
               <h1 className="mt-4 max-w-3xl text-2xl font-black text-white md:text-4xl leading-tight drop-shadow-lg">
                 {content.title}
@@ -211,7 +212,21 @@ export default function VisaPage() {
             </div>
           </section>
 
-          <VisaRequestForm />
+          {/* Flight Search Form Section */}
+          <section className="rounded-[32px] bg-gradient-to-br from-white to-slate-50 p-6 shadow-xl ring-1 ring-slate-200/50 md:p-12">
+            <div className="mb-6">
+              <h2 className="text-xl font-black text-slate-900 md:text-3xl">
+                {lang === "fa" ? "جستجوی پرواز" : lang === "ps" ? "الوتنه وپلټئ" : "Search Flights"}
+              </h2>
+              <p className="mt-2 text-sm text-slate-600 md:text-base">
+                {lang === "fa" ? "بهترین پروازها را برای سفر خود پیدا کنید" : lang === "ps" ? "خپل سفر لپاره غوره الوتنې ومومئ" : "Find the best flights for your trip"}
+              </p>
+            </div>
+            <div className="w-full">
+              <FlightSearchForm />
+            </div>
+          </section>
+
           <About />
           <CtaPromo />
         </main>

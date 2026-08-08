@@ -101,7 +101,7 @@ const content: Record<Lang, LocalizedContent> = {
     navItems: [
       { label: "صفحه اصلی" },
       { label: "خدمات" },
-      { label: "ویزا" },
+      { label: "پرواز" },
       { label: "بلاگ" },
       { label: "درباره ما" },
       { label: "تماس با ما" },
@@ -280,7 +280,7 @@ const content: Record<Lang, LocalizedContent> = {
     navItems: [
       { label: "Home" },
       { label: "Services" },
-      { label: "Visa" },
+      { label: "Flights" },
       { label: "Blog" },
       { label: "About" },
       { label: "Contact" },
@@ -458,7 +458,7 @@ const content: Record<Lang, LocalizedContent> = {
     navItems: [
       { label: "کور" },
       { label: "خدمتونه" },
-      { label: "ویزه" },
+      { label: "الوتنه" },
       { label: "بلاګ" },
       { label: "زموږ په اړه" },
       { label: "اړیکه" },
@@ -633,7 +633,7 @@ export function getNavItems(lang: Lang): NavItem[] {
   return [
     { label: labels[0].label, href: "/" },
     { label: labels[1].label, href: "/services" },
-    { label: labels[2].label, href: "/visa" },
+    { label: labels[2].label, href: "/flights" },
     { label: labels[3].label, href: "/blog" },
     { label: labels[4].label, href: "/about" },
     { label: labels[5].label, href: "/contact" },

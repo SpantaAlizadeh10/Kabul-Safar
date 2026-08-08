@@ -31,11 +31,7 @@ export const Header = () => {
       ? {
         home: "Home",
         article: "Article",
-        visaAfghanistan: "Afghan visa",
-        visaIran: "Iran visa",
-        visaTurkey: "Turkey visa",
-        visaKarbala: "Karbala visa",
-        hajjUmrah: "Hajj & Umrah",
+        flights: "Search flights",
         about: "About us",
         contact: "Contact us",
         theme: "Theme",
@@ -46,11 +42,7 @@ export const Header = () => {
           home: "کور",
           article: "مقاله",
           blog: "بلاګ",
-          visaAfghanistan: "د افغانستان ویزه",
-          visaIran: "د ایران ویزه",
-          visaTurkey: "د ترکیې ویزه",
-          visaKarbala: "د کربلا ویزه",
-          hajjUmrah: "حج و عمره",
+          flights: "الوتنه وپلټئ",
           about: "زموږ په اړه",
           contact: "له موږ سره اړیکه",
           theme: "تم",
@@ -60,11 +52,7 @@ export const Header = () => {
           home: "خانه",
           article: "مقاله",
           blog: "مقالات",
-          visaAfghanistan: "ویزای افغانستان",
-          visaIran: "ویزای ایران",
-          visaTurkey: "ویزای ترکیه",
-          visaKarbala: "ویزای کربلا",
-          hajjUmrah: "حج و عمره",
+          flights: "جستجوی پرواز",
           about: "درباره ما",
           contact: "تماس با ما",
           theme: "تم",
@@ -72,18 +60,8 @@ export const Header = () => {
         };
   const sidebarItems = [
     { label: sidebarLabels.home, href: "/", icon: Home, active: true },
-    { label: sidebarLabels.visaAfghanistan, href: "/visa", icon: Plane },
-    { label: sidebarLabels.visaIran, href: "/visa", icon: Plane },
-    { label: sidebarLabels.visaTurkey, href: "/visa", icon: Plane },
-    { label: sidebarLabels.visaKarbala, href: "/visa", icon: Plane },
-    { label: sidebarLabels.hajjUmrah, href: "/visa", icon: Plane },
-    {
-      label: sidebarLabels.blog ?? sidebarLabels.article,
-      href: "/blog",
-      icon: FileText,
-    },
+    { label: sidebarLabels.flights, href: "/flights", icon: Plane },
     { label: sidebarLabels.about, href: "/about", icon: Globe2 },
-    { label: sidebarLabels.contact, href: "/contact", icon: PhoneCall },
   ];
 
   return (
@@ -165,14 +143,6 @@ export const Header = () => {
           <div className="md:hidden">
             <LanguageSwitch />
           </div>
-          <button
-            aria-label={isOpen ? "بستن منو" : "باز کردن منو"}
-            onClick={toggle}
-            className="flex h-7 w-7 items-center justify-center rounded-full bg-[#f5f7fb] transition-opacity hover:bg-[#eef4fb] md:hidden"
-            type="button"
-          >
-            <Menu className="h-5 w-5 text-[#022d37]" aria-hidden="true" />
-          </button>
         </div>
       </nav>
 
