@@ -1,34 +1,35 @@
-import { notFound } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, Calendar, User, Tag } from "lucide-react";
-import { supabase } from "@/lib/supabase";
+import { notFound } from 'next/navigation';
+import { supabase } from '@/lib/supabase';
+import Image from 'next/image';
+import Link from 'next/link';
+import { BlogHeader } from '@/sections/blog-header';
+import { BlogFooter } from '@/sections/blog-footer';
+import { I18nProvider } from '@/components/i18n-provider';
 
 interface Article {
   id: string;
   title: string;
   slug: string;
-  excerpt: string;
   content: string;
+  excerpt: string;
   category: string;
   author: string;
   cover_image: string;
   created_at: string;
-  published_at: string;
 }
 
-export default async function BlogPostPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
 
+  // Convert spaces to dashes for slug matching
+  const normalizedSlug = slug.replace(/%20/g, '-');
+
+  // Fetch article by slug (try both original and normalized)
   const { data: article, error } = await supabase
-    .from("articles")
-    .select("*")
-    .eq("slug", slug)
-    .eq("status", "published")
+    .from('articles')
+    .select('*')
+    .or(`slug.eq.${slug},slug.eq.${normalizedSlug}`)
+    .eq('status', 'published')
     .single();
 
   if (error || !article) {
@@ -36,166 +37,106 @@ export default async function BlogPostPage({
   }
 
   return (
-    <div className="min-h-screen bg-slate-50" dir="rtl">
-      {/* Header */}
-      <header className="bg-white border-b border-slate-200">
-        <div className="max-w-4xl mx-auto px-4 py-4">
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-slate-600 hover:text-[#0dadd1] transition"
-          >
-            <ArrowRight size={20} />
-            <span>بازگشت به بلاگ</span>
-          </Link>
-        </div>
-      </header>
+    <I18nProvider>
+      <div className="min-h-screen bg-slate-50">
+        <BlogHeader />
 
-      {/* Article Content */}
-      <article className="max-w-4xl mx-auto px-4 py-8">
-        {/* Cover Image */}
-        {article.cover_image && (
-          <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden mb-8">
-            <Image
-              src={article.cover_image}
-              alt={article.title}
-              fill
-              className="object-cover"
-              priority
+        <article className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+          {/* Article Header */}
+          <header className="mb-8">
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-[#0dadd1] hover:underline mb-4"
+            >
+              ← بازگشت به بلاگ
+            </Link>
+
+            <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden mb-6">
+              <Image
+                src={article.cover_image || '/images/destination.jpg'}
+                alt={article.title}
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+
+            <div className="flex items-center gap-2 text-sm text-slate-500 mb-4">
+              <div className="rounded-full bg-[#0dadd1]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0dadd1]">
+                {article.category || 'عمومی'}
+              </div>
+              <span className="text-slate-300">•</span>
+              <span className="font-semibold text-slate-700">{article.author || 'ناشناس'}</span>
+              <span className="text-slate-300">•</span>
+              <span>{new Date(article.created_at).toLocaleDateString('fa-IR')}</span>
+            </div>
+
+            <h1 className="text-3xl md:text-4xl font-black text-slate-900 leading-tight mb-4">
+              {article.title}
+            </h1>
+
+            <p className="text-lg text-slate-600 leading-relaxed">
+              {article.excerpt}
+            </p>
+          </header>
+
+          {/* Article Content */}
+          <div className="prose prose-lg max-w-none">
+            <div
+              dangerouslySetInnerHTML={{ __html: article.content }}
+              className="text-slate-800 leading-8"
             />
           </div>
-        )}
 
-        {/* Meta Info */}
-        <div className="flex flex-wrap items-center gap-4 mb-6 text-sm text-slate-600">
-          {article.category && (
-            <div className="flex items-center gap-2">
-              <Tag size={16} />
-              <span className="font-medium text-[#0dadd1]">
-                {article.category}
-              </span>
+          {/* Article Footer */}
+          <footer className="mt-12 pt-8 border-t border-slate-200">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="h-12 w-12 rounded-full bg-gradient-to-br from-[#0dadd1] to-[#377bc9] flex items-center justify-center text-white font-bold">
+                  {article.author?.charAt(0) || 'ن'}
+                </div>
+                <div>
+                  <p className="font-semibold text-slate-900">{article.author || 'ناشناس'}</p>
+                  <p className="text-sm text-slate-500">نویسنده</p>
+                </div>
+              </div>
+              <Link
+                href="/blog"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#0dadd1] to-[#377bc9] text-white font-semibold shadow-lg hover:shadow-xl transition-all"
+              >
+                مقالات بیشتر
+              </Link>
             </div>
-          )}
-          {article.author && (
-            <div className="flex items-center gap-2">
-              <User size={16} />
-              <span>{article.author}</span>
-            </div>
-          )}
-          <div className="flex items-center gap-2">
-            <Calendar size={16} />
-            <span>
-              {new Date(
-                article.published_at || article.created_at,
-              ).toLocaleDateString("fa-IR")}
-            </span>
-          </div>
-        </div>
+          </footer>
+        </article>
 
-        {/* Title */}
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-          {article.title}
-        </h1>
-
-        {/* Excerpt */}
-        {article.excerpt && (
-          <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-            {article.excerpt}
-          </p>
-        )}
-
-        {/* Content */}
-        <div
-          className="prose prose-lg prose-slate max-w-none"
-          dangerouslySetInnerHTML={{ __html: article.content }}
-        />
-
-        {/* Share Section */}
-        <div className="mt-12 pt-8 border-t border-slate-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="font-semibold text-slate-900 mb-2">
-                این مقاله را به اشتراک بگذارید
-              </h3>
-              <p className="text-sm text-slate-600">
-                اگر این مقاله مفید بود، آن را با دوستان خود به اشتراک بگذارید
-              </p>
-            </div>
-            <div className="flex gap-2">
-              <button className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                فیس‌بوک
-              </button>
-              <button className="p-2 bg-sky-500 text-white rounded-lg hover:bg-sky-600 transition">
-                توییتر
-              </button>
-              <button className="p-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
-                واتساپ
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Related Articles */}
-        <div className="mt-12">
-          <h2 className="text-2xl font-bold text-slate-900 mb-6">
-            مقالات مرتبط
-          </h2>
-          <RelatedArticles
-            currentArticleId={article.id}
-            category={article.category}
-          />
-        </div>
-      </article>
-    </div>
+        <BlogFooter />
+      </div>
+    </I18nProvider>
   );
 }
 
-async function RelatedArticles({
-  currentArticleId,
-  category,
-}: {
-  currentArticleId: string;
-  category: string | null;
-}) {
-  const { data: relatedArticles } = await supabase
-    .from("articles")
-    .select("*")
-    .eq("status", "published")
-    .neq("id", currentArticleId)
-    .order("created_at", { ascending: false })
-    .limit(3);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
 
-  if (!relatedArticles || relatedArticles.length === 0) {
-    return null;
+  // Convert spaces to dashes for slug matching
+  const normalizedSlug = slug.replace(/%20/g, '-');
+
+  const { data: article } = await supabase
+    .from('articles')
+    .select('title, excerpt')
+    .or(`slug.eq.${slug},slug.eq.${normalizedSlug}`)
+    .eq('status', 'published')
+    .single();
+
+  if (!article) {
+    return {
+      title: 'مقاله یافت نشد',
+    };
   }
 
-  return (
-    <div className="grid gap-6 md:grid-cols-3">
-      {relatedArticles.map((article: any) => (
-        <Link
-          key={article.id}
-          href={`/blog/${article.slug}`}
-          className="group overflow-hidden rounded-xl bg-white shadow-md ring-1 ring-slate-200/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-        >
-          {article.cover_image && (
-            <div className="relative h-32 overflow-hidden">
-              <Image
-                src={article.cover_image}
-                alt={article.title}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-            </div>
-          )}
-          <div className="p-4">
-            <h3 className="font-semibold text-slate-900 leading-tight group-hover:text-[#0dadd1] transition-colors line-clamp-2">
-              {article.title}
-            </h3>
-            <p className="text-sm text-slate-500 mt-2 line-clamp-2">
-              {article.excerpt}
-            </p>
-          </div>
-        </Link>
-      ))}
-    </div>
-  );
+  return {
+    title: article.title,
+    description: article.excerpt,
+  };
 }
