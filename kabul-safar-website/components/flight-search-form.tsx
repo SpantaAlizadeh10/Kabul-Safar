@@ -198,7 +198,7 @@ export const FlightSearchForm = () => {
         {/* Origin */}
         <div ref={originRef} className="relative md:col-span-5">
           <label className="mb-2 block text-sm font-semibold text-slate-700">
-            {lang === "fa" ? "مبدأ" : lang === "ps" ? "مبدا" : "From"}
+            {lang === "fa" ? "کشور مبدا" : lang === "ps" ? "د مبدا هیواد" : "From Country"}
           </label>
           <div className="relative">
             <input
@@ -212,7 +212,7 @@ export const FlightSearchForm = () => {
                 }
               }}
               onFocus={() => setShowOriginList(true)}
-              placeholder={lang === "fa" ? "شهر مبدا" : lang === "ps" ? "د مبدا ښار" : "Origin city"}
+              placeholder={lang === "fa" ? "کشور مبدا" : lang === "ps" ? "د مبدا هیواد" : "Origin country"}
               className={`w-full rounded-xl border-2 border-slate-200 py-3 text-base text-slate-900 placeholder:text-slate-400 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20 transition-all ${isRtl ? 'pr-14 pl-4' : 'pl-14 pr-4'}`}
             />
             <Plane className={`absolute top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none ${isRtl ? 'left-4' : 'right-4'}`} />
@@ -251,7 +251,7 @@ export const FlightSearchForm = () => {
         {/* Destination */}
         <div ref={destRef} className="relative md:col-span-5">
           <label className="mb-2 block text-sm font-semibold text-slate-700">
-            {lang === "fa" ? "مقصد" : lang === "ps" ? "مقصد" : "To"}
+            {lang === "fa" ? "کشور مقصد" : lang === "ps" ? "د مقصد هیواد" : "To Country"}
           </label>
           <div className="relative">
             <input
@@ -265,7 +265,7 @@ export const FlightSearchForm = () => {
                 }
               }}
               onFocus={() => setShowDestinationList(true)}
-              placeholder={lang === "fa" ? "شهر مقصد" : lang === "ps" ? "د مقصد ښار" : "Destination city"}
+              placeholder={lang === "fa" ? "کشور مقصد" : lang === "ps" ? "د مقصد هیواد" : "Destination country"}
               className={`w-full rounded-xl border-2 border-slate-200 py-3 text-base text-slate-900 placeholder:text-slate-400 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20 transition-all ${isRtl ? 'pr-14 pl-4' : 'pl-14 pr-4'}`}
             />
             <Plane className={`absolute top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none ${isRtl ? 'left-4 rotate-180' : 'right-4 rotate-180'}`} />
@@ -298,7 +298,7 @@ export const FlightSearchForm = () => {
           <label className="mb-2 block text-sm font-semibold text-slate-700">
             {lang === "fa" ? "تاریخ رفت" : lang === "ps" ? "د رفت نېټه" : "Departure Date"}
           </label>
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <div className="relative flex-1">
               <input
                 type="date"
@@ -312,7 +312,7 @@ export const FlightSearchForm = () => {
             <button
               type="button"
               onClick={() => setDate(today)}
-              className="rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 px-4 py-3 text-xs font-semibold text-blue-700 shadow-sm transition-all hover:from-blue-100 hover:to-blue-200 hover:shadow-md border border-blue-200"
+              className="rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 px-4 py-3 text-xs font-semibold text-blue-700 shadow-sm transition-all hover:from-blue-100 hover:to-blue-200 hover:shadow-md border border-blue-200 whitespace-nowrap"
             >
               {lang === "fa" ? "امروز" : lang === "ps" ? "نن" : "Today"}
             </button>
@@ -323,7 +323,7 @@ export const FlightSearchForm = () => {
                 tomorrow.setDate(tomorrow.getDate() + 1);
                 setDate(tomorrow.toISOString().split("T")[0]);
               }}
-              className="rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 px-4 py-3 text-xs font-semibold text-blue-700 shadow-sm transition-all hover:from-blue-100 hover:to-blue-200 hover:shadow-md border border-blue-200"
+              className="rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 px-4 py-3 text-xs font-semibold text-blue-700 shadow-sm transition-all hover:from-blue-100 hover:to-blue-200 hover:shadow-md border border-blue-200 whitespace-nowrap"
             >
               {lang === "fa" ? "فردا" : lang === "ps" ? "پرېږده" : "Tomorrow"}
             </button>
@@ -336,7 +336,7 @@ export const FlightSearchForm = () => {
             <label className="mb-2 block text-sm font-semibold text-slate-700">
               {lang === "fa" ? "تاریخ برگشت" : lang === "ps" ? "د ورست نېټه" : "Return Date"}
             </label>
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <div className="relative flex-1">
                 <input
                   type="date"
@@ -354,7 +354,7 @@ export const FlightSearchForm = () => {
                   nextDay.setDate(nextDay.getDate() + 1);
                   setReturnDate(nextDay.toISOString().split("T")[0]);
                 }}
-                className="rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 px-4 py-3 text-xs font-semibold text-blue-700 shadow-sm transition-all hover:from-blue-100 hover:to-blue-200 hover:shadow-md border border-blue-200"
+                className="rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 px-4 py-3 text-xs font-semibold text-blue-700 shadow-sm transition-all hover:from-blue-100 hover:to-blue-200 hover:shadow-md border border-blue-200 whitespace-nowrap"
               >
                 {lang === "fa" ? "روز بعد" : lang === "ps" ? "بل ورځ" : "+1 Day"}
               </button>

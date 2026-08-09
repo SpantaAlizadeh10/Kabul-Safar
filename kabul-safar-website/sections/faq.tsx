@@ -14,15 +14,15 @@ export const Faq = () => {
           <div className="space-y-1">
             <h2
               id="faq-title"
-              className="text-right text-[10px] font-bold text-black md:text-2xl"
+              className="text-right text-sm font-bold text-black md:text-2xl"
             >
               {content.title}
             </h2>
-            <p className="text-[8px] leading-5 text-[rgba(0,0,0,0.75)] md:max-w-2xl md:text-sm">
+            <p className="text-xs leading-5 text-[rgba(0,0,0,0.75)] md:max-w-2xl md:text-sm">
               {content.subtitle}
             </p>
           </div>
-          <p className="text-right text-[8px] font-bold text-[#0dadd1] md:text-sm">
+          <p className="text-right text-xs font-bold text-[#0dadd1] md:text-sm">
             {content.cta}
           </p>
         </div>
@@ -33,10 +33,10 @@ export const Faq = () => {
               key={`${item.question}-${index}`}
               className="rounded-2xl border border-[#e0f5fb] bg-[#f4fcff] p-4 transition-all duration-200 hover:shadow-md"
             >
-              <h3 className="text-[9px] font-bold text-black md:text-sm">
+              <h3 className="text-xs font-bold text-black md:text-sm">
                 {item.question}
               </h3>
-              <p className="mt-2 text-[7px] leading-5 text-[rgba(0,0,0,0.72)] md:text-xs md:leading-6">
+              <p className="mt-2 text-[10px] leading-5 text-[rgba(0,0,0,0.72)] md:text-xs md:leading-6">
                 {item.answer}
               </p>
             </article>

@@ -28,6 +28,25 @@ export const MobileFooter = () => {
       ),
     },
     {
+      href: "/services",
+      label: lang === "fa" ? "خدمات" : lang === "ps" ? "خدمتونه" : "Services",
+      icon: (
+        <svg
+          viewBox="0 0 24 24"
+          className="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M12 2L2 7l10 5 10-5-10-5z" />
+          <path d="M2 17l10 5 10-5" />
+          <path d="M2 12l10 5 10-5" />
+        </svg>
+      ),
+    },
+    {
       href: "/flights",
       label: lang === "fa" ? "جستجو بلیط" : lang === "ps" ? "د لټون" : "Search",
       icon: (
@@ -85,57 +104,66 @@ export const MobileFooter = () => {
   ];
 
   return (
-    <nav className="fixed bottom-3 left-3 right-3 z-40 md:hidden">
-      <div className="bg-white/90 backdrop-blur-lg rounded-2xl shadow-lg shadow-black/5 border border-white/30">
-        <div className="flex items-center justify-around py-2 px-2">
-          {navItems.map((item) => {
-            const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+    <nav className="fixed bottom-4 left-4 right-4 z-50 md:hidden">
+      <div className="relative">
+        {/* Glow effect */}
+        <div className="absolute -inset-1 bg-gradient-to-r from-[#0dadd1]/20 to-[#377bc9]/20 rounded-3xl blur-xl opacity-50" />
 
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`
-                  relative group flex flex-col items-center justify-center gap-1 px-4 py-2 rounded-xl transition-all duration-300 ease-out
-                  ${isActive
-                    ? "text-white"
-                    : "text-gray-400"
-                  }
-                `}
-              >
-                {/* Background with gradient */}
-                <div className={`
-                  absolute inset-0 rounded-xl transition-all duration-300 ease-out
-                  ${isActive
-                    ? "bg-gradient-to-br from-[#0dadd1] to-[#0a8bb0] shadow-md shadow-[#0dadd1]/30 scale-100"
-                    : "bg-transparent scale-95 group-hover:bg-gradient-to-br group-hover:from-[#0dadd1]/8 group-hover:to-[#0a8bb0]/8 group-hover:scale-100"
-                  }
-                `} />
+        {/* Main container */}
+        <div className="relative bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl shadow-black/10 border border-white/40 overflow-hidden">
+          {/* Top gradient line */}
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0dadd1] via-[#377bc9] to-[#0dadd1]" />
 
-                {/* Icon container */}
-                <span className={`
-                  relative z-10 transition-all duration-300 ease-out
-                  ${isActive ? "scale-105" : "group-hover:scale-100"}
-                `}>
-                  {item.icon}
-                </span>
+          <div className="flex items-center justify-around py-3 px-4">
+            {navItems.map((item, index) => {
+              const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
 
-                {/* Label */}
-                <span className="relative z-10 text-[10px] font-medium transition-all duration-300">
-                  {item.label}
-                </span>
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`
+                    relative group flex flex-col items-center justify-center gap-1.5 px-5 py-2.5 rounded-2xl transition-all duration-500 ease-out
+                    ${isActive
+                      ? "text-white transform -translate-y-1"
+                      : "text-gray-400"
+                    }
+                  `}
+                >
+                  {/* Animated background */}
+                  <div className={`
+                    absolute inset-0 rounded-2xl transition-all duration-500 ease-out
+                    ${isActive
+                      ? "bg-gradient-to-br from-[#0dadd1] to-[#377bc9] shadow-lg shadow-[#0dadd1]/40 scale-100"
+                      : "bg-transparent scale-95 group-hover:bg-gradient-to-br group-hover:from-[#0dadd1]/5 group-hover:to-[#377bc9]/5 group-hover:scale-100"
+                    }
+                  `} />
 
-                {/* Active indicator */}
-                {isActive && (
-                  <span className="absolute -top-1.5 z-20">
-                    <span className="flex h-4 w-4 items-center justify-center">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#0dadd1]" />
-                    </span>
+                  {/* Icon container with glow */}
+                  <span className={`
+                    relative z-10 transition-all duration-500 ease-out
+                    ${isActive ? "scale-110 drop-shadow-md" : "group-hover:scale-105"}
+                  `}>
+                    {item.icon}
                   </span>
-                )}
-              </Link>
-            );
-          })}
+
+                  {/* Label */}
+                  <span className="relative z-10 text-[10px] font-semibold transition-all duration-500">
+                    {item.label}
+                  </span>
+
+                  {/* Active indicator dot */}
+                  {isActive && (
+                    <span className="absolute -top-2 z-20 animate-pulse">
+                      <span className="flex h-5 w-5 items-center justify-center">
+                        <span className="h-2 w-2 rounded-full bg-[#0dadd1] shadow-lg shadow-[#0dadd1]/50" />
+                      </span>
+                    </span>
+                  )}
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </div>
     </nav>

@@ -259,6 +259,9 @@ const content: Record<Lang, LocalizedContent> = {
           title: "خدمات",
           links: [
             "ویزای ایران",
+            "ویزای ترکیه",
+            "حج و عمره",
+            "کربلا",
             "بلیط",
             "مشاوره",
             "واتساپ",
@@ -442,6 +445,9 @@ const content: Record<Lang, LocalizedContent> = {
           title: "Services",
           links: [
             "Iran Visa",
+            "Turkey Visa",
+            "Hajj & Umrah",
+            "Karbala",
             "Flights",
             "Consultation",
             "WhatsApp",
@@ -610,6 +616,9 @@ const content: Record<Lang, LocalizedContent> = {
           title: "خدمتونه",
           links: [
             "د ایران ویزه",
+            "د ترکیې ویزه",
+            "حج او عمره",
+            "کربلا",
             "الوتنه",
             "سفر مشوره",
             "واتساپ",

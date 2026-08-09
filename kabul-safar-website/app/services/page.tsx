@@ -21,6 +21,30 @@ const pageText = {
       "ما مسیر سفر شما را مطابق نیازهایتان بهینه‌سازی می‌کنیم و تا پایان همراهتان هستیم.",
     items: [
       {
+        title: "ویزای ایران",
+        description:
+          "دریافت ویزای ایران برای شهروندان افغانستانی با پشتیبانی کامل و سریع.",
+        icon: Shield,
+      },
+      {
+        title: "ویزای ترکیه",
+        description:
+          "اخذ ویزای ترکیه با راهنمایی تخصصی و پشتیبانی در تمام مراحل.",
+        icon: Shield,
+      },
+      {
+        title: "حج و عمره",
+        description:
+          "خدمات کامل برای حج و عمره با راهنمایی‌های تخصصی و پشتیبانی کامل.",
+        icon: Heart,
+      },
+      {
+        title: "سفر به کربلا",
+        description:
+          "سفرهای زیارتی به کربلا با خدمات کامل و پشتیبانی حرفه‌ای.",
+        icon: MapPin,
+      },
+      {
         title: "مشاوره سفر شخصی‌سازی شده",
         description:
           "برنامه سفر شما با توجه به هدف، بودجه و شرایط شخصی شما طراحی می‌شود.",
@@ -31,12 +55,6 @@ const pageText = {
         description:
           "پروازهای معتبر و مطمئن با بهترین قیمت‌ها برای مسیرهای ایران و اروپا.",
         icon: Zap,
-      },
-      {
-        title: "پشتیبانی ویزا تا دریافت نهایی",
-        description:
-          "هر مرحله از تکمیل مدارک تا دریافت ویزا تحت نظارت تیم ما انجام می‌شود.",
-        icon: Shield,
       },
       {
         title: "پشتیبانی واتساپ ۲۴/۷",
@@ -55,6 +73,30 @@ const pageText = {
       "We optimize your travel route and stay with you until the end.",
     items: [
       {
+        title: "Iran Visa",
+        description:
+          "Iran visa services for Afghan citizens with full support and fast processing.",
+        icon: Shield,
+      },
+      {
+        title: "Turkey Visa",
+        description:
+          "Turkey visa acquisition with expert guidance and full process support.",
+        icon: Shield,
+      },
+      {
+        title: "Hajj & Umrah",
+        description:
+          "Complete services for Hajj and Umrah with specialized guidance and full support.",
+        icon: Heart,
+      },
+      {
+        title: "Karbala Travel",
+        description:
+          "Pilgrimage trips to Karbala with complete services and professional support.",
+        icon: MapPin,
+      },
+      {
         title: "Personal travel consultation",
         description:
           "Your trip plan is tailored to your purpose, budget, and personal needs.",
@@ -65,12 +107,6 @@ const pageText = {
         description:
           "Reliable flights with the best prices for routes to Iran and Europe.",
         icon: Zap,
-      },
-      {
-        title: "Visa support until completion",
-        description:
-          "We oversee every step from document preparation to final visa approval.",
-        icon: Shield,
       },
       {
         title: "24/7 WhatsApp support",
@@ -90,6 +126,30 @@ const pageText = {
       "موږ ستاسو د سفر لاره ستاسو د اړتیاوو سره سم تنظیموو او تر پایه ستاسو سره یوو.",
     items: [
       {
+        title: "د ایران ویزه",
+        description:
+          "د افغان وګړو لپاره د ایران ویزې خدمتونه د بشپړ ملاتړ او چټک پروسې سره.",
+        icon: Shield,
+      },
+      {
+        title: "د ترکیې ویزه",
+        description:
+          "د ترکیې ویزې ترلاسه کولو د مسلکي لارښوونې او بشپړ بهیر ملاتړ سره.",
+        icon: Shield,
+      },
+      {
+        title: "حج او عمره",
+        description:
+          "د حج او عمرې لپاره بشپړ خدمتونه د مسلکي لارښوونې او بشپړ ملاتڵ سره.",
+        icon: Heart,
+      },
+      {
+        title: "د کربلا سفر",
+        description:
+          "د کربلا زیارت سفرونه د بشپړ خدمتونو او مسلکي ملاتړ سره.",
+        icon: MapPin,
+      },
+      {
         title: "شخصي سفر مشوره",
         description:
           "ستاسو د سفر پلان ستاسو هدف، بودیجه او شخصي اړتیاوو ته برابرېږي.",
@@ -99,12 +159,6 @@ const pageText = {
         title: "باوري الوتنې بکینګ",
         description: "د ایران او اروپا لپاره باوري الوتنې د غوره بیو سره.",
         icon: Zap,
-      },
-      {
-        title: "د ویزې بشپړ ملاتړ",
-        description:
-          "موږ د اسنادو چمتوالي څخه تر وروستي ویزې پورې هر ګام څارو.",
-        icon: Shield,
       },
       {
         title: "۲۴/۷ واتساپ ملاتړ",
