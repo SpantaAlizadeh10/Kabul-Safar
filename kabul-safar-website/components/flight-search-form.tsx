@@ -298,35 +298,37 @@ export const FlightSearchForm = () => {
           <label className="mb-2 block text-sm font-semibold text-slate-700">
             {lang === "fa" ? "تاریخ رفت" : lang === "ps" ? "د رفت نېټه" : "Departure Date"}
           </label>
-          <div className="flex flex-col sm:flex-row gap-2">
-            <div className="relative flex-1">
+          <div className="flex flex-col gap-2 sm:flex-row sm:gap-2">
+            <div className="relative flex-1 w-full">
               <input
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 min={today}
                 required
-                className={`w-full rounded-xl border-2 border-slate-200 py-3 text-base text-slate-900 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20 transition-all ${isRtl ? 'pr-4 pl-4' : 'pl-4 pr-4'}`}
+                className={`w-full rounded-xl border-2 border-slate-200 py-2.5 text-sm text-slate-900 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20 transition-all ${isRtl ? 'pr-3 pl-3' : 'pl-3 pr-3'}`}
               />
             </div>
-            <button
-              type="button"
-              onClick={() => setDate(today)}
-              className="rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 px-4 py-3 text-xs font-semibold text-blue-700 shadow-sm transition-all hover:from-blue-100 hover:to-blue-200 hover:shadow-md border border-blue-200 whitespace-nowrap"
-            >
-              {lang === "fa" ? "امروز" : lang === "ps" ? "نن" : "Today"}
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                const tomorrow = new Date();
-                tomorrow.setDate(tomorrow.getDate() + 1);
-                setDate(tomorrow.toISOString().split("T")[0]);
-              }}
-              className="rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 px-4 py-3 text-xs font-semibold text-blue-700 shadow-sm transition-all hover:from-blue-100 hover:to-blue-200 hover:shadow-md border border-blue-200 whitespace-nowrap"
-            >
-              {lang === "fa" ? "فردا" : lang === "ps" ? "پرېږده" : "Tomorrow"}
-            </button>
+            <div className="flex gap-2 sm:w-auto">
+              <button
+                type="button"
+                onClick={() => setDate(today)}
+                className="flex-1 sm:flex-none rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 px-3 py-2.5 text-xs font-semibold text-blue-700 shadow-sm transition-all hover:from-blue-100 hover:to-blue-200 hover:shadow-md border border-blue-200 whitespace-nowrap"
+              >
+                {lang === "fa" ? "امروز" : lang === "ps" ? "نن" : "Today"}
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  const tomorrow = new Date();
+                  tomorrow.setDate(tomorrow.getDate() + 1);
+                  setDate(tomorrow.toISOString().split("T")[0]);
+                }}
+                className="flex-1 sm:flex-none rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 px-3 py-2.5 text-xs font-semibold text-blue-700 shadow-sm transition-all hover:from-blue-100 hover:to-blue-200 hover:shadow-md border border-blue-200 whitespace-nowrap"
+              >
+                {lang === "fa" ? "فردا" : lang === "ps" ? "پرېږده" : "Tomorrow"}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -336,15 +338,15 @@ export const FlightSearchForm = () => {
             <label className="mb-2 block text-sm font-semibold text-slate-700">
               {lang === "fa" ? "تاریخ برگشت" : lang === "ps" ? "د ورست نېټه" : "Return Date"}
             </label>
-            <div className="flex flex-col sm:flex-row gap-2">
-              <div className="relative flex-1">
+            <div className="flex flex-col gap-2 sm:flex-row sm:gap-2">
+              <div className="relative flex-1 w-full">
                 <input
                   type="date"
                   value={returnDate}
                   onChange={(e) => setReturnDate(e.target.value)}
                   min={date || today}
                   required={tripType === "round-trip"}
-                  className={`w-full rounded-xl border-2 border-slate-200 py-3 text-base text-slate-900 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20 transition-all ${isRtl ? 'pr-4 pl-4' : 'pl-4 pr-4'}`}
+                  className={`w-full rounded-xl border-2 border-slate-200 py-2.5 text-sm text-slate-900 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20 transition-all ${isRtl ? 'pr-3 pl-3' : 'pl-3 pr-3'}`}
                 />
               </div>
               <button
@@ -354,7 +356,7 @@ export const FlightSearchForm = () => {
                   nextDay.setDate(nextDay.getDate() + 1);
                   setReturnDate(nextDay.toISOString().split("T")[0]);
                 }}
-                className="rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 px-4 py-3 text-xs font-semibold text-blue-700 shadow-sm transition-all hover:from-blue-100 hover:to-blue-200 hover:shadow-md border border-blue-200 whitespace-nowrap"
+                className="flex-1 sm:flex-none rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 px-3 py-2.5 text-xs font-semibold text-blue-700 shadow-sm transition-all hover:from-blue-100 hover:to-blue-200 hover:shadow-md border border-blue-200 whitespace-nowrap"
               >
                 {lang === "fa" ? "روز بعد" : lang === "ps" ? "بل ورځ" : "+1 Day"}
               </button>

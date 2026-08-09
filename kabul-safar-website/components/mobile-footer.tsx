@@ -15,7 +15,7 @@ export const MobileFooter = () => {
       icon: (
         <svg
           viewBox="0 0 24 24"
-          className="h-6 w-6"
+          className="h-5 w-5"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
@@ -33,16 +33,17 @@ export const MobileFooter = () => {
       icon: (
         <svg
           viewBox="0 0 24 24"
-          className="h-6 w-6"
+          className="h-5 w-5"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
-          <path d="M12 2L2 7l10 5 10-5-10-5z" />
-          <path d="M2 17l10 5 10-5" />
-          <path d="M2 12l10 5 10-5" />
+          <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z" />
+          <path d="M12 15l-3-3a22 22 0 01 2-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z" />
+          <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
+          <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
         </svg>
       ),
     },
@@ -52,7 +53,7 @@ export const MobileFooter = () => {
       icon: (
         <svg
           viewBox="0 0 24 24"
-          className="h-6 w-6"
+          className="h-5 w-5"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
@@ -70,7 +71,7 @@ export const MobileFooter = () => {
       icon: (
         <svg
           viewBox="0 0 24 24"
-          className="h-6 w-6"
+          className="h-5 w-5"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
@@ -88,7 +89,7 @@ export const MobileFooter = () => {
       icon: (
         <svg
           viewBox="0 0 24 24"
-          className="h-6 w-6"
+          className="h-5 w-5"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
@@ -104,17 +105,17 @@ export const MobileFooter = () => {
   ];
 
   return (
-    <nav className="fixed bottom-4 left-4 right-4 z-50 md:hidden">
+    <nav className="fixed bottom-3 left-3 right-3 z-50 md:hidden">
       <div className="relative">
         {/* Glow effect */}
-        <div className="absolute -inset-1 bg-gradient-to-r from-[#0dadd1]/20 to-[#377bc9]/20 rounded-3xl blur-xl opacity-50" />
+        <div className="absolute -inset-0.5 bg-gradient-to-r from-[#0dadd1]/15 to-[#377bc9]/15 rounded-2xl blur-lg opacity-40" />
 
         {/* Main container */}
-        <div className="relative bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl shadow-black/10 border border-white/40 overflow-hidden">
+        <div className="relative bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl shadow-black/10 border border-white/40 overflow-hidden">
           {/* Top gradient line */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0dadd1] via-[#377bc9] to-[#0dadd1]" />
+          <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#0dadd1] via-[#377bc9] to-[#0dadd1]" />
 
-          <div className="flex items-center justify-around py-3 px-4">
+          <div className="flex items-center justify-around py-2 px-3">
             {navItems.map((item, index) => {
               const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
 
@@ -123,40 +124,40 @@ export const MobileFooter = () => {
                   key={item.href}
                   href={item.href}
                   className={`
-                    relative group flex flex-col items-center justify-center gap-1.5 px-5 py-2.5 rounded-2xl transition-all duration-500 ease-out
+                    relative group flex flex-col items-center justify-center gap-1 px-4 py-1.5 rounded-xl transition-all duration-400 ease-out
                     ${isActive
-                      ? "text-white transform -translate-y-1"
+                      ? "text-white transform -translate-y-0.5"
                       : "text-gray-400"
                     }
                   `}
                 >
                   {/* Animated background */}
                   <div className={`
-                    absolute inset-0 rounded-2xl transition-all duration-500 ease-out
+                    absolute inset-0 rounded-xl transition-all duration-400 ease-out
                     ${isActive
-                      ? "bg-gradient-to-br from-[#0dadd1] to-[#377bc9] shadow-lg shadow-[#0dadd1]/40 scale-100"
+                      ? "bg-gradient-to-br from-[#0dadd1] to-[#377bc9] shadow-md shadow-[#0dadd1]/30 scale-100"
                       : "bg-transparent scale-95 group-hover:bg-gradient-to-br group-hover:from-[#0dadd1]/5 group-hover:to-[#377bc9]/5 group-hover:scale-100"
                     }
                   `} />
 
-                  {/* Icon container with glow */}
+                  {/* Icon container */}
                   <span className={`
-                    relative z-10 transition-all duration-500 ease-out
-                    ${isActive ? "scale-110 drop-shadow-md" : "group-hover:scale-105"}
+                    relative z-10 transition-all duration-400 ease-out
+                    ${isActive ? "scale-105" : "group-hover:scale-100"}
                   `}>
                     {item.icon}
                   </span>
 
                   {/* Label */}
-                  <span className="relative z-10 text-[10px] font-semibold transition-all duration-500">
+                  <span className="relative z-10 text-[9px] font-medium transition-all duration-400">
                     {item.label}
                   </span>
 
                   {/* Active indicator dot */}
                   {isActive && (
-                    <span className="absolute -top-2 z-20 animate-pulse">
-                      <span className="flex h-5 w-5 items-center justify-center">
-                        <span className="h-2 w-2 rounded-full bg-[#0dadd1] shadow-lg shadow-[#0dadd1]/50" />
+                    <span className="absolute -top-1.5 z-20">
+                      <span className="flex h-4 w-4 items-center justify-center">
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#0dadd1] shadow-md shadow-[#0dadd1]/40" />
                       </span>
                     </span>
                   )}
