@@ -253,27 +253,31 @@ const content: Record<Lang, LocalizedContent> = {
       groups: [
         {
           title: "شرکت",
-          links: ["درباره ما", "خدمات", "مراحل ویزا", "تماس"],
+          links: [
+            { label: "درباره ما", href: "/about" },
+            { label: "خدمات", href: "/services" },
+            { label: "تماس", href: "/contact" },
+          ],
         },
         {
           title: "خدمات",
           links: [
-            "ویزای ایران",
-            "ویزای ترکیه",
-            "حج و عمره",
-            "کربلا",
-            "بلیط",
-            "مشاوره",
-            "واتساپ",
+            { label: "ویزای ایران", href: "/services" },
+            { label: "ویزای ترکیه", href: "/services" },
+            { label: "حج و عمره", href: "/services" },
+            { label: "کربلا", href: "/services" },
+            { label: "بلیط", href: "/flights" },
+            { label: "مشاوره", href: "/contact" },
+            { label: "واتساپ", href: "https://wa.me/33636393050" },
           ],
         },
         {
           title: "پشتیبانی",
           links: [
-            "حریم خصوصی",
-            "قوانین",
-            "پشتیبانی",
-            "ایمیل",
+            { label: "حریم خصوصی", href: "/privacy" },
+            { label: "قوانین", href: "/terms" },
+            { label: "پشتیبانی", href: "/contact" },
+            { label: "ایمیل", href: "mailto:info@kabulsafar.com" },
           ],
         },
       ],
@@ -439,23 +443,32 @@ const content: Record<Lang, LocalizedContent> = {
       groups: [
         {
           title: "Company",
-          links: ["About", "Services", "Visa Steps", "Contact"],
+          links: [
+            { label: "About", href: "/about" },
+            { label: "Services", href: "/services" },
+            { label: "Contact", href: "/contact" },
+          ],
         },
         {
           title: "Services",
           links: [
-            "Iran Visa",
-            "Turkey Visa",
-            "Hajj & Umrah",
-            "Karbala",
-            "Flights",
-            "Consultation",
-            "WhatsApp",
+            { label: "Iran Visa", href: "/services" },
+            { label: "Turkey Visa", href: "/services" },
+            { label: "Hajj & Umrah", href: "/services" },
+            { label: "Karbala", href: "/services" },
+            { label: "Flights", href: "/flights" },
+            { label: "Consultation", href: "/contact" },
+            { label: "WhatsApp", href: "https://wa.me/33636393050" },
           ],
         },
         {
           title: "Support",
-          links: ["Privacy", "Terms", "Support", "Email"],
+          links: [
+            { label: "Privacy", href: "/privacy" },
+            { label: "Terms", href: "/terms" },
+            { label: "Support", href: "/contact" },
+            { label: "Email", href: "mailto:info@kabulsafar.com" },
+          ],
         },
       ],
     },
@@ -610,23 +623,32 @@ const content: Record<Lang, LocalizedContent> = {
       groups: [
         {
           title: "شرکت",
-          links: ["زموږ په اړه", "خدمتونه", "ویزې پړاوونه", "اړیکه"],
+          links: [
+            { label: "زموږ په اړه", href: "/about" },
+            { label: "خدمتونه", href: "/services" },
+            { label: "اړیکه", href: "/contact" },
+          ],
         },
         {
           title: "خدمتونه",
           links: [
-            "د ایران ویزه",
-            "د ترکیې ویزه",
-            "حج او عمره",
-            "کربلا",
-            "الوتنه",
-            "سفر مشوره",
-            "واتساپ",
+            { label: "د ایران ویزه", href: "/services" },
+            { label: "د ترکیې ویزه", href: "/services" },
+            { label: "حج او عمره", href: "/services" },
+            { label: "کربلا", href: "/services" },
+            { label: "الوتنه", href: "/flights" },
+            { label: "سفر مشوره", href: "/contact" },
+            { label: "واتساپ", href: "https://wa.me/33636393050" },
           ],
         },
         {
           title: "ملاتړ",
-          links: ["محرمیت", "شرایط", "ملاتړ", "برېښنالیک"],
+          links: [
+            { label: "محرمیت", href: "/privacy" },
+            { label: "شرایط", href: "/terms" },
+            { label: "ملاتړ", href: "/contact" },
+            { label: "برېښنالیک", href: "mailto:info@kabulsafar.com" },
+          ],
         },
       ],
     },
@@ -784,17 +806,9 @@ export function getFooterContent(lang: Lang): {
     follow: localized.follow,
     phone: localized.phone,
     designer: localized.designer,
-    groups: localized.groups.map((group, groupIdx) => ({
+    groups: localized.groups.map((group) => ({
       title: group.title,
-      links: group.links.map((label, idx) => ({
-        label,
-        href:
-          groupIdx === 0 && idx === 0
-            ? "#about"
-            : groupIdx === 0 && idx === 3
-              ? "#contact"
-              : "#",
-      })),
+      links: group.links,
     })),
   };
 }
