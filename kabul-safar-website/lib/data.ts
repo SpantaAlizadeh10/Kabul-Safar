@@ -246,7 +246,7 @@ const content: Record<Lang, LocalizedContent> = {
     footer: {
       brand: "Kabul Safar",
       blurb:
-        "کابل سفر همراه مطمئن شما در دریافت ویزای ایران و خدمات سفر است. ما با ارائه مشاوره تخصصی و پشتیبانی حرفه‌ای، در تمام مراحل کنار شما خواهیم بود.",
+        "کابل سفر همراه مطمئن شما در دریافت ویزای ایران و ترکیه و خدمات سفر است. ما با ارائه مشاوره تخصصی و پشتیبانی حرفه‌ای، در تمام مراحل کنار شما خواهیم بود.",
       follow: "Follow",
       phone: "0033 6 36 39 30 50",
       designer: "Designer: Sepanta(Ali) Alizadeh",
@@ -436,7 +436,7 @@ const content: Record<Lang, LocalizedContent> = {
     footer: {
       brand: "Kabul Safar",
       blurb:
-        "Kabul Safar is your reliable partner for Iran visa and travel services. We provide expert consultation and support in every step.",
+        "Kabul Safar is your reliable partner for Iran and Turkey visa and travel services. We provide expert consultation and support in every step.",
       follow: "Follow",
       phone: "0033 6 36 39 30 50",
       designer: "Designer: Sepanta(Ali) Alizadeh",
@@ -616,7 +616,7 @@ const content: Record<Lang, LocalizedContent> = {
     footer: {
       brand: "Kabul Safar",
       blurb:
-        "کابل سفر د ایران ویزې او سفر خدمتونو کې ستاسو باوري ملګری دی. موږ په هر پړاو کې مسلکي مشوره او ملاتړ وړاندې کوو.",
+        "کابل سفر د ایران او ترکیې ویزې او سفر خدمتونو کې ستاسو باوري ملګری دی. موږ په هر پړاو کې مسلکي مشوره او ملاتړ وړاندې کوو.",
       follow: "Follow",
       phone: "0033 6 36 39 30 50",
       designer: "Designer: Sepanta(Ali) Alizadeh",
