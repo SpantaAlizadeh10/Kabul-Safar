@@ -92,7 +92,7 @@ type LocalizedContent = {
     follow: string;
     phone: string;
     designer: string;
-    groups: { title: string; links: string[] }[];
+    groups: { title: string; links: { label: string; href: string }[] }[];
   };
 };
 
