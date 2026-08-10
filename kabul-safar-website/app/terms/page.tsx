@@ -1,6 +1,8 @@
 "use client";
 
 import { useI18n } from "@/components/i18n-provider";
+import { Header } from "@/sections/header";
+import { Footer } from "@/sections/footer";
 
 export default function TermsPage() {
   const { lang } = useI18n();
@@ -101,36 +103,40 @@ export default function TermsPage() {
   const currentContent = content[lang] || content.fa;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 py-12 px-4">
-      <div className="mx-auto max-w-3xl">
-        <div className="mb-8 rounded-2xl bg-white p-8 shadow-lg">
-          <h1 className="mb-2 text-3xl font-bold text-slate-900">
-            {currentContent.title}
-          </h1>
-          <p className="text-slate-600">
-            {currentContent.description}
-          </p>
-        </div>
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
+      <Header />
+      <div className="py-12 px-4">
+        <div className="mx-auto max-w-3xl">
+          <div className="mb-8 rounded-2xl bg-white p-8 shadow-lg">
+            <h1 className="mb-2 text-3xl font-bold text-slate-900">
+              {currentContent.title}
+            </h1>
+            <p className="text-slate-600">
+              {currentContent.description}
+            </p>
+          </div>
 
-        <div className="space-y-6">
-          {currentContent.sections.map((section, index) => (
-            <div key={index} className="rounded-2xl bg-white p-6 shadow-md">
-              <h2 className="mb-3 text-xl font-semibold text-slate-900">
-                {section.title}
-              </h2>
-              <p className="text-slate-600 leading-relaxed">
-                {section.content}
-              </p>
-            </div>
-          ))}
-        </div>
+          <div className="space-y-6">
+            {currentContent.sections.map((section, index) => (
+              <div key={index} className="rounded-2xl bg-white p-6 shadow-md">
+                <h2 className="mb-3 text-xl font-semibold text-slate-900">
+                  {section.title}
+                </h2>
+                <p className="text-slate-600 leading-relaxed">
+                  {section.content}
+                </p>
+              </div>
+            ))}
+          </div>
 
-        <div className="mt-8 rounded-2xl bg-white p-6 shadow-md">
-          <p className="text-center text-sm text-slate-500">
-            {lang === "fa" ? "آخرین بروزرسانی: " : lang === "ps" ? "آخرین نوی: " : "Last updated: "}{new Date().toLocaleDateString()}
-          </p>
+          <div className="mt-8 rounded-2xl bg-white p-6 shadow-md">
+            <p className="text-center text-sm text-slate-500">
+              {lang === "fa" ? "آخرین بروزرسانی: " : lang === "ps" ? "آخرین نوی: " : "Last updated: "}{new Date().toLocaleDateString()}
+            </p>
+          </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
