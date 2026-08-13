@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { useI18n } from "@/components/i18n-provider";
 import { getFooterContent } from "@/lib/data";
 import { Search, Calendar, Users, Plane, ArrowRightLeft } from "lucide-react";
+import { Toast } from "@/components/toast";
 
 export const FlightSearchForm = () => {
   const { lang } = useI18n();
@@ -19,6 +20,8 @@ export const FlightSearchForm = () => {
   const [showOriginList, setShowOriginList] = useState(false);
   const [showDestinationList, setShowDestinationList] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
   const originRef = useRef<HTMLDivElement | null>(null);
   const destRef = useRef<HTMLDivElement | null>(null);
 
@@ -58,9 +61,21 @@ export const FlightSearchForm = () => {
     setDestinationDisplay(tempOriginDisplay);
   };
 
+  const showToastMessage = (message: string) => {
+    setToastMessage(message);
+    setShowToast(true);
+  };
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setIsSearching(true);
+    showToastMessage(
+      lang === "fa"
+        ? "در حال جستجو - لینک در تب جدید باز می‌شود"
+        : lang === "ps"
+          ? "په لټون کې - لینک په نوی ټیب کې پرتېږي"
+          : "Searching - link will open in new tab"
+    );
 
     try {
       const params = new URLSearchParams({
@@ -112,6 +127,13 @@ export const FlightSearchForm = () => {
         const encoded = encodeURIComponent(message);
         const waBase = `https://api.whatsapp.com/send?phone=${phone}&text=${encoded}`;
         window.open(waBase, "_blank");
+        showToastMessage(
+          lang === "fa"
+            ? "واتس‌اپ در تب جدید باز شد - این تب را باز نگه دارید"
+            : lang === "ps"
+              ? "واتس‌اپ په نوی ټیب کې پرته شو - دا ټیب پرانیزې پاتې کړئ"
+              : "WhatsApp opened in new tab - keep this tab open"
+        );
       }
     } catch (error) {
       console.error('Flight search error:', error);
@@ -809,255 +831,264 @@ export const FlightSearchForm = () => {
     : allCities;
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      {/* Trip Type Selector */}
-      <div className="flex gap-2">
-        <button
-          type="button"
-          onClick={() => {
-            setTripType("one-way");
-            setReturnDate("");
-          }}
-          className={`flex-1 rounded-xl px-4 py-3 text-sm font-semibold transition-all ${tripType === "one-way"
-            ? "bg-gradient-to-r from-[#0dadd1] to-[#377bc9] text-white shadow-lg"
-            : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-            }`}
-        >
-          {lang === "fa" ? "رفت" : lang === "ps" ? "رفت" : "One-way"}
-        </button>
-        <button
-          type="button"
-          onClick={() => setTripType("round-trip")}
-          className={`flex-1 rounded-xl px-4 py-3 text-sm font-semibold transition-all ${tripType === "round-trip"
-            ? "bg-gradient-to-r from-[#0dadd1] to-[#377bc9] text-white shadow-lg"
-            : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-            }`}
-        >
-          {lang === "fa" ? "رفت و برگشت" : lang === "ps" ? "رفت او ورست" : "Round-trip"}
-        </button>
-      </div>
-
-      {/* Origin and Destination */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
-        {/* Origin */}
-        <div ref={originRef} className="relative md:col-span-5">
-          <label className="mb-2 block text-sm font-semibold text-slate-700">
-            {lang === "fa" ? "کشور مبدا" : lang === "ps" ? "د مبدا هیواد" : "From Country"}
-          </label>
-          <div className="relative">
-            <input
-              type="text"
-              value={originDisplay}
-              onChange={(e) => {
-                setOriginDisplay(e.target.value);
-                const matched = allCities.find(c => c.name.includes(e.target.value));
-                if (matched) {
-                  setOrigin(matched.iata);
-                }
-              }}
-              onFocus={() => setShowOriginList(true)}
-              placeholder={lang === "fa" ? "کشور مبدا" : lang === "ps" ? "د مبدا هیواد" : "Origin country"}
-              className={`w-full rounded-xl border-2 border-slate-200 py-3 text-base text-slate-900 placeholder:text-slate-400 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20 transition-all ${isRtl ? 'pr-14 pl-4' : 'pl-14 pr-4'}`}
-            />
-            <Plane className={`absolute top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none ${isRtl ? 'left-4' : 'right-4'}`} />
-          </div>
-          {showOriginList && (
-            <div className="absolute z-10 mt-2 max-h-60 w-full overflow-y-auto rounded-xl border border-slate-200 bg-white shadow-xl">
-              {filteredOriginCities.map((city) => (
-                <button
-                  key={city.iata}
-                  type="button"
-                  onClick={() => {
-                    setOrigin(city.iata);
-                    setOriginDisplay(city.name);
-                    setShowOriginList(false);
-                  }}
-                  className="w-full px-4 py-3 text-left text-sm text-slate-700 hover:bg-slate-100 transition-colors"
-                >
-                  {city.name} ({city.iata})
-                </button>
-              ))}
-              {filteredOriginCities.length === 0 && (
-                <div className="px-4 py-3 text-sm text-slate-500">
-                  {lang === "fa" ? "شهری یافت نشد" : lang === "ps" ? "هیڅ ښار وموندل نشو" : "No city found"}
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-
-        {/* Swap Button */}
-        <div className="hidden md:flex items-center justify-center md:col-span-2">
+    <>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Trip Type Selector */}
+        <div className="flex gap-2">
           <button
             type="button"
-            onClick={swapCities}
-            className="h-12 w-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-lg hover:from-blue-600 hover:to-blue-700 transition-all hover:scale-110"
+            onClick={() => {
+              setTripType("one-way");
+              setReturnDate("");
+            }}
+            className={`flex-1 rounded-xl px-4 py-3 text-sm font-semibold transition-all ${tripType === "one-way"
+              ? "bg-gradient-to-r from-[#0dadd1] to-[#377bc9] text-white shadow-lg"
+              : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+              }`}
           >
-            <ArrowRightLeft className="h-5 w-5" />
+            {lang === "fa" ? "رفت" : lang === "ps" ? "رفت" : "One-way"}
+          </button>
+          <button
+            type="button"
+            onClick={() => setTripType("round-trip")}
+            className={`flex-1 rounded-xl px-4 py-3 text-sm font-semibold transition-all ${tripType === "round-trip"
+              ? "bg-gradient-to-r from-[#0dadd1] to-[#377bc9] text-white shadow-lg"
+              : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+              }`}
+          >
+            {lang === "fa" ? "رفت و برگشت" : lang === "ps" ? "رفت او ورست" : "Round-trip"}
           </button>
         </div>
 
-        {/* Destination */}
-        <div ref={destRef} className="relative md:col-span-5">
-          <label className="mb-2 block text-sm font-semibold text-slate-700">
-            {lang === "fa" ? "کشور مقصد" : lang === "ps" ? "د مقصد هیواد" : "To Country"}
-          </label>
-          <div className="relative">
-            <input
-              type="text"
-              value={destinationDisplay}
-              onChange={(e) => {
-                setDestinationDisplay(e.target.value);
-                const matched = allCities.find(c => c.name.includes(e.target.value));
-                if (matched) {
-                  setDestination(matched.iata);
-                }
-              }}
-              onFocus={() => setShowDestinationList(true)}
-              placeholder={lang === "fa" ? "کشور مقصد" : lang === "ps" ? "د مقصد هیواد" : "Destination country"}
-              className={`w-full rounded-xl border-2 border-slate-200 py-3 text-base text-slate-900 placeholder:text-slate-400 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20 transition-all ${isRtl ? 'pr-14 pl-4' : 'pl-14 pr-4'}`}
-            />
-            <Plane className={`absolute top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none ${isRtl ? 'left-4 rotate-180' : 'right-4 rotate-180'}`} />
-          </div>
-          {showDestinationList && (
-            <div className="absolute z-10 mt-2 max-h-60 w-full overflow-y-auto rounded-xl border border-slate-200 bg-white shadow-xl">
-              {filteredDestinationCities.map((city) => (
-                <button
-                  key={city.iata}
-                  type="button"
-                  onClick={() => {
-                    setDestination(city.iata);
-                    setDestinationDisplay(city.name);
-                    setShowDestinationList(false);
-                  }}
-                  className="w-full px-4 py-3 text-left text-sm text-slate-700 hover:bg-slate-100 transition-colors"
-                >
-                  {city.name} ({city.iata})
-                </button>
-              ))}
-              {filteredDestinationCities.length === 0 && (
-                <div className="px-4 py-3 text-sm text-slate-500">
-                  {lang === "fa" ? "شهری یافت نشد" : lang === "ps" ? "هیڅ ښار وموندل نشو" : "No city found"}
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Date and Passengers */}
-      <div className={`grid gap-4 ${tripType === "round-trip" ? "grid-cols-1 md:grid-cols-3" : "grid-cols-1 md:grid-cols-2"}`}>
-        {/* Departure Date */}
-        <div>
-          <label className="mb-2 block text-sm font-semibold text-slate-700">
-            {lang === "fa" ? "تاریخ رفت" : lang === "ps" ? "د رفت نېټه" : "Departure Date"}
-          </label>
-          <div className="flex flex-col gap-2 sm:flex-row sm:gap-2">
-            <div className="relative flex-1 w-full">
+        {/* Origin and Destination */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
+          {/* Origin */}
+          <div ref={originRef} className="relative md:col-span-5">
+            <label className="mb-2 block text-sm font-semibold text-slate-700">
+              {lang === "fa" ? "کشور مبدا" : lang === "ps" ? "د مبدا هیواد" : "From Country"}
+            </label>
+            <div className="relative">
               <input
-                type="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                min={today}
-                required
-                className={`w-full rounded-xl border-2 border-slate-200 py-2.5 text-sm text-slate-900 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20 transition-all ${isRtl ? 'pr-3 pl-3' : 'pl-3 pr-3'}`}
-              />
-            </div>
-            <div className="flex gap-2 sm:w-auto">
-              <button
-                type="button"
-                onClick={() => setDate(today)}
-                className="flex-1 sm:flex-none rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 px-3 py-2.5 text-xs font-semibold text-blue-700 shadow-sm transition-all hover:from-blue-100 hover:to-blue-200 hover:shadow-md border border-blue-200 whitespace-nowrap"
-              >
-                {lang === "fa" ? "امروز" : lang === "ps" ? "نن" : "Today"}
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  const tomorrow = new Date();
-                  tomorrow.setDate(tomorrow.getDate() + 1);
-                  setDate(tomorrow.toISOString().split("T")[0]);
+                type="text"
+                value={originDisplay}
+                onChange={(e) => {
+                  setOriginDisplay(e.target.value);
+                  const matched = allCities.find(c => c.name.includes(e.target.value));
+                  if (matched) {
+                    setOrigin(matched.iata);
+                  }
                 }}
-                className="flex-1 sm:flex-none rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 px-3 py-2.5 text-xs font-semibold text-blue-700 shadow-sm transition-all hover:from-blue-100 hover:to-blue-200 hover:shadow-md border border-blue-200 whitespace-nowrap"
-              >
-                {lang === "fa" ? "فردا" : lang === "ps" ? "پرېږده" : "Tomorrow"}
-              </button>
+                onFocus={() => setShowOriginList(true)}
+                placeholder={lang === "fa" ? "کشور مبدا" : lang === "ps" ? "د مبدا هیواد" : "Origin country"}
+                className={`w-full rounded-xl border-2 border-slate-200 py-3 text-base text-slate-900 placeholder:text-slate-400 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20 transition-all ${isRtl ? 'pr-14 pl-4' : 'pl-14 pr-4'}`}
+              />
+              <Plane className={`absolute top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none ${isRtl ? 'left-4' : 'right-4'}`} />
             </div>
+            {showOriginList && (
+              <div className="absolute z-10 mt-2 max-h-60 w-full overflow-y-auto rounded-xl border border-slate-200 bg-white shadow-xl">
+                {filteredOriginCities.map((city) => (
+                  <button
+                    key={city.iata}
+                    type="button"
+                    onClick={() => {
+                      setOrigin(city.iata);
+                      setOriginDisplay(city.name);
+                      setShowOriginList(false);
+                    }}
+                    className="w-full px-4 py-3 text-left text-sm text-slate-700 hover:bg-slate-100 transition-colors"
+                  >
+                    {city.name} ({city.iata})
+                  </button>
+                ))}
+                {filteredOriginCities.length === 0 && (
+                  <div className="px-4 py-3 text-sm text-slate-500">
+                    {lang === "fa" ? "شهری یافت نشد" : lang === "ps" ? "هیڅ ښار وموندل نشو" : "No city found"}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* Swap Button */}
+          <div className="hidden md:flex items-center justify-center md:col-span-2">
+            <button
+              type="button"
+              onClick={swapCities}
+              className="h-12 w-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-lg hover:from-blue-600 hover:to-blue-700 transition-all hover:scale-110"
+            >
+              <ArrowRightLeft className="h-5 w-5" />
+            </button>
+          </div>
+
+          {/* Destination */}
+          <div ref={destRef} className="relative md:col-span-5">
+            <label className="mb-2 block text-sm font-semibold text-slate-700">
+              {lang === "fa" ? "کشور مقصد" : lang === "ps" ? "د مقصد هیواد" : "To Country"}
+            </label>
+            <div className="relative">
+              <input
+                type="text"
+                value={destinationDisplay}
+                onChange={(e) => {
+                  setDestinationDisplay(e.target.value);
+                  const matched = allCities.find(c => c.name.includes(e.target.value));
+                  if (matched) {
+                    setDestination(matched.iata);
+                  }
+                }}
+                onFocus={() => setShowDestinationList(true)}
+                placeholder={lang === "fa" ? "کشور مقصد" : lang === "ps" ? "د مقصد هیواد" : "Destination country"}
+                className={`w-full rounded-xl border-2 border-slate-200 py-3 text-base text-slate-900 placeholder:text-slate-400 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20 transition-all ${isRtl ? 'pr-14 pl-4' : 'pl-14 pr-4'}`}
+              />
+              <Plane className={`absolute top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none ${isRtl ? 'left-4 rotate-180' : 'right-4 rotate-180'}`} />
+            </div>
+            {showDestinationList && (
+              <div className="absolute z-10 mt-2 max-h-60 w-full overflow-y-auto rounded-xl border border-slate-200 bg-white shadow-xl">
+                {filteredDestinationCities.map((city) => (
+                  <button
+                    key={city.iata}
+                    type="button"
+                    onClick={() => {
+                      setDestination(city.iata);
+                      setDestinationDisplay(city.name);
+                      setShowDestinationList(false);
+                    }}
+                    className="w-full px-4 py-3 text-left text-sm text-slate-700 hover:bg-slate-100 transition-colors"
+                  >
+                    {city.name} ({city.iata})
+                  </button>
+                ))}
+                {filteredDestinationCities.length === 0 && (
+                  <div className="px-4 py-3 text-sm text-slate-500">
+                    {lang === "fa" ? "شهری یافت نشد" : lang === "ps" ? "هیڅ ښار وموندل نشو" : "No city found"}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
 
-        {/* Return Date (only for round-trip) */}
-        {tripType === "round-trip" && (
+        {/* Date and Passengers */}
+        <div className={`grid gap-4 ${tripType === "round-trip" ? "grid-cols-1 md:grid-cols-3" : "grid-cols-1 md:grid-cols-2"}`}>
+          {/* Departure Date */}
           <div>
             <label className="mb-2 block text-sm font-semibold text-slate-700">
-              {lang === "fa" ? "تاریخ برگشت" : lang === "ps" ? "د ورست نېټه" : "Return Date"}
+              {lang === "fa" ? "تاریخ رفت" : lang === "ps" ? "د رفت نېټه" : "Departure Date"}
             </label>
             <div className="flex flex-col gap-2 sm:flex-row sm:gap-2">
               <div className="relative flex-1 w-full">
                 <input
                   type="date"
-                  value={returnDate}
-                  onChange={(e) => setReturnDate(e.target.value)}
-                  min={date || today}
-                  required={tripType === "round-trip"}
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  min={today}
+                  required
                   className={`w-full rounded-xl border-2 border-slate-200 py-2.5 text-sm text-slate-900 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20 transition-all ${isRtl ? 'pr-3 pl-3' : 'pl-3 pr-3'}`}
                 />
               </div>
-              <button
-                type="button"
-                onClick={() => {
-                  const nextDay = new Date(date || today);
-                  nextDay.setDate(nextDay.getDate() + 1);
-                  setReturnDate(nextDay.toISOString().split("T")[0]);
-                }}
-                className="flex-1 sm:flex-none rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 px-3 py-2.5 text-xs font-semibold text-blue-700 shadow-sm transition-all hover:from-blue-100 hover:to-blue-200 hover:shadow-md border border-blue-200 whitespace-nowrap"
-              >
-                {lang === "fa" ? "روز بعد" : lang === "ps" ? "بل ورځ" : "+1 Day"}
-              </button>
+              <div className="flex gap-2 sm:w-auto">
+                <button
+                  type="button"
+                  onClick={() => setDate(today)}
+                  className="flex-1 sm:flex-none rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 px-3 py-2.5 text-xs font-semibold text-blue-700 shadow-sm transition-all hover:from-blue-100 hover:to-blue-200 hover:shadow-md border border-blue-200 whitespace-nowrap"
+                >
+                  {lang === "fa" ? "امروز" : lang === "ps" ? "نن" : "Today"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const tomorrow = new Date();
+                    tomorrow.setDate(tomorrow.getDate() + 1);
+                    setDate(tomorrow.toISOString().split("T")[0]);
+                  }}
+                  className="flex-1 sm:flex-none rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 px-3 py-2.5 text-xs font-semibold text-blue-700 shadow-sm transition-all hover:from-blue-100 hover:to-blue-200 hover:shadow-md border border-blue-200 whitespace-nowrap"
+                >
+                  {lang === "fa" ? "فردا" : lang === "ps" ? "پرېږده" : "Tomorrow"}
+                </button>
+              </div>
             </div>
           </div>
-        )}
 
-        {/* Passengers */}
-        <div>
-          <label className="mb-2 block text-sm font-semibold text-slate-700">
-            {lang === "fa" ? "تعداد مسافران" : lang === "ps" ? "د مسافرینو شمیر" : "Passengers"}
-          </label>
-          <div className="relative">
-            <select
-              value={passengers}
-              onChange={(e) => setPassengers(e.target.value)}
-              className={`w-full rounded-xl border-2 border-slate-200 py-3 text-base text-slate-900 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20 transition-all appearance-none ${isRtl ? 'pr-14 pl-4' : 'pl-14 pr-4'}`}
-            >
-              <option value="1">1 {lang === "fa" ? "مسافر" : lang === "ps" ? "مسافر" : "Passenger"}</option>
-              <option value="2">2 {lang === "fa" ? "مسافر" : lang === "ps" ? "مسافر" : "Passengers"}</option>
-              <option value="3">3 {lang === "fa" ? "مسافر" : lang === "ps" ? "مسافر" : "Passengers"}</option>
-              <option value="4">4 {lang === "fa" ? "مسافر" : lang === "ps" ? "مسافر" : "Passengers"}</option>
-              <option value="5">5+ {lang === "fa" ? "مسافر" : lang === "ps" ? "مسافر" : "Passengers"}</option>
-            </select>
-            <Users className={`absolute top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none ${isRtl ? 'left-4' : 'right-4'}`} />
+          {/* Return Date (only for round-trip) */}
+          {tripType === "round-trip" && (
+            <div>
+              <label className="mb-2 block text-sm font-semibold text-slate-700">
+                {lang === "fa" ? "تاریخ برگشت" : lang === "ps" ? "د ورست نېټه" : "Return Date"}
+              </label>
+              <div className="flex flex-col gap-2 sm:flex-row sm:gap-2">
+                <div className="relative flex-1 w-full">
+                  <input
+                    type="date"
+                    value={returnDate}
+                    onChange={(e) => setReturnDate(e.target.value)}
+                    min={date || today}
+                    required={tripType === "round-trip"}
+                    className={`w-full rounded-xl border-2 border-slate-200 py-2.5 text-sm text-slate-900 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20 transition-all ${isRtl ? 'pr-3 pl-3' : 'pl-3 pr-3'}`}
+                  />
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const nextDay = new Date(date || today);
+                    nextDay.setDate(nextDay.getDate() + 1);
+                    setReturnDate(nextDay.toISOString().split("T")[0]);
+                  }}
+                  className="flex-1 sm:flex-none rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 px-3 py-2.5 text-xs font-semibold text-blue-700 shadow-sm transition-all hover:from-blue-100 hover:to-blue-200 hover:shadow-md border border-blue-200 whitespace-nowrap"
+                >
+                  {lang === "fa" ? "روز بعد" : lang === "ps" ? "بل ورځ" : "+1 Day"}
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Passengers */}
+          <div>
+            <label className="mb-2 block text-sm font-semibold text-slate-700">
+              {lang === "fa" ? "تعداد مسافران" : lang === "ps" ? "د مسافرینو شمیر" : "Passengers"}
+            </label>
+            <div className="relative">
+              <select
+                value={passengers}
+                onChange={(e) => setPassengers(e.target.value)}
+                className={`w-full rounded-xl border-2 border-slate-200 py-3 text-base text-slate-900 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20 transition-all appearance-none ${isRtl ? 'pr-14 pl-4' : 'pl-14 pr-4'}`}
+              >
+                <option value="1">1 {lang === "fa" ? "مسافر" : lang === "ps" ? "مسافر" : "Passenger"}</option>
+                <option value="2">2 {lang === "fa" ? "مسافر" : lang === "ps" ? "مسافر" : "Passengers"}</option>
+                <option value="3">3 {lang === "fa" ? "مسافر" : lang === "ps" ? "مسافر" : "Passengers"}</option>
+                <option value="4">4 {lang === "fa" ? "مسافر" : lang === "ps" ? "مسافر" : "Passengers"}</option>
+                <option value="5">5+ {lang === "fa" ? "مسافر" : lang === "ps" ? "مسافر" : "Passengers"}</option>
+              </select>
+              <Users className={`absolute top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none ${isRtl ? 'left-4' : 'right-4'}`} />
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Submit Button */}
-      <button
-        type="submit"
-        disabled={isSearching}
-        className="flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-[#0dadd1] to-[#377bc9] px-6 py-4 text-base font-bold text-white shadow-lg transition-all hover:from-[#0a9bbf] hover:to-[#2d6aa8] hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50"
-      >
-        {isSearching ? (
-          <>
-            <div className="h-5 w-5 animate-spin rounded-full border-2 border-white/30 border-t-white" />
-            {lang === "fa" ? "در حال جستجو..." : lang === "ps" ? "په لټون کې..." : "Searching..."}
-          </>
-        ) : (
-          <>
-            <Search className="h-5 w-5" />
-            {lang === "fa" ? "جستجوی پرواز" : lang === "ps" ? "الوتنه وپلټئ" : "Search Flights"}
-          </>
-        )}
-      </button>
-    </form>
+        {/* Submit Button */}
+        <button
+          type="submit"
+          disabled={isSearching}
+          className="flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-[#0dadd1] to-[#377bc9] px-6 py-4 text-base font-bold text-white shadow-lg transition-all hover:from-[#0a9bbf] hover:to-[#2d6aa8] hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          {isSearching ? (
+            <>
+              <div className="h-5 w-5 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+              {lang === "fa" ? "در حال جستجو..." : lang === "ps" ? "په لټون کې..." : "Searching..."}
+            </>
+          ) : (
+            <>
+              <Search className="h-5 w-5" />
+              {lang === "fa" ? "جستجوی پرواز" : lang === "ps" ? "الوتنه وپلټئ" : "Search Flights"}
+            </>
+          )}
+        </button>
+      </form>
+
+      {showToast && (
+        <Toast
+          message={toastMessage}
+          onClose={() => setShowToast(false)}
+        />
+      )}
+    </>
   );
 };
