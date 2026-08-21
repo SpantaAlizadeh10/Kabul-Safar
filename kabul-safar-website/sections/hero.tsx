@@ -46,12 +46,16 @@ function HeroTags({
           >
             {percentMatch ? (
               <>
-                <span className="font-extrabold text-[#c1512f]">{percentMatch[1]}</span>
+                <span className="font-extrabold text-[#c1512f]">
+                  {percentMatch[1]}
+                </span>
                 <span>{percentMatch[2]}</span>
               </>
             ) : (
               <>
-                <span className="text-[15px] font-black text-[#C89A3E]">&rdquo;</span>
+                <span className="text-[15px] font-black text-[#C89A3E]">
+                  &rdquo;
+                </span>
                 {tag}
               </>
             )}
@@ -74,7 +78,9 @@ function ArchImage({
   sizes: string;
 }) {
   return (
-    <div className={`overflow-hidden rounded-t-[200px] rounded-b-2xl ${className}`}>
+    <div
+      className={`overflow-hidden rounded-t-[200px] rounded-b-2xl ${className}`}
+    >
       <div className="relative h-full w-full">
         <Image
           src={src}
@@ -96,7 +102,9 @@ function ArchImage({
 export const Hero = () => {
   const { lang } = useI18n();
   const content = getHeroContent(lang);
-  const blogImages = getBlogContent(lang).posts.slice(0, 3).map((post) => post.image);
+  const blogImages = getBlogContent(lang)
+    .posts.slice(0, 3)
+    .map((post) => post.image);
   const isRtl = lang === "fa" || lang === "ps";
 
   const titleLine1 = isRtl
@@ -105,14 +113,14 @@ export const Hero = () => {
 
   const desktopArches = isRtl
     ? [
-        "absolute top-[110px] right-0 z-10 h-[280px] w-[190px] shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
-        "absolute top-[60px] right-[110px] z-20 h-[250px] w-[170px] shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
-        "absolute top-0 right-[60px] z-30 h-[300px] w-[190px] shadow-[0_20px_40px_-16px_rgba(0,0,0,0.35)]",
+        "absolute top-[120px] right-0 z-10 h-[260px] w-[150px] shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
+        "absolute top-[60px] right-[199px] z-20 h-[250px] w-[170px] shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
+        "absolute top-0 right-[80px] z-30 h-[300px] w-[190px] shadow-[0_20px_40px_-16px_rgba(0,0,0,0.35)]",
       ]
     : [
-        "absolute top-[110px] left-0 z-10 h-[280px] w-[190px] shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
-        "absolute top-[60px] left-[110px] z-20 h-[250px] w-[170px] shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
-        "absolute top-0 left-[60px] z-30 h-[300px] w-[190px] shadow-[0_20px_40px_-16px_rgba(0,0,0,0.35)]",
+        "absolute top-[120px] left-0 z-10 h-[260px] w-[150px] shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
+        "absolute top-[60px] left-[199px] z-20 h-[250px] w-[170px] shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
+        "absolute top-0 left-[80px] z-30 h-[300px] w-[150px] shadow-[0_20px_40px_-16px_rgba(0,0,0,0.35)]",
       ];
 
   const mobileArches = [
@@ -129,13 +137,15 @@ export const Hero = () => {
     >
       <div className="mt-4 flex flex-col items-center gap-6 md:mt-7 md:flex-row md:items-center md:gap-8 lg:gap-9">
         {/* Text */}
-        <div className={`w-full min-w-0 flex-1 ${isRtl ? "text-right" : "text-left"} text-center md:text-start`}>
+        <div
+          className={`w-full min-w-0 flex-1 ${isRtl ? "text-right" : "text-left"} text-center md:text-start`}
+        >
           <h1
             id="hero-title"
-            className="text-[30px] font-extrabold leading-[1.18] tracking-tight text-[#141d2b] md:text-[44px] lg:text-[52px]"
+            className="text-[30px] font-extrabold leading-[1.35] tracking-tight text-[#141d2b] md:text-[44px] lg:text-[52px]"
           >
             {titleLine1}
-            <br />
+            <br className="mt-2 block" />
             {content.subTitle}
           </h1>
 
@@ -167,7 +177,11 @@ export const Hero = () => {
                   className="max-w-[100px] text-center text-[11px] font-semibold leading-snug text-[#565a63]"
                 >
                   <div className="mx-auto mb-2 flex h-[30px] w-[30px] items-center justify-center text-[#141d2b]">
-                    <Icon className="h-6 w-6" strokeWidth={1.8} aria-hidden="true" />
+                    <Icon
+                      className="h-6 w-6"
+                      strokeWidth={1.8}
+                      aria-hidden="true"
+                    />
                   </div>
                   {label}
                 </div>
@@ -196,8 +210,8 @@ export const Hero = () => {
         </div>
 
         {/* Desktop: blog images in arch cluster */}
-        <div className="hidden min-w-0 shrink-0 md:flex md:flex-[1_1_340px] md:justify-center lg:flex-[0_0_340px]">
-          <div className="relative h-[400px] w-full max-w-[340px] overflow-hidden">
+        <div className="hidden min-w-0 shrink-0 md:flex md:flex-[1_1_380px] md:justify-center lg:flex-[0_0_380px]">
+          <div className="relative h-[400px] w-full max-w-[380px] overflow-hidden">
             {blogImages.map((src, index) => (
               <ArchImage
                 key={src}
