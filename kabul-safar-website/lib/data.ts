@@ -38,8 +38,11 @@ type LocalizedContent = {
     titleIran: string;
     titleAsia: string;
     subTitle: string;
+    description: string;
     bullets: string[];
     consultCta: string;
+    secondaryCta: string;
+    tags: string[];
   };
   partnersTitle: string;
   destination: {
@@ -110,13 +113,17 @@ const content: Record<Lang, LocalizedContent> = {
       titlePrefix: "ویزای",
       titleIran: "ایران و",
       titleAsia: "ترکیه",
-      subTitle: "برای شهروندان افغانستانی",
-      bullets: [
-        "دریافت ویزا در کمتر از ۷۲ ساعت",
-        "پشتیبانی دری/ پشتو و انگلیسی",
-        "مشاوره رایگان قبل از ثبت درخواست",
+      subTitle: "برای افغانستانی‌ها",
+      description:
+        "کابل سفر با مشاوره رایگان، بررسی دقیق مدارک و پیگیری سریع، مسیر دریافت ویزای ایران و ترکیه را برای شما ساده می‌کند. پشتیبانی به زبان‌های دری، پشتو و انگلیسی همیشه در کنار شماست.",
+      bullets: ["مشاوره رایگان سفر", "انتخاب بهترین گزینه", "پیگیری سریع رزرو"],
+      consultCta: "شروع درخواست ویزا",
+      secondaryCta: "مشاهده شرایط",
+      tags: [
+        "۱۰۰٪ تضمین صحت مدارک",
+        "پرونده‌های فوری و ویژه",
+        "طراحی‌شده برای مسیر شما",
       ],
-      consultCta: "دریافت ویزا و مشاوره",
     },
     partnersTitle: "همکاری با معتبرترین ایرلاین ها",
     destination: {
@@ -293,16 +300,24 @@ const content: Record<Lang, LocalizedContent> = {
       { label: "Contact" },
     ],
     hero: {
-      titlePrefix: "Iran & Turkey Visa Services",
+      titlePrefix: "Iran & Turkey Visa",
       titleIran: "",
       titleAsia: "",
-      subTitle: "For Afghan Citizens",
+      subTitle: "For Afghans",
+      description:
+        "Kabul Safar makes Iran and Turkey visa applications simple for Afghan travelers with free guidance, careful document review, and fast follow-up. Support is available in Dari, Pashto, and English, so you can plan your trip with confidence.",
       bullets: [
-        "✔ Visa in 72 hours",
-        "✔ Dari, Pashto & English support",
-        "✔ Free consultation",
+        "Free initial consultation",
+        "Document accuracy guarantee",
+        "Fast case tracking",
       ],
-      consultCta: "Get visa consultation",
+      consultCta: "Start visa application",
+      secondaryCta: "View requirements",
+      tags: [
+        "100% document accuracy",
+        "Urgent & priority cases",
+        "Built for your journey",
+      ],
     },
     partnersTitle: "Partnering with trusted airlines",
     destination: {
@@ -486,13 +501,21 @@ const content: Record<Lang, LocalizedContent> = {
       titlePrefix: "د",
       titleIran: "ایران او",
       titleAsia: "ترکیې ویزې",
-      subTitle: "د افغان وګړو لپاره",
+      subTitle: "د افغانانو لپاره",
+      description:
+        "کابل سفر د ایران او ترکیې ویزې لاره د افغان مسافرانو لپاره اسانه کوي؛ له وړیا مشوره، دقیق اسناد چک کول او ګړندۍ تعقیب څخه. د دری، پښتو او انګلیسي ملاتړ ستاسو سره په آرامۍ سفر پلان کولو لپاره حاضر دی.",
       bullets: [
-        "ویزه تر ۷۲ ساعتونو کې",
-        "په دري / پښتو / انګلیسي ملاتړ",
-        "د غوښتنې نه مخکې وړیا مشوره",
+        "لومړنۍ وړیا مشوره",
+        "د اسنادو د سمون تضمین",
+        "د پېښې ګړندۍ تعقیب",
       ],
-      consultCta: "د ویزې او مشورې ترلاسه کول",
+      consultCta: "د ویزې غوښتنه پیل کړئ",
+      secondaryCta: "شرایط وګورئ",
+      tags: [
+        "۱۰۰٪ د اسنادو د سمون تضمین",
+        "عاجل او ځانګړي پېښې",
+        "ستاسو د لارې لپاره ډیزاین شوی",
+      ],
     },
     partnersTitle: "له معتبره هوايي شرکتونو سره همکاري",
     destination: {
@@ -843,7 +866,8 @@ const blogContent = {
   fa: {
     hero: {
       title: "داستان‌های سفر: تجربه‌های واقعی از سفر به ایران و ترکیه",
-      subtitle: "کابل سفر منبع شما برای راهنمایی‌های سفر است! محتوای انتخابی را برای روشن کردن، سرگرم کردن و درگیر کردن مسافران جهانی کاوش کنید.",
+      subtitle:
+        "کابل سفر منبع شما برای راهنمایی‌های سفر است! محتوای انتخابی را برای روشن کردن، سرگرم کردن و درگیر کردن مسافران جهانی کاوش کنید.",
     },
     trendingTopics: [
       { id: "topic-1", name: "ویزا", icon: "FileText" },
@@ -862,7 +886,8 @@ const blogContent = {
         category: "ویزای ایران",
         author: "شعیب نوروزی",
         date: "۲۸ خرداد ۱۴۰۳",
-        excerpt: "همه چیزهایی که باید درباره دریافت ویزای ایران بدانید، از مدارک مورد نیاز تا نکات مهم برای مصاحبه سفارت.",
+        excerpt:
+          "همه چیزهایی که باید درباره دریافت ویزای ایران بدانید، از مدارک مورد نیاز تا نکات مهم برای مصاحبه سفارت.",
         image: "/images/destination-iran.jpg",
       },
       {
@@ -871,7 +896,8 @@ const blogContent = {
         category: "بلیط هواپیما",
         author: "قمر حمیدزی",
         date: "۱۵ تیر ۱۴۰۳",
-        excerpt: "مسیر مناسب، قیمت بهتر و تجربه سفر آرام‌تر را با نکات حرفه‌ای ما بیابید.",
+        excerpt:
+          "مسیر مناسب، قیمت بهتر و تجربه سفر آرام‌تر را با نکات حرفه‌ای ما بیابید.",
         image: "/images/destination-turkey.jpg",
       },
       {
@@ -880,7 +906,8 @@ const blogContent = {
         category: "خدمات سفر",
         author: "مریم احمدی",
         date: "۵ مرداد ۱۴۰۳",
-        excerpt: "مشاوره درست باعث می‌شود هزینه کمتر و مسیر مطمئن‌تری برای سفر خود انتخاب کنید.",
+        excerpt:
+          "مشاوره درست باعث می‌شود هزینه کمتر و مسیر مطمئن‌تری برای سفر خود انتخاب کنید.",
         image: "/images/destination.jpg",
       },
       {
@@ -889,7 +916,8 @@ const blogContent = {
         category: "سفر اقتصادی",
         author: "علی رضایی",
         date: "۱۸ شهریور ۱۴۰۳",
-        excerpt: "مقاصدی که هم هزینه مناسب دارند و هم تجربه‌ای جذاب و امن برای شما فراهم می‌کنند.",
+        excerpt:
+          "مقاصدی که هم هزینه مناسب دارند و هم تجربه‌ای جذاب و امن برای شما فراهم می‌کنند.",
         image: "/images/destination-iraq.jpg",
       },
       {
@@ -907,7 +935,8 @@ const blogContent = {
         category: "ویزای ترکیه",
         author: "زهرا محمدی",
         date: "۱۰ آبان ۱۴۰۳",
-        excerpt: "تمام آنچه باید درباره سفر به ترکیه بدانید، از ویزا تا مکان‌های دیدنی.",
+        excerpt:
+          "تمام آنچه باید درباره سفر به ترکیه بدانید، از ویزا تا مکان‌های دیدنی.",
         image: "/images/destination-turkey.jpg",
       },
     ],
@@ -944,8 +973,15 @@ const blogContent = {
     },
     footer: {
       brand: "Kabul Safar",
-      description: "کابل سفر منبع شما برای راهنمایی‌های سفر است! محتوای انتخابی را برای روشن کردن، سرگرم کردن و درگیر کردن مسافران جهانی کاوش کنید.",
-      homepages: ["لیست کلاسیک", "گرید کلاسیک", "اورلی کلاسیک", "اسلایدر هیرو", "مقالات ویژه"],
+      description:
+        "کابل سفر منبع شما برای راهنمایی‌های سفر است! محتوای انتخابی را برای روشن کردن، سرگرم کردن و درگیر کردن مسافران جهانی کاوش کنید.",
+      homepages: [
+        "لیست کلاسیک",
+        "گرید کلاسیک",
+        "اورلی کلاسیک",
+        "اسلایدر هیرو",
+        "مقالات ویژه",
+      ],
       categories: ["ویزا", "سفر", "مقاصد", "بلیط"],
       pages: ["درباره ما", "دسته‌بندی‌ها", "تماس با ما"],
     },
@@ -953,7 +989,8 @@ const blogContent = {
   en: {
     hero: {
       title: "Travel Stories: Real Experiences from Iran and Turkey",
-      subtitle: "Kabul Safar is your ultimate source for travel insights! Explore curated content to enlighten, entertain and engage global travelers.",
+      subtitle:
+        "Kabul Safar is your ultimate source for travel insights! Explore curated content to enlighten, entertain and engage global travelers.",
     },
     trendingTopics: [
       { id: "topic-1", name: "Visa", icon: "FileText" },
@@ -972,7 +1009,8 @@ const blogContent = {
         category: "Iran Visa",
         author: "Shoaib Norouzi",
         date: "June 18, 2024",
-        excerpt: "Everything you need to know about getting Iran visa, from required documents to important embassy interview tips.",
+        excerpt:
+          "Everything you need to know about getting Iran visa, from required documents to important embassy interview tips.",
         image: "/images/destination-iran.jpg",
       },
       {
@@ -981,7 +1019,8 @@ const blogContent = {
         category: "Flight Tickets",
         author: "Qamar Hamidzi",
         date: "July 5, 2024",
-        excerpt: "Choose a better route, save money, and enjoy a more relaxed journey with our professional tips.",
+        excerpt:
+          "Choose a better route, save money, and enjoy a more relaxed journey with our professional tips.",
         image: "/images/destination-turkey.jpg",
       },
       {
@@ -990,7 +1029,8 @@ const blogContent = {
         category: "Travel Services",
         author: "Maryam Ahmadi",
         date: "August 28, 2024",
-        excerpt: "The right advice helps you avoid mistakes, save time, and plan your trip clearly.",
+        excerpt:
+          "The right advice helps you avoid mistakes, save time, and plan your trip clearly.",
         image: "/images/destination.jpg",
       },
       {
@@ -999,7 +1039,8 @@ const blogContent = {
         category: "Affordable Travel",
         author: "Ali Rezaei",
         date: "September 9, 2024",
-        excerpt: "Discover destinations that are friendly on price and rich in travel experience.",
+        excerpt:
+          "Discover destinations that are friendly on price and rich in travel experience.",
         image: "/images/destination-iraq.jpg",
       },
       {
@@ -1008,7 +1049,8 @@ const blogContent = {
         category: "Hajj & Umrah",
         author: "Hossein Karimi",
         date: "October 16, 2024",
-        excerpt: "Comprehensive guide for traveling to Mecca and Medina, from visa to accommodation.",
+        excerpt:
+          "Comprehensive guide for traveling to Mecca and Medina, from visa to accommodation.",
         image: "/images/Makke.jpeg",
       },
       {
@@ -1017,7 +1059,8 @@ const blogContent = {
         category: "Turkey Visa",
         author: "Zahra Mohammadi",
         date: "November 1, 2024",
-        excerpt: "All you need to know about traveling to Turkey, from visa to must-visit places.",
+        excerpt:
+          "All you need to know about traveling to Turkey, from visa to must-visit places.",
         image: "/images/destination-turkey.jpg",
       },
     ],
@@ -1048,14 +1091,22 @@ const blogContent = {
     ],
     newsletter: {
       title: "Subscribe to our Newsletter",
-      subtitle: "Subscribe to our email newsletter to get the latest posts delivered right to your email.",
+      subtitle:
+        "Subscribe to our email newsletter to get the latest posts delivered right to your email.",
       placeholder: "Enter your email",
       button: "Subscribe",
     },
     footer: {
       brand: "Kabul Safar",
-      description: "Kabul Safar is your ultimate source for travel insights! Explore curated content to enlighten, entertain and engage global travelers.",
-      homepages: ["Classic List", "Classic Grid", "Classic Overlay", "Hero Slider", "Featured Posts"],
+      description:
+        "Kabul Safar is your ultimate source for travel insights! Explore curated content to enlighten, entertain and engage global travelers.",
+      homepages: [
+        "Classic List",
+        "Classic Grid",
+        "Classic Overlay",
+        "Hero Slider",
+        "Featured Posts",
+      ],
       categories: ["Visa", "Travel", "Destinations", "Tickets"],
       pages: ["About", "Categories", "Contacts"],
     },
@@ -1063,7 +1114,8 @@ const blogContent = {
   ps: {
     hero: {
       title: "د سفر کیسې: له ایران او ترکیې څخه واقعي تجربې",
-      subtitle: "کابل سفر ستاسو د سفر لارښوونې لپاره سرچینه ده! غوره شوي محتوا وګورئ چې نړیوال مسافران روزي، ښځندوي او په کې ښکې کوي.",
+      subtitle:
+        "کابل سفر ستاسو د سفر لارښوونې لپاره سرچینه ده! غوره شوي محتوا وګورئ چې نړیوال مسافران روزي، ښځندوي او په کې ښکې کوي.",
     },
     trendingTopics: [
       { id: "topic-1", name: "ویزه", icon: "FileText" },
@@ -1082,7 +1134,8 @@ const blogContent = {
         category: "د ایران ویزه",
         author: "شعیب نوروزي",
         date: "۲۸ سلواغه ۱۴۰۲",
-        excerpt: "هر څه چې تاسو باید د ایران ویزې په اړه پوه شئ، له اړینو اسنادو څخه تر مهمو سفارتې مشورو پورې.",
+        excerpt:
+          "هر څه چې تاسو باید د ایران ویزې په اړه پوه شئ، له اړینو اسنادو څخه تر مهمو سفارتې مشورو پورې.",
         image: "/images/destination-iran.jpg",
       },
       {
@@ -1091,7 +1144,8 @@ const blogContent = {
         category: "د الوتنې ټکټ",
         author: "قمر حمیدزي",
         date: "۱۵ کب ۱۴۰۲",
-        excerpt: "غوره لاره، ارزانه بیه او آرام سفر زموږ د مسلکي مشورو سره ومومئ.",
+        excerpt:
+          "غوره لاره، ارزانه بیه او آرام سفر زموږ د مسلکي مشورو سره ومومئ.",
         image: "/images/destination-turkey.jpg",
       },
       {
@@ -1100,7 +1154,8 @@ const blogContent = {
         category: "د سفر خدمتونه",
         author: "مریم احمدي",
         date: "۵ حمل ۱۴۰۳",
-        excerpt: "سمه مشوره تاسو له تېرونو څخه ژغوري، وخت خوندي کوي او ستاسو سفر په ښه توګه پلان کوي.",
+        excerpt:
+          "سمه مشوره تاسو له تېرونو څخه ژغوري، وخت خوندي کوي او ستاسو سفر په ښه توګه پلان کوي.",
         image: "/images/destination.jpg",
       },
       {
@@ -1118,7 +1173,8 @@ const blogContent = {
         category: "حج او عمره",
         author: "حسین کریمی",
         date: "۲۵ وری ۱۴۰۳",
-        excerpt: "د مکې او مدینې ته د سفر لپاره بشپړ لارښونه، له ویزې څخه تر اوسېدلو پورې.",
+        excerpt:
+          "د مکې او مدینې ته د سفر لپاره بشپړ لارښونه، له ویزې څخه تر اوسېدلو پورې.",
         image: "/images/Makke.jpeg",
       },
       {
@@ -1164,8 +1220,15 @@ const blogContent = {
     },
     footer: {
       brand: "Kabul Safar",
-      description: "کابل سفر ستاسو د سفر لارښوونې لپاره سرچینه ده! غوره شوي محتوا وګورئ چې نړیوال مسافران روزي، ښځندوي او په کې ښکې کوي.",
-      homepages: ["کلاسیک لړ", "کلاسیک گرید", "کلاسیک اورلی", "هیرو سلاډر", "ویژه مقالات"],
+      description:
+        "کابل سفر ستاسو د سفر لارښوونې لپاره سرچینه ده! غوره شوي محتوا وګورئ چې نړیوال مسافران روزي، ښځندوي او په کې ښکې کوي.",
+      homepages: [
+        "کلاسیک لړ",
+        "کلاسیک گرید",
+        "کلاسیک اورلی",
+        "هیرو سلاډر",
+        "ویژه مقالات",
+      ],
       categories: ["ویزه", "سفر", "ځایونه", "ټکټ"],
       pages: ["زموږ په اړه", "دسته بندي", "اړیکه"],
     },

@@ -1,165 +1,214 @@
 "use client";
 
-import { Clock, Languages, MessageCircle } from "lucide-react";
+import { ArrowRight, Check, Heart } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useI18n } from "@/components/i18n-provider";
-import { ConsultButton } from "@/components/consult-button";
-import { getHeroContent } from "@/lib/data";
+import { getBlogContent, getHeroContent } from "@/lib/data";
+import { CONTACT_WHATSAPP_URL } from "@/lib/contact";
+
+const featureIcons = [Heart, Check, ArrowRight] as const;
+
+function HeroTags({
+  tags,
+  variant,
+  isRtl,
+}: {
+  tags: string[];
+  variant: "mobile" | "desktop";
+  isRtl: boolean;
+}) {
+  const positions = isRtl
+    ? [
+        "top-[18px] right-[48px]",
+        "top-[210px] right-[108px]",
+        "top-[320px] right-[8px]",
+      ]
+    : [
+        "top-[18px] left-[48px]",
+        "top-[210px] left-[108px]",
+        "top-[320px] left-[8px]",
+      ];
+
+  return (
+    <>
+      {tags.map((tag, index) => {
+        const percentMatch = tag.match(/^(.+?[%٪])\s*(.+)$/);
+
+        return (
+          <div
+            key={tag}
+            className={
+              variant === "mobile"
+                ? "flex items-center gap-1.5 rounded-full border border-[#e7e5df] bg-white px-3 py-2 text-center text-[11px] font-bold text-[#141d2b] shadow-[0_10px_24px_-12px_rgba(20,29,43,0.25)]"
+                : `absolute z-40 flex max-w-[160px] items-center gap-1.5 rounded-full border border-[#e7e5df] bg-white px-3 py-2 text-[10.5px] font-bold leading-snug text-[#141d2b] shadow-[0_10px_24px_-12px_rgba(20,29,43,0.25)] sm:max-w-[180px] sm:px-4 sm:py-[9px] sm:text-[11.5px] ${positions[index] ?? ""}`
+            }
+          >
+            {percentMatch ? (
+              <>
+                <span className="font-extrabold text-[#c1512f]">{percentMatch[1]}</span>
+                <span>{percentMatch[2]}</span>
+              </>
+            ) : (
+              <>
+                <span className="text-[15px] font-black text-[#C89A3E]">&rdquo;</span>
+                {tag}
+              </>
+            )}
+          </div>
+        );
+      })}
+    </>
+  );
+}
+
+function ArchImage({
+  src,
+  className,
+  priority = false,
+  sizes,
+}: {
+  src: string;
+  className: string;
+  priority?: boolean;
+  sizes: string;
+}) {
+  return (
+    <div className={`overflow-hidden rounded-t-[200px] rounded-b-2xl ${className}`}>
+      <div className="relative h-full w-full">
+        <Image
+          src={src}
+          alt=""
+          fill
+          sizes={sizes}
+          className="object-cover"
+          priority={priority}
+        />
+        <div
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/5"
+          aria-hidden="true"
+        />
+      </div>
+    </div>
+  );
+}
 
 export const Hero = () => {
   const { lang } = useI18n();
   const content = getHeroContent(lang);
+  const blogImages = getBlogContent(lang).posts.slice(0, 3).map((post) => post.image);
   const isRtl = lang === "fa" || lang === "ps";
-  const titleText = isRtl
-    ? `${content.titlePrefix} ${content.titleIran}  ${content.titleAsia}`
-    : content.titleIran && content.titleAsia
-      ? `${content.titlePrefix} ${content.titleIran} and ${content.titleAsia}`
-      : content.titlePrefix;
+
+  const titleLine1 = isRtl
+    ? `${content.titlePrefix} ${content.titleIran} ${content.titleAsia}`.trim()
+    : content.titlePrefix;
+
+  const desktopArches = isRtl
+    ? [
+        "absolute top-[110px] right-0 z-10 h-[280px] w-[190px] shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
+        "absolute top-[60px] right-[110px] z-20 h-[250px] w-[170px] shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
+        "absolute top-0 right-[60px] z-30 h-[300px] w-[190px] shadow-[0_20px_40px_-16px_rgba(0,0,0,0.35)]",
+      ]
+    : [
+        "absolute top-[110px] left-0 z-10 h-[280px] w-[190px] shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
+        "absolute top-[60px] left-[110px] z-20 h-[250px] w-[170px] shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
+        "absolute top-0 left-[60px] z-30 h-[300px] w-[190px] shadow-[0_20px_40px_-16px_rgba(0,0,0,0.35)]",
+      ];
+
+  const mobileArches = [
+    "relative z-10 h-[190px] w-[34%] max-w-[150px] shrink-0 shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
+    "relative z-20 -mx-3.5 mb-[30px] h-[160px] w-[30%] max-w-[130px] shrink-0 shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
+    "relative z-30 mb-2.5 h-[190px] w-[34%] max-w-[150px] shrink-0 shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
+  ];
 
   return (
-    <section aria-labelledby="hero-title" dir={isRtl ? "rtl" : "ltr"}>
-      <div className="relative overflow-hidden rounded-2xl bg-[#89bfc9] md:rounded-3xl">
-        <div
-          className="flex flex-col items-center gap-6 px-5 py-6 md:flex-row md:items-start md:gap-8 md:px-10 md:py-10"
-        >
-          {/* Text Content */}
-          <div className="flex-1 min-w-0 text-center">
-            <h1
-              id="hero-title"
-              className="break-words text-[22px] font-black leading-[1.05] text-white md:text-[42px] md:leading-[1.04]"
-            >
-              {titleText}
-            </h1>
+    <section
+      aria-labelledby="hero-title"
+      dir={isRtl ? "rtl" : "ltr"}
+      className="overflow-hidden rounded-[10px] bg-white px-5 py-6 shadow-[0_30px_70px_-30px_rgba(20,29,43,0.35)] md:rounded-2xl md:px-10 md:pb-10 md:pt-7"
+    >
+      <div className="mt-4 flex flex-col items-center gap-6 md:mt-7 md:flex-row md:items-center md:gap-8 lg:gap-9">
+        {/* Text */}
+        <div className={`w-full min-w-0 flex-1 ${isRtl ? "text-right" : "text-left"} text-center md:text-start`}>
+          <h1
+            id="hero-title"
+            className="text-[30px] font-extrabold leading-[1.18] tracking-tight text-[#141d2b] md:text-[44px] lg:text-[52px]"
+          >
+            {titleLine1}
+            <br />
+            {content.subTitle}
+          </h1>
 
-            <p
-              className="mt-3 text-base font-medium text-black/90 md:mt-4 md:text-lg"
-            >
-              {content.subTitle}
-            </p>
+          <p className="mx-auto mt-4 max-w-[440px] text-[15px] leading-[1.9] text-[#5a5f68] md:mx-0 md:mt-5 md:max-w-[420px] md:text-base md:leading-[1.85]">
+            {content.description}
+          </p>
 
-            <div className="mt-4 grid gap-2 md:mt-5 md:grid-cols-3 md:gap-3">
-              <div className="rounded-lg bg-white/20 p-2.5 backdrop-blur-sm transition-all hover:bg-white/30 md:p-3">
-                <div className="flex items-center gap-2 text-center md:gap-2.5">
-                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/40 md:h-8 md:w-8">
-                    <Clock className="h-3.5 w-3.5 text-black md:h-4 md:w-4" />
-                  </div>
-                  <span className="text-[10px] font-medium text-black/90 md:text-xs">
-                    {content.bullets[0]}
-                  </span>
-                </div>
-              </div>
-              <div className="rounded-lg bg-white/20 p-2.5 backdrop-blur-sm transition-all hover:bg-white/30 md:p-3">
-                <div className="flex items-center gap-2 text-center md:gap-2.5">
-                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/40 md:h-8 md:w-8">
-                    <Languages className="h-3.5 w-3.5 text-black md:h-4 md:w-4" />
-                  </div>
-                  <span className="text-[10px] font-medium text-black/90 md:text-xs">
-                    {content.bullets[1]}
-                  </span>
-                </div>
-              </div>
-              <div className="rounded-lg bg-white/20 p-2.5 backdrop-blur-sm transition-all hover:bg-white/30 md:p-3">
-                <div className="flex items-center gap-2 text-center md:gap-2.5">
-                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/40 md:h-8 md:w-8">
-                    <MessageCircle className="h-3.5 w-3.5 text-black md:h-4 md:w-4" />
-                  </div>
-                  <span className="text-[10px] font-medium text-black/90 md:text-xs">
-                    {content.bullets[2]}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div
-              className="mt-5 flex flex-wrap items-center justify-center gap-3 md:mt-6"
+          <div className="mt-5 flex flex-wrap justify-center gap-3 md:mb-9 md:justify-start">
+            <a
+              href={CONTACT_WHATSAPP_URL}
+              className="rounded-lg bg-[#141d2b] px-[22px] py-[13px] text-[13.5px] font-bold text-white transition-transform hover:-translate-y-0.5"
             >
-              <ConsultButton
-                label={content.consultCta}
-                className="h-10 rounded-full bg-slate-950 px-5 text-sm font-semibold text-white shadow-lg shadow-slate-950/20 transition-transform hover:-translate-y-0.5 md:h-12 md:px-6"
-              />
-            </div>
+              {content.consultCta}
+            </a>
+            <Link
+              href="/services"
+              className="rounded-lg border-[1.4px] border-[#141d2b] px-[22px] py-[13px] text-[13.5px] font-bold text-[#141d2b] transition-transform hover:-translate-y-0.5"
+            >
+              {content.secondaryCta}
+            </Link>
           </div>
 
-          {/* Image (shown on all screens) */}
-          <div className="w-full shrink-0 md:w-[45%] md:max-w-[420px]">
-            <div className="relative overflow-hidden rounded-2xl md:rounded-3xl">
-              <Image
-                src="/images/Kabul hero.jpg"
-                alt="Kabul Safar"
-                width={740}
-                height={660}
-                className="mx-auto h-auto w-full max-w-[420px] object-cover"
-                aria-hidden="true"
-                priority
+          <div className="mt-6 flex flex-wrap justify-center gap-5 md:mt-0 md:justify-start md:gap-[34px]">
+            {content.bullets.map((label, index) => {
+              const Icon = featureIcons[index] ?? Heart;
+              return (
+                <div
+                  key={label}
+                  className="max-w-[100px] text-center text-[11px] font-semibold leading-snug text-[#565a63]"
+                >
+                  <div className="mx-auto mb-2 flex h-[30px] w-[30px] items-center justify-center text-[#141d2b]">
+                    <Icon className="h-6 w-6" strokeWidth={1.8} aria-hidden="true" />
+                  </div>
+                  {label}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Mobile: blog images */}
+        <div className="w-full md:hidden">
+          <div className="flex w-full items-end justify-center">
+            {blogImages.map((src, index) => (
+              <ArchImage
+                key={src}
+                src={src}
+                className={mobileArches[index] ?? mobileArches[0]}
+                priority={index === 0}
+                sizes="(max-width: 768px) 34vw, 150px"
               />
+            ))}
+          </div>
 
-              {/* Feature Bubbles */}
-              {/* Top Left - Speed */}
-              <div className="absolute left-1 top-1 md:left-2 md:top-2">
-                <div className="relative group">
-                  <div className="absolute -left-0.5 -top-0.5 h-2 w-2 md:h-3 md:w-3 rounded-full bg-white/60 animate-ping" />
-                  <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-white/30 backdrop-blur-md shadow-lg border border-white/40 transition-transform group-hover:scale-110 md:h-10 md:w-10">
-                    <Clock className="h-4 w-4 text-orange-500 md:h-5 md:w-5" />
-                  </div>
-                  <div className="absolute left-10 top-1/2 -translate-y-1/2 w-32 md:left-12 md:w-40 rounded-lg bg-white/80 backdrop-blur-md px-2 py-1.5 md:px-3 md:py-2 shadow-xl opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none">
-                    <p className="text-[10px] font-semibold text-gray-900 md:text-xs">
-                      {content.bullets[0]}
-                    </p>
-                  </div>
-                </div>
-              </div>
+          <div className="mt-4 flex flex-wrap justify-center gap-2">
+            <HeroTags tags={content.tags} variant="mobile" isRtl={isRtl} />
+          </div>
+        </div>
 
-              {/* Top Right - Multilingual */}
-              <div className="absolute right-1 top-1 md:right-2 md:top-2">
-                <div className="relative group">
-                  <div className="absolute -right-0.5 -top-0.5 h-2 w-2 md:h-3 md:w-3 rounded-full bg-white/60 animate-ping" />
-                  <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-white/30 backdrop-blur-md shadow-lg border border-white/40 transition-transform group-hover:scale-110 md:h-10 md:w-10">
-                    <Languages className="h-4 w-4 text-blue-500 md:h-5 md:w-5" />
-                  </div>
-                  <div className="absolute right-10 top-1/2 -translate-y-1/2 w-32 md:right-12 md:w-40 rounded-lg bg-white/80 backdrop-blur-md px-2 py-1.5 md:px-3 md:py-2 shadow-xl opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none">
-                    <p className="text-[10px] font-semibold text-gray-900 md:text-xs">
-                      {content.bullets[1]}
-                    </p>
-                  </div>
-                </div>
-              </div>
+        {/* Desktop: blog images in arch cluster */}
+        <div className="hidden min-w-0 shrink-0 md:flex md:flex-[1_1_340px] md:justify-center lg:flex-[0_0_340px]">
+          <div className="relative h-[400px] w-full max-w-[340px] overflow-hidden">
+            {blogImages.map((src, index) => (
+              <ArchImage
+                key={src}
+                src={src}
+                className={desktopArches[index] ?? desktopArches[0]}
+                priority={index === 0}
+                sizes="190px"
+              />
+            ))}
 
-              {/* Bottom Left - Free Consultation */}
-              <div className="absolute left-1 bottom-1 md:left-2 md:bottom-2">
-                <div className="relative group">
-                  <div className="absolute -left-0.5 -bottom-0.5 h-2 w-2 md:h-3 md:w-3 rounded-full bg-white/60 animate-ping" />
-                  <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-white/30 backdrop-blur-md shadow-lg border border-white/40 transition-transform group-hover:scale-110 md:h-10 md:w-10">
-                    <MessageCircle className="h-4 w-4 text-green-500 md:h-5 md:w-5" />
-                  </div>
-                  <div className="absolute left-10 top-1/2 -translate-y-1/2 w-32 md:left-12 md:w-40 rounded-lg bg-white/80 backdrop-blur-md px-2 py-1.5 md:px-3 md:py-2 shadow-xl opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none">
-                    <p className="text-[10px] font-semibold text-gray-900 md:text-xs">
-                      {content.bullets[2]}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Bottom Right - Trust Badge */}
-              <div className="absolute right-1 bottom-1 md:right-2 md:bottom-2">
-                <div className="relative group">
-                  <div className="absolute -right-0.5 -bottom-0.5 h-2 w-2 md:h-3 md:w-3 rounded-full bg-white/60 animate-ping" />
-                  <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-white/30 backdrop-blur-md shadow-lg border border-white/40 transition-transform group-hover:scale-110 md:h-10 md:w-10">
-                    <svg
-                      viewBox="0 0 24 24"
-                      className="h-4 w-4 text-yellow-500 md:h-5 md:w-5"
-                      fill="currentColor"
-                    >
-                      <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
-                    </svg>
-                  </div>
-                  <div className="absolute right-10 top-1/2 -translate-y-1/2 w-32 md:right-12 md:w-40 rounded-lg bg-white/80 backdrop-blur-md px-2 py-1.5 md:px-3 md:py-2 shadow-xl opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none">
-                    <p className="text-[10px] font-semibold text-gray-900 md:text-xs">
-                      {isRtl ? "۵۰۰۰+ مسافر راضی" : "5000+ Happy Travelers"}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <HeroTags tags={content.tags} variant="desktop" isRtl={isRtl} />
           </div>
         </div>
       </div>
