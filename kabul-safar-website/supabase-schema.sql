@@ -9,6 +9,7 @@ CREATE TABLE articles (
   author TEXT,
   cover_image TEXT,
   status TEXT DEFAULT 'draft', -- draft, published
+  language TEXT DEFAULT 'fa', -- fa, ps, en
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   published_at TIMESTAMP WITH TIME ZONE
@@ -17,6 +18,7 @@ CREATE TABLE articles (
 -- Create index on slug for faster lookups
 CREATE INDEX idx_articles_slug ON articles(slug);
 CREATE INDEX idx_articles_status ON articles(status);
+CREATE INDEX idx_articles_language ON articles(language);
 CREATE INDEX idx_articles_created_at ON articles(created_at DESC);
 
 -- Enable Row Level Security

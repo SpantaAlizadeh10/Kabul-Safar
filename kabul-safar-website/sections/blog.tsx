@@ -13,6 +13,7 @@ const blogData = {
     intro:
       "در اینجا تازه‌ترین تجربه‌ها، نکات و راهکارهای ویزا و سفر را با شما به اشتراک می‌گذاریم تا برنامه‌ریزی‌تان سریع‌تر و مطمئن‌تر باشد.",
     cta: "بیشتر بخوانید",
+    label: "بلاگ",
     posts: [
       {
         title: "چگونه مدارک ویزای ایران را سریع آماده کنیم",
@@ -55,6 +56,7 @@ const blogData = {
     intro:
       "موږ دلته تجربه، تګلارې او د ویزې اړوند مشوري شریکوو ترڅو ستاسو د سفر پلانونه په ښه توګه ترسره شي.",
     cta: "نور ولولئ",
+    label: "بلاګ",
     posts: [
       {
         title: "د ایران ویزې اسناد په چټکۍ سره څنګه برابر کړو",
@@ -97,6 +99,7 @@ const blogData = {
     intro:
       "Discover our latest stories, honest recommendations, and useful advice to prepare your trip with confidence.",
     cta: "Read more",
+    label: "Blog",
     posts: [
       {
         title: "How to Prepare Iran Visa Documents Fast",
@@ -147,7 +150,7 @@ export const Blog = () => {
         <div className="max-w-3xl space-y-4">
           <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-cyan-100 md:text-xs">
             <FileText className="h-4 w-4" aria-hidden="true" />
-            بلاگ
+            {content.label}
           </div>
           <h1 id="blog-title" className="text-xl font-black leading-tight md:text-2xl lg:text-4xl">
             {content.title}

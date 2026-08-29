@@ -23,30 +23,31 @@ export const BlogPostsGrid = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const fetchArticles = async () => {
+      const { data, error } = await supabase
+        .from('articles')
+        .select('*')
+        .eq('status', 'published')
+        .eq('language', lang)
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.error('Error fetching articles:', error);
+      } else {
+        setArticles(data || []);
+      }
+      setLoading(false);
+    };
+
     fetchArticles();
-  }, []);
-
-  const fetchArticles = async () => {
-    const { data, error } = await supabase
-      .from('articles')
-      .select('*')
-      .eq('status', 'published')
-      .order('created_at', { ascending: false });
-
-    if (error) {
-      console.error('Error fetching articles:', error);
-    } else {
-      setArticles(data || []);
-    }
-    setLoading(false);
-  };
+  }, [lang]);
 
   if (loading) {
-    return <div className="text-center py-8">در حال بارگذاری...</div>;
+    return <div className="text-center py-8">{lang === "fa" ? "در حال بارگذاری..." : lang === "ps" ? "په بار کې دی..." : "Loading..."}</div>;
   }
 
   if (articles.length === 0) {
-    return <div className="text-center py-8 text-gray-500">هنوز مقاله‌ای منتشر نشده است</div>;
+    return <div className="text-center py-8 text-gray-500">{lang === "fa" ? "هنوز مقاله‌ای منتشر نشده است" : lang === "ps" ? "لکه اوس ستاسو لیکنه نشته" : "No articles published yet"}</div>;
   }
 
   return (
@@ -61,7 +62,7 @@ export const BlogPostsGrid = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             <div className="absolute top-3 right-3 z-10">
               <div className="rounded-full bg-white/90 backdrop-blur-sm px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#0dadd1] shadow-md">
-                {article.category || 'عمومی'}
+                {article.category || (lang === "fa" ? "عمومی" : lang === "ps" ? "عمومي" : "General")}
               </div>
             </div>
             <Image
@@ -73,9 +74,9 @@ export const BlogPostsGrid = () => {
           </div>
           <div className="space-y-3 p-5">
             <div className="flex items-center gap-2 text-xs text-slate-500">
-              <span className="font-semibold text-[#0dadd1]">{article.author || 'ناشناس'}</span>
+              <span className="font-semibold text-[#0dadd1]">{article.author || (lang === "fa" ? "ناشناس" : lang === "ps" ? "ناجنوميت" : "Unknown")}</span>
               <span className="text-slate-300">•</span>
-              <span>{new Date(article.created_at).toLocaleDateString('fa-IR')}</span>
+              <span>{new Date(article.created_at).toLocaleDateString(lang === "fa" ? "fa-IR" : lang === "ps" ? "ps-AF" : "en-US")}</span>
             </div>
             <h3 className="text-lg font-bold text-slate-900 leading-tight group-hover:text-[#0dadd1] transition-colors line-clamp-2">
               {article.title}
