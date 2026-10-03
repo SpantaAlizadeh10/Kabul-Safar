@@ -18,27 +18,39 @@ interface Article {
   created_at: string;
 }
 
+async function getPublishedArticle(slug: string): Promise<Article | null> {
+  const candidates = [
+    ...new Set([
+      slug,
+      slug.normalize("NFC"),
+      slug.replace(/%20/gi, "-").normalize("NFC"),
+      slug.replace(/\s+/g, "-").normalize("NFC"),
+    ]),
+  ];
+
+  for (const candidate of candidates) {
+    const { data } = await supabase
+      .from("articles")
+      .select("*")
+      .eq("slug", candidate)
+      .eq("status", "published")
+      .maybeSingle();
+
+    if (data) return data;
+  }
+
+  return null;
+}
+
 export default async function ArticlePage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  const article = await getPublishedArticle(slug);
 
-  // Convert spaces to dashes for slug matching
-  const normalizedSlug = slug.replace(/%20/g, "-");
-
-  // Fetch article by slug (try both original and normalized)
-  const { data: article, error } = await supabase
-    .from("articles")
-    .select("*")
-    .or(`slug.eq.${slug},slug.eq.${normalizedSlug}`)
-    .eq("status", "published")
-    .single();
-
-  if (error || !article) {
-    notFound();
-  }
+  if (!article) notFound();
 
   return (
     <I18nProvider>
@@ -132,16 +144,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-
-  // Convert spaces to dashes for slug matching
-  const normalizedSlug = slug.replace(/%20/g, "-");
-
-  const { data: article } = await supabase
-    .from("articles")
-    .select("title, excerpt")
-    .or(`slug.eq.${slug},slug.eq.${normalizedSlug}`)
-    .eq("status", "published")
-    .single();
+  const article = await getPublishedArticle(slug);
 
   if (!article) {
     return {
